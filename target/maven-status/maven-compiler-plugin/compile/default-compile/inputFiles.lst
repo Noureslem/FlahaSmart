@@ -1,0 +1,16 @@
+C:\monjava\CRUD_Operation\src\main\java\controllers\DashboardController.java
+C:\monjava\CRUD_Operation\src\main\java\controllers\equipement\Ajout_Eq_Controller.java
+C:\monjava\CRUD_Operation\src\main\java\controllers\equipement\ListeEqController.java
+C:\monjava\CRUD_Operation\src\main\java\controllers\equipement\ModifierEqController.java
+C:\monjava\CRUD_Operation\src\main\java\controllers\MainLayoutController.java
+C:\monjava\CRUD_Operation\src\main\java\controllers\operation\Ajout_Op_Controller.java
+C:\monjava\CRUD_Operation\src\main\java\controllers\operation\ListeOpController.java
+C:\monjava\CRUD_Operation\src\main\java\controllers\operation\ModifierOpController.java
+C:\monjava\CRUD_Operation\src\main\java\models\Equipement.java
+C:\monjava\CRUD_Operation\src\main\java\models\Operation.java
+C:\monjava\CRUD_Operation\src\main\java\services\EquipementService.java
+C:\monjava\CRUD_Operation\src\main\java\services\Iservice.java
+C:\monjava\CRUD_Operation\src\main\java\services\OperationService.java
+C:\monjava\CRUD_Operation\src\main\java\testes\Main.java
+C:\monjava\CRUD_Operation\src\main\java\testes\MainApp.java
+C:\monjava\CRUD_Operation\src\main\java\utilies\MyDataBase.java

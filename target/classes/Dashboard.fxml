@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="30"
+      alignment="TOP_CENTER"
+      stylesheets="@/styles/style.css"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.DashboardController">
+
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+
+    <!-- titre -->
+    <Label text="Tableau de bord" styleClass="dashboard-title"/>
+
+    <!-- CARDS statistiques operations -->
+    <HBox fx:id="cardsContainer" spacing="20" alignment="CENTER" styleClass="cards-row" />
+
+    <!-- bloc statistiques par type (équipements) -->
+    <VBox spacing="15" styleClass="card">
+        <Label text="Équipements par type" styleClass="card-title"/>
+        <VBox fx:id="statsContainer" spacing="12"/>
+    </VBox>
+
+</VBox>

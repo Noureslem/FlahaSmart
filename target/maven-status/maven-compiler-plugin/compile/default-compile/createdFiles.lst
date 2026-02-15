@@ -1,0 +1,7 @@
+controllers\DashboardController.class
+controllers\equipement\ModifierEqController.class
+controllers\equipement\ListeEqController.class
+controllers\equipement\Ajout_Eq_Controller.class
+controllers\operation\ListeOpController.class
+controllers\operation\ModifierOpController.class
+controllers\MainLayoutController.class
