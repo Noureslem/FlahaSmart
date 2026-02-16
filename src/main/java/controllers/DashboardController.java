@@ -33,11 +33,11 @@ public class DashboardController {
 
     // 🎨 palette couleurs
     private final String[] colors = {
-            "#3b82f6",
-            "#22c55e",
-            "#f59e0b",
-            "#ef4444",
-            "#8b5cf6"
+            "#93441A",
+            "#00353F",
+            "#7AA95C",
+            "#CA3C66",
+            "#6A645A"
     };
 
     @FXML
@@ -118,9 +118,9 @@ public class DashboardController {
             double pctEnCours = total == 0 ? 0 : (enCours * 100.0) / total;
             double pctTermines = total == 0 ? 0 : (termines * 100.0) / total;
 
-            VBox cardTotal = createCard("Total", String.valueOf(total), "#3b82f6", "Toutes les opérations");
-            VBox cardEnCours = createCard("En cours", String.valueOf(enCours), "#f59e0b", String.format("%.0f%% en cours", pctEnCours));
-            VBox cardTermine = createCard("Terminé", String.valueOf(termines), "#22c55e", String.format("%.0f%% terminés", pctTermines));
+            VBox cardTotal = createCard("Les Opérations", String.valueOf(total), "#3b82f6", "");
+            VBox cardEnCours = createCard("En cours", String.valueOf(enCours), "red", "");
+            VBox cardTermine = createCard("Terminé", String.valueOf(termines), "#22c55e", "");
 
             cardsContainer.getChildren().addAll(cardTotal, cardEnCours, cardTermine);
 
