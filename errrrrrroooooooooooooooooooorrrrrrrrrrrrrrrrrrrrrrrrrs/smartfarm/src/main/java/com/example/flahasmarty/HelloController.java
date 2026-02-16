@@ -13,7 +13,7 @@ public class HelloController {
     @FXML private TextArea articleDescription;
     @FXML private Spinner<Double> articlePrice, articleWeight;
     @FXML private Spinner<Integer> articleStock;
-    @FXML private Button addArticleBtn, updateArticleBtn, deleteArticleBtn, clearArticleBtn;
+    @FXML private Button addArticleBtn, updateArticleBtn, clearArticleBtn;
 
     @FXML private TextField orderReference, orderStatus, orderPaymentMode, orderAddress;
     @FXML private Spinner<Double> orderTotal, orderFees;
@@ -26,8 +26,9 @@ public class HelloController {
     @FXML private TableColumn<Article, String> nomColumn, categorieColumn, descriptionColumn, uniteColumn, imageUrlColumn;
     @FXML private TableColumn<Article, Double> prixColumn, poidsColumn;
     @FXML private TableColumn<Article, Integer> stockColumn;
-    @FXML private Button refreshArticlesBtn;
+    @FXML private Button refreshArticlesBtn, deleteArticleTableBtn;
     @FXML private Label articleCountLabel;
+    @FXML private TextField deleteArticleIdField;
 
     @FXML
     public void initialize() {
@@ -126,7 +127,6 @@ public class HelloController {
     private void setupEventHandlers() {
         addArticleBtn.setOnAction(e -> handleAddArticle());
         updateArticleBtn.setOnAction(e -> updateArticle());
-        deleteArticleBtn.setOnAction(e -> deleteArticle());
         clearArticleBtn.setOnAction(e -> clearArticleForm());
 
         addOrderBtn.setOnAction(e -> addOrder());
@@ -140,11 +140,6 @@ public class HelloController {
             showAlert("Succès", "Article mis à jour");
             clearArticleForm();
         }
-    }
-
-    private void deleteArticle() {
-        showAlert("Confirmation", "Article supprimé");
-        clearArticleForm();
     }
 
     private void clearArticleForm() {
@@ -257,6 +252,55 @@ public class HelloController {
             System.out.println("[v0] ❌ Error loading articles: " + e.getMessage());
             e.printStackTrace();
             showAlert("Erreur", "Erreur lors du chargement des articles");
+        }
+    }
+
+    @FXML
+    private void handleDeleteArticleFromTable() {
+        try {
+            String idText = deleteArticleIdField.getText().trim();
+            
+            if (idText.isEmpty()) {
+                showAlert("Erreur", "Veuillez entrer un ID d'article à supprimer");
+                return;
+            }
+            
+            int id;
+            try {
+                id = Integer.parseInt(idText);
+            } catch (NumberFormatException e) {
+                showAlert("Erreur", "L'ID doit être un nombre entier");
+                return;
+            }
+            
+            // Confirm deletion
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirmation");
+            confirmAlert.setHeaderText("Supprimer l'article");
+            confirmAlert.setContentText("Êtes-vous sûr de vouloir supprimer cet article (ID: " + id + ")?");
+            
+            if (confirmAlert.showAndWait().get() != javafx.scene.control.ButtonType.OK) {
+                return;
+            }
+            
+            // Delete article
+            ArticleDAO dao = new ArticleDAO();
+            dao.deleteArticle(id);
+            
+            System.out.println("[v0] ✅ Article deleted successfully. ID: " + id);
+            
+            // Clear input field
+            deleteArticleIdField.clear();
+            
+            // Reload the table
+            loadArticles();
+            
+            showAlert("Succès", "Article supprimé avec succès");
+            
+        } catch (Exception e) {
+            System.out.println("[v0] ❌ Error deleting article: " + e.getMessage());
+            e.printStackTrace();
+            showAlert("Erreur", "Erreur lors de la suppression de l'article");
         }
     }
 

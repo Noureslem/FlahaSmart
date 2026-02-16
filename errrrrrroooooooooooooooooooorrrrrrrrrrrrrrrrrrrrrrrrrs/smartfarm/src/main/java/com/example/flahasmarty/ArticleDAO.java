@@ -46,20 +46,27 @@ public class ArticleDAO {
     }
 
     public void deleteArticle(int id) {
-        String sql = "DELETE FROM articles WHERE id=?";
+        String sql = "DELETE FROM articles WHERE id_article=?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, id);
-            ps.executeUpdate();
-            System.out.println("✅ Article supprimé avec succès");
+
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("✅ Article supprimé avec succès. ID: " + id);
+            } else {
+                System.out.println("⚠ Aucun article trouvé avec ID: " + id);
+            }
 
         } catch (Exception e) {
             System.out.println("❌ Erreur suppression article");
             e.printStackTrace();
         }
     }
+
 
     public List<Article> getAllArticles() {
         return DBConnection.getAllArticles();

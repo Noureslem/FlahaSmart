@@ -81,7 +81,6 @@
 
 
                     <Button fx:id="updateArticleBtn" text="✎ Modifier" styleClass="btn-secondary"/>
-                    <Button fx:id="deleteArticleBtn" text="✕ Supprimer" styleClass="btn-danger"/>
                     <Button fx:id="clearArticleBtn" text="Réinitialiser" styleClass="btn-light"/>
                 </HBox>
             </VBox>
@@ -181,6 +180,17 @@
             <HBox style="-fx-alignment: center;">
                 <Label fx:id="articleCountLabel" text="Total: 0 articles" style="-fx-font-size: 12; -fx-text-fill: #666;"/>
             </HBox>
+            
+            <Separator/>
+            
+            <VBox spacing="10" style="-fx-padding: 15; -fx-border-color: #e0e0e0; -fx-border-radius: 5;">
+                <Label text="Supprimer un Article" styleClass="form-label" style="-fx-font-size: 13; -fx-font-weight: bold;"/>
+                
+                <HBox spacing="10" style="-fx-alignment: center-left;">
+                    <TextField fx:id="deleteArticleIdField" styleClass="form-input" promptText="Donner ID pour supprimer" prefWidth="250"/>
+                    <Button fx:id="deleteArticleTableBtn" text="✕ Supprimer" styleClass="btn-danger" onAction="#handleDeleteArticleFromTable"/>
+                </HBox>
+            </VBox>
             
         </VBox>
     </Tab>
