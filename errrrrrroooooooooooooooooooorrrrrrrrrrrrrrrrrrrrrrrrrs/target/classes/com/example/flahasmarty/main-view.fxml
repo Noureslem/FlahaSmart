@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.flahasmarty.HelloController" 
+         stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE">
+    
+    <!-- Articles Tab -->
+    <Tab text="Articles" style="-fx-font-size: 14; -fx-padding: 10;">
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <VBox spacing="15" style="-fx-padding: 25;" styleClass="form-container">
+                
+                <Label text="Gestion des Articles" styleClass="form-title"/>
+                
+                <GridPane hgap="15" vgap="15" styleClass="form-grid">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50"/>
+                        <ColumnConstraints percentWidth="50"/>
+                    </columnConstraints>
+                    
+                    <!-- Nom Article -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Nom *" styleClass="form-label"/>
+                        <TextField fx:id="articleName" styleClass="form-input" promptText="Nom de l'article"/>
+                    </VBox>
+                    
+                    <!-- Catégorie -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="Catégorie *" styleClass="form-label"/>
+                        <TextField fx:id="articleCategory" styleClass="form-input" promptText="Catégorie"/>
+                    </VBox>
+                    
+                    <!-- Description -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+                        <Label text="Description" styleClass="form-label"/>
+                        <TextArea fx:id="articleDescription" styleClass="form-textarea" 
+                                  promptText="Description du produit" wrapText="true" prefRowCount="4"/>
+                    </VBox>
+                    
+                    <!-- Prix -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <Label text="Prix (€)" styleClass="form-label"/>
+                        <Spinner fx:id="articlePrice" styleClass="form-spinner" editable="true"/>
+                    </VBox>
+                    
+                    <!-- Stock -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label text="Stock" styleClass="form-label"/>
+                        <Spinner fx:id="articleStock" styleClass="form-spinner" editable="true"/>
+                    </VBox>
+                    
+                    <!-- Poids -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                        <Label text="Poids (kg)" styleClass="form-label"/>
+                        <Spinner fx:id="articleWeight" styleClass="form-spinner" editable="true"/>
+                    </VBox>
+                    
+                    <!-- Unité -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label text="Unité" styleClass="form-label"/>
+                        <TextField fx:id="articleUnit" styleClass="form-input" promptText="ex: pièce, kg"/>
+                    </VBox>
+                    
+                    <!-- Image URL -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2">
+                        <Label text="URL Image" styleClass="form-label"/>
+                        <TextField fx:id="articleImageUrl" styleClass="form-input" promptText="https://..."/>
+                    </VBox>
+                </GridPane>
+                
+                <!-- Buttons -->
+                <HBox spacing="10" style="-fx-alignment: center;">
+
+                    <Button fx:id="addArticleBtn"
+                            text="+ Ajouter"
+                            styleClass="btn-primary"
+                            onAction="#handleAddArticle"/>
+
+
+
+                    <Button fx:id="updateArticleBtn" text="✎ Modifier" styleClass="btn-secondary"/>
+                    <Button fx:id="deleteArticleBtn" text="✕ Supprimer" styleClass="btn-danger"/>
+                    <Button fx:id="clearArticleBtn" text="Réinitialiser" styleClass="btn-light"/>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </Tab>
+    
+    <!-- Commandes Tab -->
+    <Tab text="Commandes" style="-fx-font-size: 14; -fx-padding: 10;">
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <VBox spacing="15" style="-fx-padding: 25;" styleClass="form-container">
+                
+                <Label text="Gestion des Commandes" styleClass="form-title"/>
+                
+                <GridPane hgap="15" vgap="15" styleClass="form-grid">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50"/>
+                        <ColumnConstraints percentWidth="50"/>
+                    </columnConstraints>
+                    
+                    <!-- Référence -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Référence *" styleClass="form-label"/>
+                        <TextField fx:id="orderReference" styleClass="form-input" promptText="Référence unique"/>
+                    </VBox>
+                    
+                    <!-- Date Commande -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="Date Commande" styleClass="form-label"/>
+                        <DatePicker fx:id="orderDate" styleClass="form-input"/>
+                    </VBox>
+                    
+                    <!-- Statut -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label text="Statut *" styleClass="form-label"/>
+                        <TextField fx:id="orderStatus" styleClass="form-input" promptText="ex: En cours, Livrée"/>
+                    </VBox>
+                    
+                    <!-- Mode Paiement -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="Mode Paiement" styleClass="form-label"/>
+                        <TextField fx:id="orderPaymentMode" styleClass="form-input" promptText="ex: Carte, Virement"/>
+                    </VBox>
+                    
+                    <!-- Adresse Livraison -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2">
+                        <Label text="Adresse Livraison" styleClass="form-label"/>
+                        <TextField fx:id="orderAddress" styleClass="form-input" promptText="Adresse complète"/>
+                    </VBox>
+                    
+                    <!-- Montant Total -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                        <Label text="Montant Total (€)" styleClass="form-label"/>
+                        <Spinner fx:id="orderTotal" styleClass="form-spinner" editable="true"/>
+                    </VBox>
+                    
+                    <!-- Frais Livraison -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label text="Frais Livraison (€)" styleClass="form-label"/>
+                        <Spinner fx:id="orderFees" styleClass="form-spinner" editable="true"/>
+                    </VBox>
+                </GridPane>
+                
+                <!-- Buttons -->
+                <HBox spacing="10" style="-fx-alignment: center;">
+                    <Button fx:id="addOrderBtn" text="+ Ajouter" styleClass="btn-primary"/>
+                    <Button fx:id="updateOrderBtn" text="✎ Modifier" styleClass="btn-secondary"/>
+                    <Button fx:id="deleteOrderBtn" text="✕ Supprimer" styleClass="btn-danger"/>
+                    <Button fx:id="clearOrderBtn" text="Réinitialiser" styleClass="btn-light"/>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </Tab>
+</TabPane>
