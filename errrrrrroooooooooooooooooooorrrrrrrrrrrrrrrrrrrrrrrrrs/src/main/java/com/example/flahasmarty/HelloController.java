@@ -1,6 +1,8 @@
 package com.example.flahasmarty;
 
 import javafx.scene.control.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -18,11 +20,22 @@ public class HelloController {
     @FXML private DatePicker orderDate;
     @FXML private Button addOrderBtn, updateOrderBtn, deleteOrderBtn, clearOrderBtn;
 
+    // Articles Table components
+    @FXML private TableView<Article> articlesTable;
+    @FXML private TableColumn<Article, Integer> idColumn;
+    @FXML private TableColumn<Article, String> nomColumn, categorieColumn, descriptionColumn, uniteColumn, imageUrlColumn;
+    @FXML private TableColumn<Article, Double> prixColumn, poidsColumn;
+    @FXML private TableColumn<Article, Integer> stockColumn;
+    @FXML private Button refreshArticlesBtn;
+    @FXML private Label articleCountLabel;
+
     @FXML
     public void initialize() {
         initializeArticleSpinners();
         initializeOrderComponents();
         setupEventHandlers();
+        initializeArticlesTable();
+        loadArticles();
     }
 
     @FXML
@@ -190,5 +203,61 @@ public class HelloController {
         return true;
     }
 
+    // ===== Articles Table Methods =====
+
+    private void initializeArticlesTable() {
+        // Setup table columns with cell value factories
+        idColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        
+        nomColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNom()));
+        
+        categorieColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCategorie()));
+        
+        descriptionColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDescription()));
+        
+        prixColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getPrix()).asObject());
+        
+        stockColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getStock()).asObject());
+        
+        poidsColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getPoids()).asObject());
+        
+        uniteColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUnite()));
+        
+        imageUrlColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getImageUrl()));
+        
+        // Setup refresh button
+        refreshArticlesBtn.setOnAction(e -> loadArticles());
+    }
+
+    private void loadArticles() {
+        try {
+            System.out.println("[v0] Loading articles from database...");
+            
+            ArticleDAO dao = new ArticleDAO();
+            java.util.List<Article> articlesList = dao.getAllArticles();
+            
+            ObservableList<Article> articles = FXCollections.observableArrayList(articlesList);
+            articlesTable.setItems(articles);
+            
+            // Update article count label
+            articleCountLabel.setText("Total: " + articles.size() + " articles");
+            
+            System.out.println("[v0] ✅ Articles loaded successfully. Count: " + articles.size());
+            
+        } catch (Exception e) {
+            System.out.println("[v0] ❌ Error loading articles: " + e.getMessage());
+            e.printStackTrace();
+            showAlert("Erreur", "Erreur lors du chargement des articles");
+        }
+    }
 
 }

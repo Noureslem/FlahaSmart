@@ -2,6 +2,7 @@ package com.example.flahasmarty;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.List;
 
 public class ArticleDAO {
 
@@ -58,5 +59,9 @@ public class ArticleDAO {
             System.out.println("❌ Erreur suppression article");
             e.printStackTrace();
         }
+    }
+
+    public List<Article> getAllArticles() {
+        return DBConnection.getAllArticles();
     }
 }

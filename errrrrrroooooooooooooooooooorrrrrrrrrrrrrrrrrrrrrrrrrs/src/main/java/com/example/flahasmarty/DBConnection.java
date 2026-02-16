@@ -53,17 +53,17 @@ public class DBConnection {
 
         Connection conn = null;
         PreparedStatement ps = null;
-        
+
         try {
             conn = getConnection();
-            
+
             if (conn == null) {
                 System.out.println("[v0] ❌ FATAL: Connection is null - cannot proceed with insert");
                 return;
             }
-            
+
             conn.setAutoCommit(true);  // Enable auto-commit
-            
+
             ps = conn.prepareStatement(sql);
 
             ps.setString(1, nom);
@@ -78,7 +78,7 @@ public class DBConnection {
 
             System.out.println("[v0] Executing INSERT: " + nom);
             int result = ps.executeUpdate();
-            
+
             if (result > 0) {
                 System.out.println("[v0] ✅ Article ajouté avec succès - Ligne insérée: " + result);
             } else {
@@ -96,7 +96,7 @@ public class DBConnection {
             } catch (Exception e) {
                 System.out.println("[v0] Error closing PreparedStatement: " + e.getMessage());
             }
-            
+
             try {
                 if (conn != null) {
                     conn.close();
@@ -107,5 +107,56 @@ public class DBConnection {
         }
     }
 
+    public static java.util.List<Article> getAllArticles() {
+        String sql = "SELECT id_article, nom, description, categorie, prix, stock, poids, unite, image_url, id_user FROM articles ORDER BY id_article DESC";
+        java.util.List<Article> articles = new java.util.ArrayList<>();
+
+        Connection conn = null;
+        try {
+            conn = getConnection();
+
+            if (conn == null) {
+                System.out.println("[v0] ❌ FATAL: Connection is null - cannot retrieve articles");
+                return articles;
+            }
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            java.sql.ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Article article = new Article(
+                        rs.getString("nom"),
+                        rs.getString("description"),
+                        rs.getString("categorie"),
+                        rs.getDouble("prix"),
+                        rs.getInt("stock"),
+                        rs.getDouble("poids"),
+                        rs.getString("unite"),
+                        rs.getString("image_url"),
+                        rs.getInt("id_user")
+                );
+                article.setId(rs.getInt("id_article"));
+                articles.add(article);
+            }
+
+            rs.close();
+            ps.close();
+            System.out.println("[v0] ✅ Retrieved " + articles.size() + " articles from database");
+
+        } catch (Exception e) {
+            System.out.println("[v0] ❌ Erreur récupération articles: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                System.out.println("[v0] Error closing Connection: " + e.getMessage());
+            }
+        }
+
+        return articles;
+    }
 
 }

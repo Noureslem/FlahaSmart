@@ -154,4 +154,34 @@
             </VBox>
         </ScrollPane>
     </Tab>
+    
+    <!-- Résultat Articles Tab -->
+    <Tab text="Résultat Articles" style="-fx-font-size: 14; -fx-padding: 10;">
+        <VBox spacing="15" style="-fx-padding: 25;" styleClass="form-container">
+            
+            <HBox spacing="10" style="-fx-alignment: center-left;">
+                <Label text="Liste des Articles" styleClass="form-title"/>
+                <Button fx:id="refreshArticlesBtn" text="🔄 Rafraîchir" styleClass="btn-primary"/>
+            </HBox>
+            
+            <TableView fx:id="articlesTable" prefHeight="500" style="-fx-font-size: 11;">
+                <columns>
+                    <TableColumn text="ID" prefWidth="50" fx:id="idColumn"/>
+                    <TableColumn text="Nom" prefWidth="120" fx:id="nomColumn"/>
+                    <TableColumn text="Catégorie" prefWidth="100" fx:id="categorieColumn"/>
+                    <TableColumn text="Description" prefWidth="180" fx:id="descriptionColumn"/>
+                    <TableColumn text="Prix (€)" prefWidth="80" fx:id="prixColumn"/>
+                    <TableColumn text="Stock" prefWidth="70" fx:id="stockColumn"/>
+                    <TableColumn text="Poids (kg)" prefWidth="80" fx:id="poidsColumn"/>
+                    <TableColumn text="Unité" prefWidth="70" fx:id="uniteColumn"/>
+                    <TableColumn text="Image URL" prefWidth="150" fx:id="imageUrlColumn"/>
+                </columns>
+            </TableView>
+            
+            <HBox style="-fx-alignment: center;">
+                <Label fx:id="articleCountLabel" text="Total: 0 articles" style="-fx-font-size: 12; -fx-text-fill: #666;"/>
+            </HBox>
+            
+        </VBox>
+    </Tab>
 </TabPane>
