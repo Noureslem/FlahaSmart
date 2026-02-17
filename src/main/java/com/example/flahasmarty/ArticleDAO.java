@@ -21,7 +21,7 @@ public class ArticleDAO {
     }
 
     public void updateArticle(Article article) {
-        String sql = "UPDATE articles SET nom=?, description=?, categorie=?, prix=?, stock=?, poids=?, unite=?, image_url=? WHERE id=?";
+        String sql = "UPDATE articles SET nom=?, description=?, categorie=?, prix=?, stock=?, poids=?, unite=?, image_url=? WHERE id_article=?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -36,8 +36,13 @@ public class ArticleDAO {
             ps.setString(8, article.getImageUrl());
             ps.setInt(9, article.getId());
 
-            ps.executeUpdate();
-            System.out.println("✅ Article mise à jour avec succès");
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("✅ Article mis à jour avec succès. ID: " + article.getId());
+            } else {
+                System.out.println("⚠ Aucun article trouvé avec ID: " + article.getId());
+            }
 
         } catch (Exception e) {
             System.out.println("❌ Erreur mise à jour article");
@@ -67,8 +72,46 @@ public class ArticleDAO {
         }
     }
 
-
     public List<Article> getAllArticles() {
         return DBConnection.getAllArticles();
+    }
+
+    // NEW METHOD: Get article by ID
+    public Article getArticleById(int id) {
+        String sql = "SELECT id_article, nom, description, categorie, prix, stock, poids, unite, image_url, id_user FROM articles WHERE id_article = ?";
+        Article article = null;
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            java.sql.ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                article = new Article(
+                        rs.getString("nom"),
+                        rs.getString("description"),
+                        rs.getString("categorie"),
+                        rs.getDouble("prix"),
+                        rs.getInt("stock"),
+                        rs.getDouble("poids"),
+                        rs.getString("unite"),
+                        rs.getString("image_url"),
+                        rs.getInt("id_user")
+                );
+                article.setId(rs.getInt("id_article"));
+                System.out.println("✅ Article trouvé: " + article.getNom());
+            } else {
+                System.out.println("⚠ Aucun article trouvé avec ID: " + id);
+            }
+
+            rs.close();
+
+        } catch (Exception e) {
+            System.out.println("❌ Erreur recherche article par ID");
+            e.printStackTrace();
+        }
+
+        return article;
     }
 }

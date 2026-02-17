@@ -1,12 +1,12 @@
 package com.example.flahasmarty;
-
+import com.example.flahasmarty.ArticleUpdateDialogSimple;
 import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 public class HelloController {
     @FXML private TextField articleName, articleCategory, articleUnit, articleImageUrl;
@@ -66,7 +66,7 @@ public class HelloController {
                     prix,
                     stock
             );
-            
+
             // Set weight, unit, image and default user ID
             article.setPoids(poids);
             article.setUnite(unite);
@@ -95,6 +95,7 @@ public class HelloController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     private void clearArticleFields() {
         articleName.clear();
         articleCategory.clear();
@@ -106,11 +107,6 @@ public class HelloController {
         articleStock.getValueFactory().setValue(0);
         articleWeight.getValueFactory().setValue(0.0);
     }
-
-
-
-
-
 
     private void initializeArticleSpinners() {
         articlePrice.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 999999, 0, 0.01));
@@ -133,14 +129,47 @@ public class HelloController {
         updateOrderBtn.setOnAction(e -> updateOrder());
         deleteOrderBtn.setOnAction(e -> deleteOrder());
         clearOrderBtn.setOnAction(e -> clearOrderForm());
+
+        // Add delete button handler
+        deleteArticleTableBtn.setOnAction(e -> handleDeleteArticleFromTable());
     }
 
+    // UPDATED: updateArticle method with popup dialog
     private void updateArticle() {
-        if (validateArticleForm()) {
-            showAlert("Succès", "Article mis à jour");
-            clearArticleForm();
+        try {
+            System.out.println("[DEBUG] Opening update dialog...");
+
+            // Use the CORRECT class name - ArticleUpdateDialogSimple
+            ArticleUpdateDialogSimple dialog = new ArticleUpdateDialogSimple(
+                    updateArticleBtn.getScene().getWindow()
+            );
+
+            dialog.showAndWait().ifPresent(updatedArticle -> {
+                System.out.println("[DEBUG] Update confirmed for article ID: " + updatedArticle.getId());
+
+                // Perform the update in database
+                ArticleDAO dao = new ArticleDAO();
+                dao.updateArticle(updatedArticle);
+
+                // Show success message
+                showAlert("Succès", "Article mis à jour avec succès ✅");
+
+                // Refresh the table
+                loadArticles();
+
+                // Clear the form
+                clearArticleForm();
+            });
+
+            System.out.println("[DEBUG] Dialog closed");
+
+        } catch (Exception e) {
+            System.err.println("[ERROR] Failed to update article:");
+            e.printStackTrace();
+            showAlert("Erreur", "Erreur lors de la mise à jour: " + e.getMessage());
         }
     }
+
 
     private void clearArticleForm() {
         articleName.clear();
@@ -202,33 +231,33 @@ public class HelloController {
 
     private void initializeArticlesTable() {
         // Setup table columns with cell value factories
-        idColumn.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-        
-        nomColumn.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNom()));
-        
-        categorieColumn.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCategorie()));
-        
-        descriptionColumn.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDescription()));
-        
-        prixColumn.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getPrix()).asObject());
-        
-        stockColumn.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getStock()).asObject());
-        
-        poidsColumn.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getPoids()).asObject());
-        
-        uniteColumn.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUnite()));
-        
-        imageUrlColumn.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getImageUrl()));
-        
+        idColumn.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+
+        nomColumn.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNom()));
+
+        categorieColumn.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCategorie()));
+
+        descriptionColumn.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDescription()));
+
+        prixColumn.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getPrix()).asObject());
+
+        stockColumn.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getStock()).asObject());
+
+        poidsColumn.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getPoids()).asObject());
+
+        uniteColumn.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUnite()));
+
+        imageUrlColumn.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getImageUrl()));
+
         // Setup refresh button
         refreshArticlesBtn.setOnAction(e -> loadArticles());
     }
@@ -236,18 +265,18 @@ public class HelloController {
     private void loadArticles() {
         try {
             System.out.println("[v0] Loading articles from database...");
-            
+
             ArticleDAO dao = new ArticleDAO();
             java.util.List<Article> articlesList = dao.getAllArticles();
-            
+
             ObservableList<Article> articles = FXCollections.observableArrayList(articlesList);
             articlesTable.setItems(articles);
-            
+
             // Update article count label
             articleCountLabel.setText("Total: " + articles.size() + " articles");
-            
+
             System.out.println("[v0] ✅ Articles loaded successfully. Count: " + articles.size());
-            
+
         } catch (Exception e) {
             System.out.println("[v0] ❌ Error loading articles: " + e.getMessage());
             e.printStackTrace();
@@ -259,12 +288,12 @@ public class HelloController {
     private void handleDeleteArticleFromTable() {
         try {
             String idText = deleteArticleIdField.getText().trim();
-            
+
             if (idText.isEmpty()) {
                 showAlert("Erreur", "Veuillez entrer un ID d'article à supprimer");
                 return;
             }
-            
+
             int id;
             try {
                 id = Integer.parseInt(idText);
@@ -272,36 +301,35 @@ public class HelloController {
                 showAlert("Erreur", "L'ID doit être un nombre entier");
                 return;
             }
-            
+
             // Confirm deletion
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirmation");
             confirmAlert.setHeaderText("Supprimer l'article");
             confirmAlert.setContentText("Êtes-vous sûr de vouloir supprimer cet article (ID: " + id + ")?");
-            
+
             if (confirmAlert.showAndWait().get() != javafx.scene.control.ButtonType.OK) {
                 return;
             }
-            
+
             // Delete article
             ArticleDAO dao = new ArticleDAO();
             dao.deleteArticle(id);
-            
+
             System.out.println("[v0] ✅ Article deleted successfully. ID: " + id);
-            
+
             // Clear input field
             deleteArticleIdField.clear();
-            
+
             // Reload the table
             loadArticles();
-            
+
             showAlert("Succès", "Article supprimé avec succès");
-            
+
         } catch (Exception e) {
             System.out.println("[v0] ❌ Error deleting article: " + e.getMessage());
             e.printStackTrace();
             showAlert("Erreur", "Erreur lors de la suppression de l'article");
         }
     }
-
 }
