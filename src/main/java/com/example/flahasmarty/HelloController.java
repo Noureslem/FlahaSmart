@@ -6,14 +6,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import java.io.IOException;
 =======
+=======
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+>>>>>>> Stashed changes
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 public class HelloController {
@@ -23,10 +31,22 @@ public class HelloController {
     @FXML private Spinner<Integer> articleStock;
     @FXML private Button addArticleBtn, updateArticleBtn, clearArticleBtn;
 
+<<<<<<< Updated upstream
+=======
+    // Article validation labels
+    @FXML private Label articleNameError, articleCategoryError, articleDescriptionError;
+    @FXML private Label articlePriceError, articleStockError, articleWeightError, articleImageUrlError;
+
+    // Orders components
+>>>>>>> Stashed changes
     @FXML private TextField orderReference, orderStatus, orderPaymentMode, orderAddress;
     @FXML private Spinner<Double> orderTotal, orderFees;
     @FXML private DatePicker orderDate;
     @FXML private Button addOrderBtn, updateOrderBtn, deleteOrderBtn, clearOrderBtn;
+
+    // Order validation labels
+    @FXML private Label orderReferenceError, orderStatusError, orderPaymentError, orderAddressError;
+    @FXML private Label orderTotalError, orderFeesError;
 
     // Articles Table components
     @FXML private TableView<Article> articlesTable;
@@ -40,7 +60,10 @@ public class HelloController {
     @FXML private TextField deleteArticleIdField;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     // Articles Sorting and Search components
     @FXML private ComboBox<String> sortArticleCombo;
     @FXML private Button applyArticleSortBtn;
@@ -58,7 +81,11 @@ public class HelloController {
     @FXML private Label orderCountLabel;
     @FXML private TextField deleteOrderIdField;
 
+<<<<<<< Updated upstream
     // NEW: Orders Sorting and Search components
+=======
+    // Orders Sorting and Search components
+>>>>>>> Stashed changes
     @FXML private ComboBox<String> sortOrderCombo;
     @FXML private Button applyOrderSortBtn;
     @FXML private TextField searchOrderField;
@@ -73,6 +100,9 @@ public class HelloController {
     private String currentArticleSearchTerm = "";
     private String currentOrderSearchTerm = "";
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     @FXML
     public void initialize() {
@@ -81,11 +111,363 @@ public class HelloController {
         setupEventHandlers();
         initializeArticlesTable();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         loadArticles();
 =======
         initializeOrdersTable();
         loadArticles();
         loadOrders();
+>>>>>>> Stashed changes
+=======
+        initializeOrdersTable();
+        loadArticles();
+        loadOrders();
+
+        // Add input listeners for real-time validation
+        setupArticleValidation();
+        setupOrderValidation();
+    }
+
+    // ===== ARTICLE VALIDATION METHODS =====
+
+    private void setupArticleValidation() {
+        // Article Name validation
+        articleName.textProperty().addListener((observable, oldValue, newValue) -> {
+            validateArticleName();
+        });
+
+        // Article Category validation
+        articleCategory.textProperty().addListener((observable, oldValue, newValue) -> {
+            validateArticleCategory();
+        });
+
+        // Article Description validation
+        articleDescription.textProperty().addListener((observable, oldValue, newValue) -> {
+            validateArticleDescription();
+        });
+
+        // Article Price validation
+        articlePrice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            validateArticlePrice();
+        });
+
+        // Article Stock validation
+        articleStock.valueProperty().addListener((observable, oldValue, newValue) -> {
+            validateArticleStock();
+        });
+
+        // Article Weight validation
+        articleWeight.valueProperty().addListener((observable, oldValue, newValue) -> {
+            validateArticleWeight();
+        });
+
+        // Article Image URL validation
+        articleImageUrl.textProperty().addListener((observable, oldValue, newValue) -> {
+            validateArticleImageUrl();
+        });
+    }
+
+    private boolean validateArticleName() {
+        String name = articleName.getText().trim();
+
+        if (name.isEmpty()) {
+            articleNameError.setText("Le nom est requis");
+            articleNameError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (name.length() < 3) {
+            articleNameError.setText("Le nom doit contenir au moins 3 caractères");
+            articleNameError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (name.length() > 15) {
+            articleNameError.setText("Le nom ne peut pas dépasser 15 caractères");
+            articleNameError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (!name.matches("[a-zA-Z\\s]+")) {
+            articleNameError.setText("Le nom ne peut contenir que des lettres et espaces");
+            articleNameError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            articleNameError.setText("✓ Valide");
+            articleNameError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateArticleCategory() {
+        String category = articleCategory.getText().trim();
+
+        if (category.isEmpty()) {
+            articleCategoryError.setText("La catégorie est requise");
+            articleCategoryError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (category.length() < 5) {
+            articleCategoryError.setText("La catégorie doit contenir au moins 5 caractères");
+            articleCategoryError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (category.length() > 20) {
+            articleCategoryError.setText("La catégorie ne peut pas dépasser 20 caractères");
+            articleCategoryError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            articleCategoryError.setText("✓ Valide");
+            articleCategoryError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateArticleDescription() {
+        String description = articleDescription.getText().trim();
+
+        if (description.isEmpty()) {
+            articleDescriptionError.setText("La description est requise");
+            articleDescriptionError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (description.length() < 6) {
+            articleDescriptionError.setText("La description doit contenir au moins 6 caractères");
+            articleDescriptionError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            articleDescriptionError.setText("✓ Valide");
+            articleDescriptionError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateArticlePrice() {
+        double price = articlePrice.getValue();
+
+        if (price <= 0) {
+            articlePriceError.setText("Le prix doit être supérieur à 0");
+            articlePriceError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            articlePriceError.setText("✓ Valide");
+            articlePriceError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateArticleStock() {
+        int stock = articleStock.getValue();
+
+        if (stock <= 0) {
+            articleStockError.setText("Le stock doit être supérieur à 0");
+            articleStockError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            articleStockError.setText("✓ Valide");
+            articleStockError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateArticleWeight() {
+        double weight = articleWeight.getValue();
+
+        if (weight <= 0) {
+            articleWeightError.setText("Le poids doit être supérieur à 0");
+            articleWeightError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            articleWeightError.setText("✓ Valide");
+            articleWeightError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateArticleImageUrl() {
+        String url = articleImageUrl.getText().trim();
+
+        if (url.isEmpty()) {
+            articleImageUrlError.setText("L'URL de l'image est requise");
+            articleImageUrlError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (!url.startsWith("https://")) {
+            articleImageUrlError.setText("L'URL doit commencer par https://");
+            articleImageUrlError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            articleImageUrlError.setText("✓ Valide");
+            articleImageUrlError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateArticleForm() {
+        boolean isValid = true;
+
+        isValid &= validateArticleName();
+        isValid &= validateArticleCategory();
+        isValid &= validateArticleDescription();
+        isValid &= validateArticlePrice();
+        isValid &= validateArticleStock();
+        isValid &= validateArticleWeight();
+        isValid &= validateArticleImageUrl();
+
+        return isValid;
+    }
+
+    // ===== ORDER VALIDATION METHODS =====
+
+    private void setupOrderValidation() {
+        // Order Reference validation
+        orderReference.textProperty().addListener((observable, oldValue, newValue) -> {
+            validateOrderReference();
+        });
+
+        // Order Status validation
+        orderStatus.textProperty().addListener((observable, oldValue, newValue) -> {
+            validateOrderStatus();
+        });
+
+        // Order Payment Mode validation
+        orderPaymentMode.textProperty().addListener((observable, oldValue, newValue) -> {
+            validateOrderPaymentMode();
+        });
+
+        // Order Address validation
+        orderAddress.textProperty().addListener((observable, oldValue, newValue) -> {
+            validateOrderAddress();
+        });
+
+        // Order Total validation
+        orderTotal.valueProperty().addListener((observable, oldValue, newValue) -> {
+            validateOrderTotal();
+        });
+
+        // Order Fees validation
+        orderFees.valueProperty().addListener((observable, oldValue, newValue) -> {
+            validateOrderFees();
+        });
+    }
+
+    private boolean validateOrderReference() {
+        String reference = orderReference.getText().trim();
+
+        if (reference.isEmpty()) {
+            orderReferenceError.setText("La référence est requise");
+            orderReferenceError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (reference.length() < 3) {
+            orderReferenceError.setText("La référence doit contenir au moins 3 caractères");
+            orderReferenceError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (reference.length() > 15) {
+            orderReferenceError.setText("La référence ne peut pas dépasser 15 caractères");
+            orderReferenceError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            orderReferenceError.setText("✓ Valide");
+            orderReferenceError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateOrderStatus() {
+        String status = orderStatus.getText().trim();
+
+        if (status.isEmpty()) {
+            orderStatusError.setText("Le statut est requis");
+            orderStatusError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (status.length() < 3) {
+            orderStatusError.setText("Le statut doit contenir au moins 3 caractères");
+            orderStatusError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (status.length() > 10) {
+            orderStatusError.setText("Le statut ne peut pas dépasser 10 caractères");
+            orderStatusError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            orderStatusError.setText("✓ Valide");
+            orderStatusError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateOrderPaymentMode() {
+        String payment = orderPaymentMode.getText().trim();
+
+        if (payment.isEmpty()) {
+            orderPaymentError.setText("Le mode de paiement est requis");
+            orderPaymentError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (payment.length() < 3) {
+            orderPaymentError.setText("Le mode de paiement doit contenir au moins 3 caractères");
+            orderPaymentError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (payment.length() > 10) {
+            orderPaymentError.setText("Le mode de paiement ne peut pas dépasser 10 caractères");
+            orderPaymentError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            orderPaymentError.setText("✓ Valide");
+            orderPaymentError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateOrderAddress() {
+        String address = orderAddress.getText().trim();
+
+        if (address.isEmpty()) {
+            orderAddressError.setText("L'adresse est requise");
+            orderAddressError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (address.length() < 2) {
+            orderAddressError.setText("L'adresse doit contenir au moins 2 caractères");
+            orderAddressError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else if (address.length() > 30) {
+            orderAddressError.setText("L'adresse ne peut pas dépasser 30 caractères");
+            orderAddressError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            orderAddressError.setText("✓ Valide");
+            orderAddressError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateOrderTotal() {
+        double total = orderTotal.getValue();
+
+        if (total <= 0) {
+            orderTotalError.setText("Le montant total doit être supérieur à 0");
+            orderTotalError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            orderTotalError.setText("✓ Valide");
+            orderTotalError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateOrderFees() {
+        double fees = orderFees.getValue();
+
+        if (fees <= 0) {
+            orderFeesError.setText("Les frais de livraison doivent être supérieurs à 0");
+            orderFeesError.setStyle("-fx-text-fill: red;");
+            return false;
+        } else {
+            orderFeesError.setText("✓ Valide");
+            orderFeesError.setStyle("-fx-text-fill: green;");
+            return true;
+        }
+    }
+
+    private boolean validateOrderForm() {
+        boolean isValid = true;
+
+        isValid &= validateOrderReference();
+        isValid &= validateOrderStatus();
+        isValid &= validateOrderPaymentMode();
+        isValid &= validateOrderAddress();
+        isValid &= validateOrderTotal();
+        isValid &= validateOrderFees();
+
+        return isValid;
 >>>>>>> Stashed changes
     }
 
@@ -94,17 +476,18 @@ public class HelloController {
 
         try {
             if (!validateArticleForm()) {
+                showAlert("Erreur de validation", "Veuillez corriger les erreurs dans le formulaire");
                 return;
             }
 
-            String nom = articleName.getText();
-            String categorie = articleCategory.getText();
-            String description = articleDescription.getText();
+            String nom = articleName.getText().trim();
+            String categorie = articleCategory.getText().trim();
+            String description = articleDescription.getText().trim();
             double prix = articlePrice.getValue();
             int stock = articleStock.getValue();
             double poids = articleWeight.getValue();
-            String unite = articleUnit.getText();
-            String imageUrl = articleImageUrl.getText();
+            String unite = articleUnit.getText().trim();
+            String imageUrl = articleImageUrl.getText().trim();
 
             System.out.println("[v0] Adding article: " + nom);
 
@@ -404,18 +787,19 @@ public class HelloController {
         articlePrice.getValueFactory().setValue(0.0);
         articleStock.getValueFactory().setValue(0);
         articleWeight.getValueFactory().setValue(0.0);
+
+        // Clear validation messages
+        articleNameError.setText("");
+        articleCategoryError.setText("");
+        articleDescriptionError.setText("");
+        articlePriceError.setText("");
+        articleStockError.setText("");
+        articleWeightError.setText("");
+        articleImageUrlError.setText("");
     }
 
     private void clearArticleForm() {
         clearArticleFields();
-    }
-
-    private boolean validateArticleForm() {
-        if (articleName.getText().isEmpty() || articleCategory.getText().isEmpty()) {
-            showAlert("Erreur", "Veuillez remplir tous les champs obligatoires");
-            return false;
-        }
-        return true;
     }
 
     private void initializeArticlesTable() {
@@ -573,14 +957,15 @@ public class HelloController {
     private void handleAddOrder() {
         try {
             if (!validateOrderForm()) {
+                showAlert("Erreur de validation", "Veuillez corriger les erreurs dans le formulaire");
                 return;
             }
 
-            String reference = orderReference.getText();
+            String reference = orderReference.getText().trim();
             LocalDate date = orderDate.getValue();
-            String statut = orderStatus.getText();
-            String modePaiement = orderPaymentMode.getText();
-            String adresse = orderAddress.getText();
+            String statut = orderStatus.getText().trim();
+            String modePaiement = orderPaymentMode.getText().trim();
+            String adresse = orderAddress.getText().trim();
             double montant = orderTotal.getValue();
             double frais = orderFees.getValue();
 
@@ -601,7 +986,20 @@ public class HelloController {
 
     private void updateOrder() {
         try {
+<<<<<<< Updated upstream
             showAlert("Info", "Fonctionnalité de modification à implémenter");
+=======
+            OrderUpdateDialog dialog = new OrderUpdateDialog(updateOrderBtn.getScene().getWindow());
+
+            dialog.showAndWait().ifPresent(updatedOrder -> {
+                OrderDAO dao = new OrderDAO();
+                dao.updateOrder(updatedOrder);
+                showAlert("Succès", "Commande mise à jour avec succès ✅");
+                loadOrders();
+                clearOrderForm();
+            });
+
+>>>>>>> Stashed changes
         } catch (Exception e) {
             showAlert("Erreur", "Erreur lors de la mise à jour ❌");
             e.printStackTrace();
@@ -658,8 +1056,17 @@ public class HelloController {
         orderAddress.clear();
         orderTotal.getValueFactory().setValue(0.0);
         orderFees.getValueFactory().setValue(0.0);
+
+        // Clear validation messages
+        orderReferenceError.setText("");
+        orderStatusError.setText("");
+        orderPaymentError.setText("");
+        orderAddressError.setText("");
+        orderTotalError.setText("");
+        orderFeesError.setText("");
     }
 
+<<<<<<< Updated upstream
     private boolean validateOrderForm() {
         if (orderReference.getText().isEmpty() || orderStatus.getText().isEmpty()) {
             showAlert("Erreur", "Veuillez remplir tous les champs obligatoires");
@@ -668,6 +1075,8 @@ public class HelloController {
         return true;
     }
 
+=======
+>>>>>>> Stashed changes
     private void initializeOrdersTable() {
         orderIdColumn.setCellValueFactory(cellData ->
                 new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
@@ -745,7 +1154,11 @@ public class HelloController {
         searchOrderField.setOnAction(e -> searchOrders());
     }
 
+<<<<<<< Updated upstream
     // NEW: Order search methods
+=======
+    // Order search methods
+>>>>>>> Stashed changes
     @FXML
     private void searchOrders() {
         currentOrderSearchTerm = searchOrderField.getText().trim();
@@ -870,5 +1283,8 @@ public class HelloController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }

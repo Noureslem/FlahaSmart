@@ -5,10 +5,13 @@
 <?import javafx.scene.layout.*?>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.flahasmarty.HelloController" 
          stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE">
     
 =======
+=======
+>>>>>>> Stashed changes
 <TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.flahasmarty.HelloController"
          stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE" styleClass="green-theme">
 
@@ -18,10 +21,19 @@
         <ScrollPane fitToWidth="true" fitToHeight="true">
             <VBox spacing="15" style="-fx-padding: 25;" styleClass="form-container">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 
                 <Label text="Gestion des Articles" styleClass="form-title"/>
                 
 =======
+=======
+
+                <Label text="Gestion des Articles" styleClass="form-title">
+                    <graphic>
+                        <Label styleClass="title-icon" text="📦"/>
+                    </graphic>
+                </Label>
+>>>>>>> Stashed changes
 
                 <Label text="Gestion des Articles" styleClass="form-title">
                     <graphic>
@@ -38,39 +50,50 @@
                     
                     <!-- Nom Article -->
                     <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <Label text="Nom *" styleClass="form-label"/>
+                        <Label text="Nom * (3-15 caractères, lettres uniquement)" styleClass="form-label"/>
                         <TextField fx:id="articleName" styleClass="form-input" promptText="Nom de l'article"/>
+                        <Label fx:id="articleNameError" styleClass="validation-label" text=""/>
                     </VBox>
                     
                     <!-- Catégorie -->
                     <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                        <Label text="Catégorie *" styleClass="form-label"/>
+                        <Label text="Catégorie * (5-20 caractères)" styleClass="form-label"/>
                         <TextField fx:id="articleCategory" styleClass="form-input" promptText="Catégorie"/>
+                        <Label fx:id="articleCategoryError" styleClass="validation-label" text=""/>
                     </VBox>
                     
                     <!-- Description -->
                     <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+<<<<<<< Updated upstream
                         <Label text="Description" styleClass="form-label"/>
                         <TextArea fx:id="articleDescription" styleClass="form-textarea" 
+=======
+                        <Label text="Description * (min 6 caractères)" styleClass="form-label"/>
+                        <TextArea fx:id="articleDescription" styleClass="form-textarea"
+>>>>>>> Stashed changes
                                   promptText="Description du produit" wrapText="true" prefRowCount="4"/>
+                        <Label fx:id="articleDescriptionError" styleClass="validation-label" text=""/>
                     </VBox>
                     
                     <!-- Prix -->
                     <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                        <Label text="Prix (€)" styleClass="form-label"/>
+                        <Label text="Prix (€) * (>0)" styleClass="form-label"/>
                         <Spinner fx:id="articlePrice" styleClass="form-spinner" editable="true"/>
+                        <Label fx:id="articlePriceError" styleClass="validation-label" text=""/>
                     </VBox>
                     
                     <!-- Stock -->
                     <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                        <Label text="Stock" styleClass="form-label"/>
+                        <Label text="Stock * (>0)" styleClass="form-label"/>
                         <Spinner fx:id="articleStock" styleClass="form-spinner" editable="true"/>
+                        <Label fx:id="articleStockError" styleClass="validation-label" text=""/>
                     </VBox>
                     
                     <!-- Poids -->
                     <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                        <Label text="Poids (kg)" styleClass="form-label"/>
+                        <Label text="Poids (kg) * (>0)" styleClass="form-label"/>
                         <Spinner fx:id="articleWeight" styleClass="form-spinner" editable="true"/>
+                        <Label fx:id="articleWeightError" styleClass="validation-label" text=""/>
                     </VBox>
                     
                     <!-- Unité -->
@@ -81,8 +104,9 @@
                     
                     <!-- Image URL -->
                     <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2">
-                        <Label text="URL Image" styleClass="form-label"/>
+                        <Label text="URL Image * (doit commencer par https://)" styleClass="form-label"/>
                         <TextField fx:id="articleImageUrl" styleClass="form-input" promptText="https://..."/>
+                        <Label fx:id="articleImageUrlError" styleClass="validation-label" text=""/>
                     </VBox>
                 </GridPane>
                 
@@ -108,10 +132,19 @@
         <ScrollPane fitToWidth="true" fitToHeight="true">
             <VBox spacing="15" style="-fx-padding: 25;" styleClass="form-container">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 
                 <Label text="Gestion des Commandes" styleClass="form-title"/>
                 
 =======
+=======
+
+                <Label text="Gestion des Commandes" styleClass="form-title">
+                    <graphic>
+                        <Label styleClass="title-icon" text="📋"/>
+                    </graphic>
+                </Label>
+>>>>>>> Stashed changes
 
                 <Label text="Gestion des Commandes" styleClass="form-title">
                     <graphic>
@@ -128,8 +161,9 @@
                     
                     <!-- Référence -->
                     <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <Label text="Référence *" styleClass="form-label"/>
+                        <Label text="Référence * (3-15 caractères)" styleClass="form-label"/>
                         <TextField fx:id="orderReference" styleClass="form-input" promptText="Référence unique"/>
+                        <Label fx:id="orderReferenceError" styleClass="validation-label" text=""/>
                     </VBox>
                     
                     <!-- Date Commande -->
@@ -140,32 +174,37 @@
                     
                     <!-- Statut -->
                     <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                        <Label text="Statut *" styleClass="form-label"/>
+                        <Label text="Statut * (3-10 caractères)" styleClass="form-label"/>
                         <TextField fx:id="orderStatus" styleClass="form-input" promptText="ex: En cours, Livrée"/>
+                        <Label fx:id="orderStatusError" styleClass="validation-label" text=""/>
                     </VBox>
                     
                     <!-- Mode Paiement -->
                     <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                        <Label text="Mode Paiement" styleClass="form-label"/>
+                        <Label text="Mode Paiement * (3-10 caractères)" styleClass="form-label"/>
                         <TextField fx:id="orderPaymentMode" styleClass="form-input" promptText="ex: Carte, Virement"/>
+                        <Label fx:id="orderPaymentError" styleClass="validation-label" text=""/>
                     </VBox>
                     
                     <!-- Adresse Livraison -->
                     <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2">
-                        <Label text="Adresse Livraison" styleClass="form-label"/>
+                        <Label text="Adresse Livraison * (2-30 caractères)" styleClass="form-label"/>
                         <TextField fx:id="orderAddress" styleClass="form-input" promptText="Adresse complète"/>
+                        <Label fx:id="orderAddressError" styleClass="validation-label" text=""/>
                     </VBox>
                     
                     <!-- Montant Total -->
                     <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                        <Label text="Montant Total (€)" styleClass="form-label"/>
+                        <Label text="Montant Total (€) * (>0)" styleClass="form-label"/>
                         <Spinner fx:id="orderTotal" styleClass="form-spinner" editable="true"/>
+                        <Label fx:id="orderTotalError" styleClass="validation-label" text=""/>
                     </VBox>
                     
                     <!-- Frais Livraison -->
                     <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                        <Label text="Frais Livraison (€)" styleClass="form-label"/>
+                        <Label text="Frais Livraison (€) * (>0)" styleClass="form-label"/>
                         <Spinner fx:id="orderFees" styleClass="form-spinner" editable="true"/>
+                        <Label fx:id="orderFeesError" styleClass="validation-label" text=""/>
                     </VBox>
                 </GridPane>
                 
@@ -200,6 +239,9 @@
             <Separator styleClass="green-separator"/>
 
             <!-- Sort and Refresh Section -->
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             <HBox spacing="10" style="-fx-alignment: center-left;">
                 <Label text="Liste des Articles" styleClass="form-title">
@@ -216,8 +258,13 @@
                 <Button fx:id="refreshArticlesBtn" text="🔄 Rafraîchir" styleClass="btn-primary"/>
             </HBox>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             
             <TableView fx:id="articlesTable" prefHeight="500" style="-fx-font-size: 11;">
+=======
+
+            <TableView fx:id="articlesTable" prefHeight="450" styleClass="green-table">
+>>>>>>> Stashed changes
 =======
 
             <TableView fx:id="articlesTable" prefHeight="450" styleClass="green-table">
@@ -240,6 +287,7 @@
                 <Label fx:id="articleCountLabel" text="Total: 0 articles" styleClass="count-label"/>
             </HBox>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             
             <Separator/>
             
@@ -247,6 +295,13 @@
                 <Label text="Supprimer un Article" styleClass="form-label" style="-fx-font-size: 13; -fx-font-weight: bold;"/>
                 
 =======
+=======
+
+            <Separator styleClass="green-separator"/>
+
+            <VBox spacing="10" styleClass="delete-section">
+                <Label text="Supprimer un Article" styleClass="section-title"/>
+>>>>>>> Stashed changes
 
             <Separator styleClass="green-separator"/>
 
