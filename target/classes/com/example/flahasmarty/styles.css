@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /* Green Theme Color Palette */
 .root {
     --primary-green: #2e7d32;
@@ -364,10 +365,67 @@
     -fx-padding: 10 20;
     -fx-background-radius: 5;
 >>>>>>> Stashed changes
+=======
+/* Add these styles to your existing styles.css */
+
+.validation-label {
+    -fx-font-size: 11px;
+    -fx-padding: 2px 0 0 0;
+}
+
+.form-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e7d32;
+}
+
+.form-input {
+    -fx-background-color: white;
+    -fx-border-color: #c8e6c9;
+    -fx-border-radius: 5;
+    -fx-padding: 8;
+}
+
+.form-input:focused {
+    -fx-border-color: #2e7d32;
+    -fx-border-width: 2;
+}
+
+.btn-primary {
+    -fx-background-color: #2e7d32;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #1b5e20;
+}
+
+.btn-secondary {
+    -fx-background-color: #ffb300;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #ffa000;
+}
+
+.btn-danger {
+    -fx-background-color: #c62828;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+>>>>>>> Stashed changes
 }
 
 .btn-danger:hover {
     -fx-background-color: #b71c1c;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     -fx-scale-x: 1.02;
     -fx-scale-y: 1.02;
@@ -621,6 +679,93 @@ VBox {
     -fx-background-color: #c8e6c9;
 }
 
+=======
+}
+
+.btn-light {
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5;
+}
+
+.btn-light:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.form-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e7d32;
+}
+
+.title-icon {
+    -fx-font-size: 28px;
+    -fx-padding: 0 10 0 0;
+}
+
+.form-container {
+    -fx-background-color: #f9f9f9;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+.form-grid {
+    -fx-padding: 10;
+}
+
+.green-table {
+    -fx-border-color: #c8e6c9;
+    -fx-border-radius: 5;
+}
+
+.green-table .column-header {
+    -fx-background-color: #2e7d32;
+    -fx-text-fill: white;
+}
+
+.green-table .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.count-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e7d32;
+    -fx-padding: 10;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e7d32;
+}
+
+.delete-section {
+    -fx-background-color: #ffebee;
+    -fx-padding: 15;
+    -fx-background-radius: 5;
+    -fx-border-color: #ffcdd2;
+    -fx-border-radius: 5;
+}
+
+.search-section {
+    -fx-background-color: #e8f5e9;
+    -fx-padding: 15;
+    -fx-background-radius: 5;
+    -fx-border-color: #c8e6c9;
+    -fx-border-radius: 5;
+}
+
+.green-separator {
+    -fx-background-color: #c8e6c9;
+}
+
+>>>>>>> Stashed changes
 .form-combo {
     -fx-background-color: white;
     -fx-border-color: #c8e6c9;
@@ -637,5 +782,8 @@ VBox {
     -fx-background-color: white;
     -fx-border-color: #c8e6c9;
     -fx-border-radius: 5;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }

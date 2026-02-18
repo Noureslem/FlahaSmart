@@ -6,10 +6,13 @@
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.flahasmarty.HelloController" 
          stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE">
     
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 <TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.flahasmarty.HelloController"
@@ -22,11 +25,20 @@
             <VBox spacing="15" style="-fx-padding: 25;" styleClass="form-container">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 
                 <Label text="Gestion des Articles" styleClass="form-title"/>
                 
 =======
 =======
+=======
+
+                <Label text="Gestion des Articles" styleClass="form-title">
+                    <graphic>
+                        <Label styleClass="title-icon" text="📦"/>
+                    </graphic>
+                </Label>
+>>>>>>> Stashed changes
 
                 <Label text="Gestion des Articles" styleClass="form-title">
                     <graphic>
@@ -65,9 +77,12 @@
                     <!-- Description -->
                     <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                         <Label text="Description" styleClass="form-label"/>
                         <TextArea fx:id="articleDescription" styleClass="form-textarea" 
 =======
+=======
+>>>>>>> Stashed changes
                         <Label text="Description * (min 6 caractères)" styleClass="form-label"/>
                         <TextArea fx:id="articleDescription" styleClass="form-textarea"
 >>>>>>> Stashed changes
@@ -133,11 +148,20 @@
             <VBox spacing="15" style="-fx-padding: 25;" styleClass="form-container">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 
                 <Label text="Gestion des Commandes" styleClass="form-title"/>
                 
 =======
 =======
+=======
+
+                <Label text="Gestion des Commandes" styleClass="form-title">
+                    <graphic>
+                        <Label styleClass="title-icon" text="📋"/>
+                    </graphic>
+                </Label>
+>>>>>>> Stashed changes
 
                 <Label text="Gestion des Commandes" styleClass="form-title">
                     <graphic>
@@ -240,6 +264,9 @@
 
             <!-- Sort and Refresh Section -->
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -259,8 +286,13 @@
             </HBox>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             
             <TableView fx:id="articlesTable" prefHeight="500" style="-fx-font-size: 11;">
+=======
+
+            <TableView fx:id="articlesTable" prefHeight="450" styleClass="green-table">
+>>>>>>> Stashed changes
 =======
 
             <TableView fx:id="articlesTable" prefHeight="450" styleClass="green-table">
@@ -288,6 +320,7 @@
             </HBox>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             
             <Separator/>
             
@@ -296,6 +329,13 @@
                 
 =======
 =======
+=======
+
+            <Separator styleClass="green-separator"/>
+
+            <VBox spacing="10" styleClass="delete-section">
+                <Label text="Supprimer un Article" styleClass="section-title"/>
+>>>>>>> Stashed changes
 
             <Separator styleClass="green-separator"/>
 
