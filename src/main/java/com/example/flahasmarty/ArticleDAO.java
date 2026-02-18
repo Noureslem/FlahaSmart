@@ -76,9 +76,13 @@ public class ArticleDAO {
         return DBConnection.getAllArticles();
     }
 
-    // NEW METHOD: Get article by ID
+    // NEW: Search articles by name
+    public List<Article> searchArticlesByName(String searchTerm) {
+        return DBConnection.searchArticlesByName(searchTerm);
+    }
+
     public Article getArticleById(int id) {
-        String sql = "SELECT id_article, nom, description, categorie, prix, stock, poids, unite, image_url, id_user FROM articles WHERE id_article = ?";
+        String sql = "SELECT id_article, nom, description, categorie, prix, stock, poids, unite, image_url, id_user, date_ajout FROM articles WHERE id_article = ?";
         Article article = null;
 
         try (Connection conn = DBConnection.getConnection();
@@ -100,6 +104,12 @@ public class ArticleDAO {
                         rs.getInt("id_user")
                 );
                 article.setId(rs.getInt("id_article"));
+
+                java.sql.Timestamp timestamp = rs.getTimestamp("date_ajout");
+                if (timestamp != null) {
+                    article.setDateAjout(timestamp.toLocalDateTime());
+                }
+
                 System.out.println("✅ Article trouvé: " + article.getNom());
             } else {
                 System.out.println("⚠ Aucun article trouvé avec ID: " + id);

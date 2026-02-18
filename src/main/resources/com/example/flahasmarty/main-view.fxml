@@ -4,16 +4,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<<<<<<< Updated upstream
 <TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.flahasmarty.HelloController" 
          stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE">
     
+=======
+<TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.flahasmarty.HelloController"
+         stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE" styleClass="green-theme">
+
+>>>>>>> Stashed changes
     <!-- Articles Tab -->
     <Tab text="Articles" style="-fx-font-size: 14; -fx-padding: 10;">
         <ScrollPane fitToWidth="true" fitToHeight="true">
             <VBox spacing="15" style="-fx-padding: 25;" styleClass="form-container">
+<<<<<<< Updated upstream
                 
                 <Label text="Gestion des Articles" styleClass="form-title"/>
                 
+=======
+
+                <Label text="Gestion des Articles" styleClass="form-title">
+                    <graphic>
+                        <Label styleClass="title-icon" text="📦"/>
+                    </graphic>
+                </Label>
+
+>>>>>>> Stashed changes
                 <GridPane hgap="15" vgap="15" styleClass="form-grid">
                     <columnConstraints>
                         <ColumnConstraints percentWidth="50"/>
@@ -91,9 +107,19 @@
     <Tab text="Commandes" style="-fx-font-size: 14; -fx-padding: 10;">
         <ScrollPane fitToWidth="true" fitToHeight="true">
             <VBox spacing="15" style="-fx-padding: 25;" styleClass="form-container">
+<<<<<<< Updated upstream
                 
                 <Label text="Gestion des Commandes" styleClass="form-title"/>
                 
+=======
+
+                <Label text="Gestion des Commandes" styleClass="form-title">
+                    <graphic>
+                        <Label styleClass="title-icon" text="📋"/>
+                    </graphic>
+                </Label>
+
+>>>>>>> Stashed changes
                 <GridPane hgap="15" vgap="15" styleClass="form-grid">
                     <columnConstraints>
                         <ColumnConstraints percentWidth="50"/>
@@ -157,35 +183,77 @@
     <!-- Résultat Articles Tab -->
     <Tab text="Résultat Articles" style="-fx-font-size: 14; -fx-padding: 10;">
         <VBox spacing="15" style="-fx-padding: 25;" styleClass="form-container">
+<<<<<<< Updated upstream
             
+=======
+
+            <!-- Search Section -->
+            <VBox spacing="10" styleClass="search-section">
+                <Label text="Rechercher un Article" styleClass="section-title"/>
+                <HBox spacing="10" style="-fx-alignment: center-left;">
+                    <TextField fx:id="searchArticleField" styleClass="form-input" promptText="Rechercher par nom..." prefWidth="300" HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="searchArticleBtn" text="🔍 Rechercher" styleClass="btn-primary"/>
+                    <Button fx:id="clearArticleSearchBtn" text="✕ Effacer" styleClass="btn-light"/>
+                </HBox>
+            </VBox>
+
+            <Separator styleClass="green-separator"/>
+
+            <!-- Sort and Refresh Section -->
+>>>>>>> Stashed changes
             <HBox spacing="10" style="-fx-alignment: center-left;">
-                <Label text="Liste des Articles" styleClass="form-title"/>
+                <Label text="Liste des Articles" styleClass="form-title">
+                    <graphic>
+                        <Label styleClass="title-icon" text="📊"/>
+                    </graphic>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Sorting controls -->
+                <Label text="Trier par:" styleClass="form-label"/>
+                <ComboBox fx:id="sortArticleCombo" prefWidth="180" styleClass="form-combo"/>
+                <Button fx:id="applyArticleSortBtn" text="Appliquer le tri" styleClass="btn-secondary"/>
                 <Button fx:id="refreshArticlesBtn" text="🔄 Rafraîchir" styleClass="btn-primary"/>
             </HBox>
+<<<<<<< Updated upstream
             
             <TableView fx:id="articlesTable" prefHeight="500" style="-fx-font-size: 11;">
+=======
+
+            <TableView fx:id="articlesTable" prefHeight="450" styleClass="green-table">
+>>>>>>> Stashed changes
                 <columns>
                     <TableColumn text="ID" prefWidth="50" fx:id="idColumn"/>
                     <TableColumn text="Nom" prefWidth="120" fx:id="nomColumn"/>
                     <TableColumn text="Catégorie" prefWidth="100" fx:id="categorieColumn"/>
-                    <TableColumn text="Description" prefWidth="180" fx:id="descriptionColumn"/>
+                    <TableColumn text="Description" prefWidth="150" fx:id="descriptionColumn"/>
                     <TableColumn text="Prix (€)" prefWidth="80" fx:id="prixColumn"/>
                     <TableColumn text="Stock" prefWidth="70" fx:id="stockColumn"/>
                     <TableColumn text="Poids (kg)" prefWidth="80" fx:id="poidsColumn"/>
                     <TableColumn text="Unité" prefWidth="70" fx:id="uniteColumn"/>
+                    <TableColumn text="Date Ajout" prefWidth="120" fx:id="dateAjoutColumn"/>
                     <TableColumn text="Image URL" prefWidth="150" fx:id="imageUrlColumn"/>
                 </columns>
             </TableView>
             
             <HBox style="-fx-alignment: center;">
-                <Label fx:id="articleCountLabel" text="Total: 0 articles" style="-fx-font-size: 12; -fx-text-fill: #666;"/>
+                <Label fx:id="articleCountLabel" text="Total: 0 articles" styleClass="count-label"/>
             </HBox>
+<<<<<<< Updated upstream
             
             <Separator/>
             
             <VBox spacing="10" style="-fx-padding: 15; -fx-border-color: #e0e0e0; -fx-border-radius: 5;">
                 <Label text="Supprimer un Article" styleClass="form-label" style="-fx-font-size: 13; -fx-font-weight: bold;"/>
                 
+=======
+
+            <Separator styleClass="green-separator"/>
+
+            <VBox spacing="10" styleClass="delete-section">
+                <Label text="Supprimer un Article" styleClass="section-title"/>
+
+>>>>>>> Stashed changes
                 <HBox spacing="10" style="-fx-alignment: center-left;">
                     <TextField fx:id="deleteArticleIdField" styleClass="form-input" promptText="Donner ID pour supprimer" prefWidth="250"/>
                     <Button fx:id="deleteArticleTableBtn" text="✕ Supprimer" styleClass="btn-danger" onAction="#handleDeleteArticleFromTable"/>
@@ -194,4 +262,71 @@
             
         </VBox>
     </Tab>
+<<<<<<< Updated upstream
 </TabPane>
+=======
+
+    <!-- Résultat Commandes Tab -->
+    <Tab text="Résultat Commandes" style="-fx-font-size: 14; -fx-padding: 10;">
+        <VBox spacing="15" style="-fx-padding: 25;" styleClass="form-container">
+
+            <!-- Search Section for Orders -->
+            <VBox spacing="10" styleClass="search-section">
+                <Label text="Rechercher une Commande" styleClass="section-title"/>
+                <HBox spacing="10" style="-fx-alignment: center-left;">
+                    <TextField fx:id="searchOrderField" styleClass="form-input" promptText="Rechercher par référence..." prefWidth="300" HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="searchOrderBtn" text="🔍 Rechercher" styleClass="btn-primary"/>
+                    <Button fx:id="clearOrderSearchBtn" text="✕ Effacer" styleClass="btn-light"/>
+                </HBox>
+            </VBox>
+
+            <Separator styleClass="green-separator"/>
+
+            <!-- Sort and Refresh Section for Orders -->
+            <HBox spacing="10" style="-fx-alignment: center-left;">
+                <Label text="Liste des Commandes" styleClass="form-title">
+                    <graphic>
+                        <Label styleClass="title-icon" text="📈"/>
+                    </graphic>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Sorting controls for Orders -->
+                <Label text="Trier par:" styleClass="form-label"/>
+                <ComboBox fx:id="sortOrderCombo" prefWidth="180" styleClass="form-combo"/>
+                <Button fx:id="applyOrderSortBtn" text="Appliquer le tri" styleClass="btn-secondary"/>
+                <Button fx:id="refreshOrdersBtn" text="🔄 Rafraîchir" styleClass="btn-primary"/>
+            </HBox>
+
+            <TableView fx:id="ordersTable" prefHeight="450" styleClass="green-table">
+                <columns>
+                    <TableColumn text="ID" prefWidth="50" fx:id="orderIdColumn"/>
+                    <TableColumn text="Référence" prefWidth="120" fx:id="orderRefColumn"/>
+                    <TableColumn text="Date" prefWidth="100" fx:id="orderDateColumn"/>
+                    <TableColumn text="Statut" prefWidth="100" fx:id="orderStatusColumn"/>
+                    <TableColumn text="Paiement" prefWidth="100" fx:id="orderPaymentColumn"/>
+                    <TableColumn text="Adresse" prefWidth="180" fx:id="orderAddressColumn"/>
+                    <TableColumn text="Montant (€)" prefWidth="100" fx:id="orderTotalColumn"/>
+                    <TableColumn text="Frais (€)" prefWidth="80" fx:id="orderFeesColumn"/>
+                </columns>
+            </TableView>
+
+            <HBox style="-fx-alignment: center;">
+                <Label fx:id="orderCountLabel" text="Total: 0 commandes" styleClass="count-label"/>
+            </HBox>
+
+            <Separator styleClass="green-separator"/>
+
+            <VBox spacing="10" styleClass="delete-section">
+                <Label text="Supprimer une Commande" styleClass="section-title"/>
+
+                <HBox spacing="10" style="-fx-alignment: center-left;">
+                    <TextField fx:id="deleteOrderIdField" styleClass="form-input" promptText="Donner ID pour supprimer" prefWidth="250"/>
+                    <Button fx:id="deleteOrderTableBtn" text="✕ Supprimer" styleClass="btn-danger" onAction="#handleDeleteOrderFromTable"/>
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </Tab>
+</TabPane>
+>>>>>>> Stashed changes

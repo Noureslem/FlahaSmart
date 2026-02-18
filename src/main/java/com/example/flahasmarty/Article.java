@@ -1,5 +1,7 @@
 package com.example.flahasmarty;
 
+import java.time.LocalDateTime;
+
 public class Article {
     private int id;
     private String nom;
@@ -11,6 +13,7 @@ public class Article {
     private String unite;
     private String imageUrl;
     private int idUser;
+    private LocalDateTime dateAjout;
 
     public Article(String nom, String description, String categorie, double prix, int stock) {
         this.nom = nom;
@@ -62,4 +65,7 @@ public class Article {
 
     public int getIdUser() { return idUser; }
     public void setIdUser(int idUser) { this.idUser = idUser; }
+
+    public LocalDateTime getDateAjout() { return dateAjout; }
+    public void setDateAjout(LocalDateTime dateAjout) { this.dateAjout = dateAjout; }
 }
