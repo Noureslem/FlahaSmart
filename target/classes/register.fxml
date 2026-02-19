@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.Auth.Register"
+            stylesheets="@/css/auth.css"
+            styleClass="register-page"
+            prefHeight="720" prefWidth="1200">
+
+    <!-- Panneau gauche avec branding -->
+    <left>
+        <AnchorPane prefWidth="500" styleClass="left-panel">
+            <VBox styleClass="brand-container" layoutX="50" layoutY="120" prefWidth="400">
+
+                <!-- Icône animée -->
+                <StackPane styleClass="brand-icon">
+                    <FontAwesomeIconView glyphName="USER_PLUS" size="80" fill="white"/>
+                </StackPane>
+
+                <!-- Titre -->
+                <Text styleClass="brand-title" text="FlahaSmart"/>
+                <Text styleClass="brand-subtitle" text="Rejoignez notre communauté"/>
+
+                <!-- Texte descriptif -->
+                <Text styleClass="brand-text" text="Créez votre compte en quelques clics" wrappingWidth="350"/>
+
+                <!-- Cercles décoratifs -->
+                <HBox styleClass="decorative-circles">
+                    <Circle radius="8" styleClass="decorative-circle"/>
+                    <Circle radius="12" styleClass="decorative-circle"/>
+                    <Circle radius="8" styleClass="decorative-circle"/>
+                </HBox>
+
+                <!-- Avantages -->
+                <VBox styleClass="brand-features">
+                    <Text styleClass="brand-feature-item" text="🌱 Accès au marketplace"/>
+                    <Text styleClass="brand-feature-item" text="🤝 Participation au forum"/>
+                    <Text styleClass="brand-feature-item" text="📊 Suivi de vos activités"/>
+                    <Text styleClass="brand-feature-item" text="🚀 Support prioritaire"/>
+                </VBox>
+            </VBox>
+        </AnchorPane>
+    </left>
+
+    <!-- Panneau droit avec formulaire -->
+    <center>
+        <AnchorPane style="-fx-background-color: white;">
+            <ScrollPane fitToWidth="true" fitToHeight="true"
+                        style="-fx-background-color: transparent; -fx-border-color: transparent;"
+                        AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20"
+                        AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+
+                <VBox alignment="CENTER" spacing="20" style="-fx-padding: 30;">
+
+                    <!-- En-tête du formulaire -->
+                    <VBox alignment="CENTER" spacing="10">
+                        <Text text="Inscription" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-fill: #1e293b;"/>
+                        <Text text="Créez votre compte" style="-fx-font-size: 16px; -fx-fill: #64748b;"/>
+                    </VBox>
+
+                    <!-- Formulaire -->
+                    <GridPane hgap="20" vgap="15" alignment="CENTER" maxWidth="600">
+
+                        <!-- Nom -->
+                        <Label text="Nom *" style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                               GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <TextField fx:id="nom" promptText="Votre nom" styleClass="input-field"
+                                   GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="250"/>
+
+                        <!-- Prénom -->
+                        <Label text="Prénom *" style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                               GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="prenom" promptText="Votre prénom" styleClass="input-field"
+                                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                        <!-- Email -->
+                        <Label text="Email *" style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                               GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <TextField fx:id="email" promptText="exemple@email.com" styleClass="input-field"
+                                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                        <!-- Téléphone -->
+                        <Label text="Téléphone" style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                               GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                        <TextField fx:id="telephone" promptText="8 chiffres" styleClass="input-field"
+                                   GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                        <!-- Mot de passe -->
+                        <Label text="Mot de passe *" style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                               GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                        <PasswordField fx:id="passwordField" promptText="Minimum 6 caractères" styleClass="input-field"
+                                       GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                        <!-- Confirmation -->
+                        <Label text="Confirmer *" style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                               GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                        <PasswordField fx:id="confirmPasswordField" promptText="Confirmez" styleClass="input-field"
+                                       GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                        <!-- Adresse -->
+                        <Label text="Adresse" style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                               GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                        <TextField fx:id="adresse" promptText="Votre adresse" styleClass="input-field"
+                                   GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+                        <!-- Ville -->
+                        <Label text="Ville *" style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                               GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                        <TextField fx:id="ville" promptText="Votre ville" styleClass="input-field"
+                                   GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+                        <!-- Rôle -->
+                        <Label text="Je suis *" style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                               GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="roleComboBox" promptText="Sélectionnez votre rôle"
+                                  styleClass="input-field" GridPane.rowIndex="8" GridPane.columnIndex="1"
+                                  prefWidth="250"/>
+
+                    </GridPane>
+
+                    <!-- Message d'erreur mot de passe -->
+                    <Text fx:id="passwordError" styleClass="error-message" visible="false"/>
+
+                    <!-- Conditions d'utilisation -->
+                    <CheckBox fx:id="termsCheckBox" text="J'accepte les conditions d'utilisation"
+                              styleClass="checkbox"/>
+
+                    <!-- Bouton d'inscription -->
+                    <Button fx:id="registerButton" text="S'INSCRIRE" onAction="#handleRegister"
+                            styleClass="register-button" maxWidth="400" prefHeight="45"/>
+
+                    <!-- Message d'erreur général -->
+                    <Text fx:id="errorMessage" styleClass="error-message" visible="false"/>
+
+                    <!-- Lien vers connexion -->
+                    <HBox alignment="CENTER" spacing="10">
+                        <Text text="Déjà un compte ?" style="-fx-fill: #64748b; -fx-font-size: 14px;"/>
+                        <Button fx:id="loginButton" text="Se connecter" onAction="#handleLoginButtonAction"
+                                styleClass="link-button"/>
+                    </HBox>
+
+                </VBox>
+            </ScrollPane>
+        </AnchorPane>
+    </center>
+</BorderPane>
