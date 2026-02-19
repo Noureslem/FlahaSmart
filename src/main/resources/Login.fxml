@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.Auth.Login"
+            stylesheets="@/css/auth.css"
+            styleClass="client-login"
+            prefHeight="600" prefWidth="1000">
+
+    <!-- Panneau gauche avec branding -->
+    <left>
+        <AnchorPane prefWidth="500" styleClass="left-panel">
+            <VBox styleClass="brand-container" layoutX="50" layoutY="120" prefWidth="400">
+
+                <!-- Icône animée -->
+                <StackPane styleClass="brand-icon">
+                    <FontAwesomeIconView glyphName="LEAF" size="80" fill="white"/>
+                </StackPane>
+
+                <!-- Titre -->
+                <Text styleClass="brand-title" text="FlahaSmart"/>
+                <Text styleClass="brand-subtitle" text="Bienvenue sur notre plateforme"/>
+
+                <!-- Texte descriptif -->
+                <Text styleClass="brand-text" text="La plateforme intelligente pour l'agriculture moderne" wrappingWidth="350"/>
+
+                <!-- Cercles décoratifs -->
+                <HBox styleClass="decorative-circles">
+                    <Circle radius="8" styleClass="decorative-circle"/>
+                    <Circle radius="12" styleClass="decorative-circle"/>
+                    <Circle radius="8" styleClass="decorative-circle"/>
+                </HBox>
+
+                <!-- Fonctionnalités -->
+                <VBox styleClass="brand-features">
+                    <Text styleClass="brand-feature-item" text="🌱 Produits agricoles de qualité"/>
+                    <Text styleClass="brand-feature-item" text="🤝 Communauté d'agriculteurs"/>
+                    <Text styleClass="brand-feature-item" text="📊 Suivi de vos cultures"/>
+                    <Text styleClass="brand-feature-item" text="🚀 Innovation et technologie"/>
+                </VBox>
+
+                <Text styleClass="brand-text" text="Rejoignez plus de 1000 membres" style="-fx-padding: 10 0 0 0;"/>
+            </VBox>
+        </AnchorPane>
+    </left>
+
+    <!-- Panneau droit avec formulaire -->
+    <center>
+        <AnchorPane style="-fx-background-color: white;">
+            <VBox alignment="CENTER" spacing="20" style="-fx-padding: 40;"
+                  AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                  AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+                <VBox styleClass="auth-card" maxWidth="400">
+                    <Text text="Connexion" styleClass="logo-text"/>
+                    <Text text="Accédez à votre espace personnel" styleClass="subtitle"/>
+
+                    <!-- Champ Email -->
+                    <TextField fx:id="username" promptText="Email" styleClass="input-field"/>
+
+                    <!-- Champ Mot de passe -->
+                    <PasswordField fx:id="passwordField" promptText="Mot de passe" styleClass="input-field"/>
+
+                    <!-- Message d'erreur -->
+                    <Text fx:id="errorMessage" styleClass="error-message" visible="false"/>
+
+                    <!-- Bouton de connexion -->
+                    <Button fx:id="loginButton" text="SE CONNECTER" onAction="#handleLoginButtonAction"
+                            styleClass="login-button"/>
+
+                    <Separator styleClass="separator"/>
+
+                    <!-- Lien vers l'inscription -->
+                    <HBox alignment="CENTER" spacing="5">
+                        <Text text="Pas encore de compte ?" style="-fx-fill: #7f8c8d; -fx-font-size: 14px;"/>
+                        <Button fx:id="registerButton" text="S'inscrire" onAction="#handleRegisterButtonAction"
+                                styleClass="link-button"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </AnchorPane>
+    </center>
+</BorderPane>
