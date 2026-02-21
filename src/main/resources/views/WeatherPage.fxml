@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox stylesheets="@/styles/style.css" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.WeatherWidgetController" spacing="25" alignment="TOP_CENTER">
+
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+
+    <!-- Titre de la page -->
+    <Label text="🌤️ Météo Agricole" styleClass="page-title"/>
+    <Label text="Consultez la météo pour optimiser vos opérations agricoles" styleClass="page-subtitle"/>
+
+    <!-- Contenu principal -->
+    <HBox spacing="30" alignment="TOP_CENTER">
+
+        <!-- Carte de recherche météo -->
+        <VBox fx:id="weatherContainer" styleClass="weather-page-card" spacing="20" alignment="CENTER"
+              prefWidth="450">
+
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
+
+            <!-- Titre du widget -->
+            <Label text="☀️ Conditions actuelles" styleClass="weather-card-title"/>
+
+            <!-- Barre de recherche -->
+            <HBox spacing="15" alignment="CENTER">
+                <TextField fx:id="cityInput" promptText="Entrez une ville..." styleClass="weather-input-large"
+                           prefWidth="280" onAction="#onSearchWeather"/>
+                <Button text="🔍 Rechercher" onAction="#onSearchWeather" styleClass="weather-search-btn-large"/>
+            </HBox>
+
+            <!-- Indicateur de chargement -->
+            <Label fx:id="loadingLabel" text="⏳ Chargement des données météo..." styleClass="loading-label"
+                   visible="false" managed="false"/>
+
+            <!-- Contenu météo principal -->
+            <VBox spacing="15" alignment="CENTER" styleClass="weather-main-content">
+
+                <!-- Localisation -->
+                <Label fx:id="locationLabel" text="--" styleClass="weather-location-large"/>
+
+                <!-- Icône météo -->
+                <ImageView fx:id="weatherIcon" fitWidth="100" fitHeight="100" preserveRatio="true" visible="false"/>
+
+                <!-- Température -->
+                <Label fx:id="temperatureLabel" text="--°C" styleClass="weather-temperature-large"/>
+
+                <!-- Description -->
+                <Label fx:id="descriptionLabel" text="" styleClass="weather-description-large"/>
+
+            </VBox>
+
+            <!-- Détails météo -->
+            <HBox spacing="20" alignment="CENTER" styleClass="weather-details-row">
+                <VBox spacing="5" alignment="CENTER" styleClass="weather-detail-card">
+                    <Label text="🌡️ Ressenti" styleClass="detail-label"/>
+                    <Label fx:id="feelsLikeLabel" text="--°C" styleClass="detail-value"/>
+                </VBox>
+                <VBox spacing="5" alignment="CENTER" styleClass="weather-detail-card">
+                    <Label text="💧 Humidité" styleClass="detail-label"/>
+                    <Label fx:id="humidityLabel" text="--%"  styleClass="detail-value"/>
+                </VBox>
+                <VBox spacing="5" alignment="CENTER" styleClass="weather-detail-card">
+                    <Label text="💨 Vent" styleClass="detail-label"/>
+                    <Label fx:id="windLabel" text="-- km/h" styleClass="detail-value"/>
+                </VBox>
+            </HBox>
+
+            <!-- Heure de mise à jour -->
+            <Label fx:id="timeLabel" text="🕐 Dernière mise à jour: --" styleClass="weather-time"/>
+
+        </VBox>
+
+        <!-- Conseils agricoles basés sur la météo -->
+        <VBox styleClass="weather-tips-card" spacing="15" prefWidth="350">
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
+
+            <Label text="🌾 Conseils Agricoles" styleClass="tips-title"/>
+
+            <VBox spacing="12" styleClass="tips-content">
+                <HBox spacing="10" styleClass="tip-item">
+                    <Label text="☀️" styleClass="tip-icon"/>
+                    <Label text="Par temps ensoleillé, arrosez tôt le matin ou en fin de journée"
+                           styleClass="tip-text" wrapText="true"/>
+                </HBox>
+                <HBox spacing="10" styleClass="tip-item">
+                    <Label text="🌧️" styleClass="tip-icon"/>
+                    <Label text="En cas de pluie prévue, reportez l'irrigation et les traitements"
+                           styleClass="tip-text" wrapText="true"/>
+                </HBox>
+                <HBox spacing="10" styleClass="tip-item">
+                    <Label text="💨" styleClass="tip-icon"/>
+                    <Label text="Évitez les pulvérisations par vent fort (>20 km/h)"
+                           styleClass="tip-text" wrapText="true"/>
+                </HBox>
+                <HBox spacing="10" styleClass="tip-item">
+                    <Label text="❄️" styleClass="tip-icon"/>
+                    <Label text="Protégez les cultures sensibles si gel annoncé"
+                           styleClass="tip-text" wrapText="true"/>
+                </HBox>
+                <HBox spacing="10" styleClass="tip-item">
+                    <Label text="🌡️" styleClass="tip-icon"/>
+                    <Label text="Températures >30°C : augmentez la fréquence d'irrigation"
+                           styleClass="tip-text" wrapText="true"/>
+                </HBox>
+            </VBox>
+
+        </VBox>
+
+    </HBox>
+
+</VBox>
+

@@ -21,7 +21,7 @@ public class MainLayoutController {
     }
 
     public void initialize() {
-        goToList();
+        goToDashboard(null);
     }
 
     @FXML
@@ -34,15 +34,28 @@ public class MainLayoutController {
         loadPage("/views/operation/ListeOp.fxml");
     }
 
+    @FXML
     public void goToAddEq(ActionEvent actionEvent) {
         loadPage("/views.equipement/AjouterEq.fxml");
     }
 
+    @FXML
     public void goToListEq(ActionEvent actionEvent) {
         loadPage("/views.equipement/ListeEq.fxml");
     }
 
-     public void goToDashboard(ActionEvent actionEvent) {
+    @FXML
+    public void goToDashboard(ActionEvent actionEvent) {
         loadPage("/Dashboard.fxml");
+    }
+
+    @FXML
+    public void goToWeather(ActionEvent actionEvent) {
+        loadPage("/views/WeatherPage.fxml");
+    }
+
+    @FXML
+    public void goToChatbot(ActionEvent actionEvent) {
+        loadPage("/views/ChatbotPage.fxml");
     }
 }

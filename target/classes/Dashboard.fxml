@@ -18,10 +18,10 @@
     <!-- titre -->
     <Label text="Tableau de bord" styleClass="dashboard-title"/>
 
-    <!-- Section principale avec météo et stats -->
+    <!-- Section principale avec stats -->
     <HBox spacing="20" alignment="TOP_CENTER">
 
-        <!-- Colonne gauche: Cards et Stats -->
+        <!-- Colonne principale: Cards et Stats -->
         <VBox spacing="30" HBox.hgrow="ALWAYS">
 
             <!-- CARDS statistiques operations -->
@@ -33,11 +33,6 @@
                 <VBox fx:id="statsContainer" spacing="12"/>
             </VBox>
 
-        </VBox>
-
-        <!-- Colonne droite: Widget Météo -->
-        <VBox alignment="TOP_CENTER">
-            <fx:include source="WeatherWidget.fxml"/>
         </VBox>
 
     </HBox>
