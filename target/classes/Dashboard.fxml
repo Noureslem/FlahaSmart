@@ -18,13 +18,28 @@
     <!-- titre -->
     <Label text="Tableau de bord" styleClass="dashboard-title"/>
 
-    <!-- CARDS statistiques operations -->
-    <HBox fx:id="cardsContainer" spacing="20" alignment="CENTER" styleClass="cards-row" />
+    <!-- Section principale avec météo et stats -->
+    <HBox spacing="20" alignment="TOP_CENTER">
 
-    <!-- bloc statistiques par type (équipements) -->
-    <VBox spacing="15" styleClass="card">
-        <Label text="Équipements par type" styleClass="card-title"/>
-        <VBox fx:id="statsContainer" spacing="12"/>
-    </VBox>
+        <!-- Colonne gauche: Cards et Stats -->
+        <VBox spacing="30" HBox.hgrow="ALWAYS">
+
+            <!-- CARDS statistiques operations -->
+            <HBox fx:id="cardsContainer" spacing="20" alignment="CENTER" styleClass="cards-row" />
+
+            <!-- bloc statistiques par type (équipements) -->
+            <VBox spacing="15" styleClass="card">
+                <Label text="Équipements par type" styleClass="card-title"/>
+                <VBox fx:id="statsContainer" spacing="12"/>
+            </VBox>
+
+        </VBox>
+
+        <!-- Colonne droite: Widget Météo -->
+        <VBox alignment="TOP_CENTER">
+            <fx:include source="WeatherWidget.fxml"/>
+        </VBox>
+
+    </HBox>
 
 </VBox>

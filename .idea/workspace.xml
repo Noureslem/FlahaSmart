@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0dd62393-fca9-412a-8652-b090a5ec4918" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/Weather.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/WeatherService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/services/EquipementServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/services/OperationServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilies/MyDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilies/MyDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/DashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/DashboardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utilies/MyDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utilies/MyDataBase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/views/operation/ModifierOp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/views/operation/ModifierOp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +71,7 @@
     "Application.Main.executor": "Run",
     "Application.MainApp.executor": "Run",
     "Application.TestDB.executor": "Run",
+    "Maven.CRUD_Operation [javafx:run].executor": "Run",
     "Maven.CRUD_Operation [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -98,7 +105,7 @@
       <recent name="C:\monjava\CRUD_Operation\src\main\resources\views" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainApp">
+  <component name="RunManager" selected="Maven.CRUD_Operation [javafx:run]">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="testes.Main" />
       <module name="CRUD_Operation" />
@@ -148,6 +155,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CRUD_Operation [javafx:run]" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="javafx:run" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
       <option name="LOCAL" value="false" />
       <deployment />
@@ -180,9 +217,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainApp" />
         <item itemvalue="Application.TestDB" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.MainApp" />
       </list>
     </recent_temporary>
   </component>
