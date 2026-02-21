@@ -2,21 +2,27 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Region?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:id="root"
             fx:controller="controllers.MainLayoutController"
-            prefHeight="600.0" prefWidth="800.0">
+            prefHeight="600.0" prefWidth="800.0"
+            stylesheets="@/styles/style.css">
 
     <left>
         <VBox spacing="10" prefWidth="250" styleClass="sidebar">
             <children>
-                <Button text="Ajouter une opération " onAction="#goToAdd" styleClass="menu-button"/>
-                <Button text="liste des opérations " onAction="#goToList" styleClass="menu-button"/>
-                <Button text="Ajouter un équipement " onAction="#goToAddEq" styleClass="menu-button"/>
-                <Button text="liste des équipement " onAction="#goToListEq" styleClass="menu-button"/>
-                <Button text="Dashboard " onAction="#goToDashboard" styleClass="menu-button"/>
+                <Button text="📊 Dashboard" onAction="#goToDashboard" styleClass="menu-button"/>
+                <Button text="➕ Ajouter une opération" onAction="#goToAdd" styleClass="menu-button"/>
+                <Button text="📋 Liste des opérations" onAction="#goToList" styleClass="menu-button"/>
+                <Button text="🔧 Ajouter un équipement" onAction="#goToAddEq" styleClass="menu-button"/>
+                <Button text="📋 Liste des équipements" onAction="#goToListEq" styleClass="menu-button"/>
+
+                <!-- Boutons Météo et AgriBot -->
+                <Button text="🌤 Météo" onAction="#goToWeather" styleClass="menu-button"/>
+                <Button text="🤖 AgriBot" onAction="#goToChatbot" styleClass="menu-button"/>
             </children>
         </VBox>
     </left>
