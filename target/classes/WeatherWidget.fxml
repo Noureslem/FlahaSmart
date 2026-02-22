@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox fx:id="weatherContainer" styleClass="weather-widget" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.WeatherWidgetController" spacing="15" alignment="CENTER">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Titre du widget -->
+    <Label text="☀ Météo " styleClass="weather-title"/>
+
+    <!-- Barre de recherche -->
+    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="cityInput" promptText="Entrez une ville..." styleClass="weather-input"
+                   prefWidth="200" onAction="#onSearchWeather"/>
+        <Button text="🔍" onAction="#onSearchWeather" styleClass="weather-search-btn"/>
+    </HBox>
+
+    <!-- Indicateur de chargement -->
+    <Label fx:id="loadingLabel" text="Chargement..." styleClass="loading-label"
+           visible="false" managed="false"/>
+
+    <!-- Contenu météo -->
+    <VBox spacing="10" alignment="CENTER" styleClass="weather-content">
+
+        <!-- Localisation -->
+        <Label fx:id="locationLabel" text="--" styleClass="weather-location"/>
+
+        <!-- Icône météo -->
+        <ImageView fx:id="weatherIcon" fitWidth="80" fitHeight="80" preserveRatio="true" visible="false"/>
+
+        <!-- Température -->
+        <Label fx:id="temperatureLabel" text="--°C" styleClass="weather-temperature"/>
+
+        <!-- Description -->
+        <Label fx:id="descriptionLabel" text="" styleClass="weather-description"/>
+
+        <!-- Détails -->
+        <VBox spacing="8" alignment="CENTER_LEFT" styleClass="weather-details">
+            <Label fx:id="feelsLikeLabel" text="🌡 °C" styleClass="weather-detail"/>
+            <Label fx:id="humidityLabel" text="💧 Humidité: --%"  styleClass="weather-detail"/>
+            <Label fx:id="windLabel" text="💨 Vent: -- km/h" styleClass="weather-detail"/>
+            <Label fx:id="timeLabel" text="🕐 --" styleClass="weather-detail"/>
+        </VBox>
+
+    </VBox>
+
+</VBox>
+

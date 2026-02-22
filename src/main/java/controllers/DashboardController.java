@@ -1,6 +1,8 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
@@ -12,7 +14,11 @@ import services.EquipementService;
 import services.OperationService;
 import models.Operation;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,22 +34,35 @@ public class DashboardController {
     @FXML
     private HBox cardsContainer;
 
+    @FXML
+    private VBox operationsByTypeContainer;
+
+    @FXML
+    private VBox equipementUsageContainer;
+
+    @FXML
+    private VBox recentOperationsContainer;
+
+    @FXML
+    private VBox equipementStateContainer;
+
     EquipementService eqService = new EquipementService();
     OperationService opService = new OperationService();
 
     // 🎨 palette couleurs
     private final String[] colors = {
-            "#93441A",
-            "#00353F",
-            "#7AA95C",
-            "#CA3C66",
-            "#6A645A"
+            "#10b981", "#3b82f6", "#f59e0b", "#ef4444", "#8b5cf6",
+            "#ec4899", "#06b6d4", "#84cc16"
     };
 
     @FXML
     public void initialize() {
-        chargerStatsTypes();
         chargerCardsOperations();
+        chargerOperationsByType();
+        chargerEquipementUsage();
+        chargerRecentOperations();
+        chargerEquipementState();
+        chargerStatsTypes();
     }
 
     private void chargerStatsTypes() {
@@ -149,6 +168,288 @@ public class DashboardController {
         box.setPrefWidth(200);
 
         return box;
+    }
+
+    // ===============================
+    // STATISTIQUE 1: Opérations par type
+    // ===============================
+    private void chargerOperationsByType() {
+        try {
+            operationsByTypeContainer.getChildren().clear();
+
+            List<Operation> ops = opService.afficher();
+            if (ops.isEmpty()) {
+                operationsByTypeContainer.getChildren().add(createEmptyMessage("Aucune opération"));
+                return;
+            }
+
+            Map<String, Long> typeCount = ops.stream()
+                    .filter(o -> o.getType_operation() != null)
+                    .collect(Collectors.groupingBy(
+                            Operation::getType_operation,
+                            Collectors.counting()
+                    ));
+
+            int total = ops.size();
+            int index = 0;
+
+            for (Map.Entry<String, Long> entry : typeCount.entrySet()) {
+                double percent = (entry.getValue() * 100.0) / total;
+                HBox row = createAdvancedStatRow(
+                        entry.getKey(),
+                        entry.getValue().intValue(),
+                        percent,
+                        colors[index % colors.length]
+                );
+                operationsByTypeContainer.getChildren().add(row);
+                index++;
+            }
+
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Erreur chargement opérations par type", e);
+        }
+    }
+
+    // ===============================
+    // STATISTIQUE 2: Utilisation des équipements
+    // ===============================
+    private void chargerEquipementUsage() {
+        try {
+            equipementUsageContainer.getChildren().clear();
+
+            List<Equipement> equipements = eqService.afficher();
+            List<Operation> operations = opService.afficher();
+
+            if (equipements.isEmpty()) {
+                equipementUsageContainer.getChildren().add(createEmptyMessage("Aucun équipement"));
+                return;
+            }
+
+            // Équipements utilisés dans des opérations en cours
+            Set<Integer> equipementsEnCours = operations.stream()
+                    .filter(o -> o.getStatut() != null && o.getStatut().equalsIgnoreCase("en cours"))
+                    .map(Operation::getId_equipement)
+                    .collect(Collectors.toSet());
+
+            int totalEq = equipements.size();
+            int enUtilisation = equipementsEnCours.size();
+            int disponibles = totalEq - enUtilisation;
+
+            double pctUtilisation = totalEq == 0 ? 0 : (enUtilisation * 100.0) / totalEq;
+
+            // Card pour taux d'utilisation
+            VBox usageCard = createUsageCard("Taux d'utilisation", pctUtilisation, "#10b981");
+            equipementUsageContainer.getChildren().add(usageCard);
+
+            // Mini stats
+            HBox miniStats = new HBox(15);
+            miniStats.setAlignment(Pos.CENTER);
+            miniStats.getChildren().addAll(
+                    createMiniStat("🟢 Disponibles", String.valueOf(disponibles), "#22c55e"),
+                    createMiniStat("🔴 En utilisation", String.valueOf(enUtilisation), "#ef4444")
+            );
+            equipementUsageContainer.getChildren().add(miniStats);
+
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Erreur chargement utilisation équipements", e);
+        }
+    }
+
+    // ===============================
+    // STATISTIQUE 3: Opérations récentes
+    // ===============================
+    private void chargerRecentOperations() {
+        try {
+            recentOperationsContainer.getChildren().clear();
+
+            List<Operation> ops = opService.afficher();
+            if (ops.isEmpty()) {
+                recentOperationsContainer.getChildren().add(createEmptyMessage("Aucune opération récente"));
+                return;
+            }
+
+            // Trier par date de début décroissante et prendre les 5 dernières
+            List<Operation> recentOps = ops.stream()
+                    .filter(o -> o.getDate_debut() != null)
+                    .sorted(Comparator.comparing(Operation::getDate_debut).reversed())
+                    .limit(5)
+                    .collect(Collectors.toList());
+
+            for (Operation op : recentOps) {
+                HBox row = createRecentOperationRow(op);
+                recentOperationsContainer.getChildren().add(row);
+            }
+
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Erreur chargement opérations récentes", e);
+        }
+    }
+
+    // ===============================
+    // STATISTIQUE 4: État des équipements
+    // ===============================
+    private void chargerEquipementState() {
+        try {
+            equipementStateContainer.getChildren().clear();
+
+            List<Equipement> equipements = eqService.afficher();
+            if (equipements.isEmpty()) {
+                equipementStateContainer.getChildren().add(createEmptyMessage("Aucun équipement"));
+                return;
+            }
+
+            // Grouper par état
+            Map<String, Long> stateCount = equipements.stream()
+                    .filter(e -> e.getEtat() != null)
+                    .collect(Collectors.groupingBy(
+                            Equipement::getEtat,
+                            Collectors.counting()
+                    ));
+
+            int total = equipements.size();
+
+            // Définir les couleurs par état
+            Map<String, String> stateColors = Map.of(
+                    "libre", "#22c55e",
+                    "réservé", "#f59e0b",
+                    "reserve", "#f59e0b",
+                    "en panne", "#ef4444",
+                    "maintenance", "#3b82f6"
+            );
+
+            for (Map.Entry<String, Long> entry : stateCount.entrySet()) {
+                double percent = (entry.getValue() * 100.0) / total;
+                String color = stateColors.getOrDefault(entry.getKey().toLowerCase(), "#6b7280");
+
+                HBox row = createAdvancedStatRow(
+                        entry.getKey(),
+                        entry.getValue().intValue(),
+                        percent,
+                        color
+                );
+                equipementStateContainer.getChildren().add(row);
+            }
+
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Erreur chargement état équipements", e);
+        }
+    }
+
+    // ===============================
+    // HELPERS - Méthodes utilitaires
+    // ===============================
+
+    private HBox createAdvancedStatRow(String label, int count, double percent, String color) {
+        // Icône/Badge
+        Label badge = new Label(String.valueOf(count));
+        badge.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white; " +
+                "-fx-background-radius: 20; -fx-padding: 5 12; -fx-font-weight: bold; -fx-font-size: 12px;");
+
+        // Label du type
+        Label nameLabel = new Label(label);
+        nameLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #374151;");
+
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        // Pourcentage
+        Label percentLabel = new Label(String.format("%.1f%%", percent));
+        percentLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: " + color + ";");
+
+        // Progress bar
+        ProgressBar bar = new ProgressBar(percent / 100);
+        bar.setPrefWidth(80);
+        bar.setPrefHeight(8);
+        bar.setStyle("-fx-accent: " + color + ";");
+
+        HBox row = new HBox(12, badge, nameLabel, spacer, percentLabel, bar);
+        row.setAlignment(Pos.CENTER_LEFT);
+        row.setStyle("-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 10;");
+
+        return row;
+    }
+
+    private VBox createUsageCard(String title, double percent, String color) {
+        Label titleLabel = new Label(title);
+        titleLabel.setStyle("-fx-font-size: 13px; -fx-text-fill: #6b7280;");
+
+        Label percentLabel = new Label(String.format("%.0f%%", percent));
+        percentLabel.setStyle("-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: " + color + ";");
+
+        ProgressBar bar = new ProgressBar(percent / 100);
+        bar.setPrefWidth(200);
+        bar.setPrefHeight(10);
+        bar.setStyle("-fx-accent: " + color + ";");
+
+        VBox card = new VBox(8, titleLabel, percentLabel, bar);
+        card.setAlignment(Pos.CENTER);
+        card.setStyle("-fx-background-color: #f0fdf4; -fx-background-radius: 12; -fx-padding: 20;");
+
+        return card;
+    }
+
+    private VBox createMiniStat(String label, String value, String color) {
+        Label valueLabel = new Label(value);
+        valueLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: " + color + ";");
+
+        Label labelText = new Label(label);
+        labelText.setStyle("-fx-font-size: 12px; -fx-text-fill: #6b7280;");
+
+        VBox box = new VBox(3, valueLabel, labelText);
+        box.setAlignment(Pos.CENTER);
+        box.setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; " +
+                "-fx-border-color: #e5e7eb; -fx-border-radius: 10;");
+
+        return box;
+    }
+
+    private HBox createRecentOperationRow(Operation op) {
+        // Statut badge
+        String statusColor = op.getStatut() != null && op.getStatut().equalsIgnoreCase("en cours")
+                ? "#f59e0b" : "#22c55e";
+        String statusIcon = op.getStatut() != null && op.getStatut().equalsIgnoreCase("en cours")
+                ? "⏳" : "✅";
+
+        Label statusLabel = new Label(statusIcon);
+        statusLabel.setStyle("-fx-font-size: 16px;");
+
+        // Type d'opération
+        Label typeLabel = new Label(op.getType_operation() != null ? op.getType_operation() : "N/A");
+        typeLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1f2937;");
+
+        // Équipement
+        Label eqLabel = new Label(op.getNomEquipement() != null ? op.getNomEquipement() : "Équipement #" + op.getId_equipement());
+        eqLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #6b7280;");
+
+        VBox infoBox = new VBox(2, typeLabel, eqLabel);
+
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        // Date
+        String dateStr = op.getDate_debut() != null ? op.getDate_debut().toString() : "N/A";
+        Label dateLabel = new Label("📅 " + dateStr);
+        dateLabel.setStyle("-fx-font-size: 11px; -fx-text-fill: #9ca3af;");
+
+        // Statut texte
+        Label statusText = new Label(op.getStatut() != null ? op.getStatut() : "N/A");
+        statusText.setStyle("-fx-font-size: 11px; -fx-text-fill: " + statusColor + "; -fx-font-weight: bold;");
+
+        VBox rightBox = new VBox(2, dateLabel, statusText);
+        rightBox.setAlignment(Pos.CENTER_RIGHT);
+
+        HBox row = new HBox(12, statusLabel, infoBox, spacer, rightBox);
+        row.setAlignment(Pos.CENTER_LEFT);
+        row.setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 12; " +
+                "-fx-border-color: #f3f4f6; -fx-border-radius: 10; -fx-border-width: 1;");
+
+        return row;
+    }
+
+    private Label createEmptyMessage(String message) {
+        Label label = new Label("📭 " + message);
+        label.setStyle("-fx-font-size: 14px; -fx-text-fill: #9ca3af; -fx-padding: 20;");
+        return label;
     }
 
 }

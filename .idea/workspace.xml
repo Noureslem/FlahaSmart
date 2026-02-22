@@ -4,25 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0dd62393-fca9-412a-8652-b090a5ec4918" name="Changes" comment="API 1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/ChatbotController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/ChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/services/AgriChatbotService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/Chatbot.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/ChatbotPage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/WeatherPage.fxml" afterDir="false" />
+    <list default="true" id="0dd62393-fca9-412a-8652-b090a5ec4918" name="Changes" comment="Persque finale">
+      <change afterPath="$PROJECT_DIR$/src/main/java/TestDB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/WeatherWidgetController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/WeatherWidget.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/TestDB.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/WeatherWidget.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/controllers/ChatbotController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/controllers/WeatherWidgetController$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/controllers/WeatherWidgetController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/models/ChatMessage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/models/Weather.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/services/AgriChatbotService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/services/WeatherService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/views/Chatbot.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/views/ChatbotPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/views/WeatherPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/views/WeatherWidget.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/services/EquipementServiceTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MainLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MainLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ChatbotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ChatbotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/AgriChatbotService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/AgriChatbotService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/services/WeatherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/WeatherService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/MainLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MainLayout.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views.equipement/AjouterEq.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views.equipement/AjouterEq.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/Chatbot.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Chatbot.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/ChatbotPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/ChatbotPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/WeatherPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/WeatherPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/operation/AjouterOp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/operation/AjouterOp.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/DashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/DashboardController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/views.equipement/AjouterEq.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/views.equipement/AjouterEq.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/views/operation/AjouterOp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/views/operation/AjouterOp.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +80,9 @@
     &quot;accountId&quot;: &quot;09672f29-5ae0-430e-92ad-d7285b122f27&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -265,7 +284,7 @@
       <workItem from="1771252281469" duration="2449000" />
       <workItem from="1771255413381" duration="602000" />
       <workItem from="1771256444396" duration="614000" />
-      <workItem from="1771708162547" duration="3409000" />
+      <workItem from="1771708162547" duration="9155000" />
     </task>
     <task id="LOCAL-00001" summary="API 1">
       <option name="closed" value="true" />
@@ -275,7 +294,23 @@
       <option name="project" value="LOCAL" />
       <updated>1771687218402</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Gemini + Weather">
+      <option name="closed" value="true" />
+      <created>1771711811483</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1771711811483</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Gemini + Weather">
+      <option name="closed" value="true" />
+      <created>1771711826940</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1771711826940</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +318,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="API 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="API 1" />
+    <MESSAGE value="Gemini + Weather" />
+    <MESSAGE value="Persque finale" />
+    <option name="LAST_COMMIT_MESSAGE" value="Persque finale" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

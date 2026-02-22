@@ -37,7 +37,7 @@ public class ChatbotController {
                      "Je peux vous aider avec :\n" +
                      "🌱 Cultures et plantations\n" +
                      "💧 Irrigation\n" +
-                     "🌤️ Impact météo\n" +
+                     "🌤 Impact météo\n" +
                      "🚜 Équipements\n" +
                      "🌿 Fertilisation\n" +
                      "Et bien plus !\n\n" +
