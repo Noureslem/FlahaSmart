@@ -5,8 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import models.Equipement;
@@ -14,17 +13,28 @@ import services.EquipementService;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class ListeEqController {
 
     @FXML
     private VBox listContainer;
 
+    @FXML
+    private TextField searchField;
+
     EquipementService service = new EquipementService();
 
     @FXML
     public void initialize() {
         afficherEquipements();
+
+        // Listener pour la recherche en temps réel
+        if (searchField != null) {
+            searchField.textProperty().addListener((observable, oldVal, newVal) -> {
+                rechercherParNom(newVal);
+            });
+        }
     }
 
     public void afficherEquipements() {
@@ -78,11 +88,27 @@ public class ListeEqController {
 
         // actions
         btnDelete.setOnAction(ev -> {
-            try {
-                service.supprimer(e);
-                afficherEquipements();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+            // Création de l'alerte de confirmation
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation de suppression");
+            alert.setHeaderText("Supprimer l'équipement");
+            alert.setContentText("Êtes-vous sûr de vouloir supprimer l'équipement \"" + e.getType() + "\" ?");
+
+            // Attendre la réponse de l'utilisateur
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                try {
+                    service.supprimer(e);
+                    afficherEquipements();
+                } catch (SQLException ex) {
+                    // Afficher une alerte d'erreur en cas de problème
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("Erreur");
+                    errorAlert.setHeaderText("Erreur lors de la suppression");
+                    errorAlert.setContentText("Impossible de supprimer l'équipement : " + ex.getMessage());
+                    errorAlert.showAndWait();
+                }
             }
         });
 
@@ -96,7 +122,7 @@ public class ListeEqController {
 
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/views.equipement/ModifierEq.fxml")
+                    getClass().getResource("/views/equipement/ModifierEq.fxml")
             );
 
             Parent root = loader.load();
@@ -116,6 +142,42 @@ public class ListeEqController {
     }
 
 
+
+    public void rechercherParNom(String nom) {
+        listContainer.getChildren().clear();
+
+        try {
+            List<Equipement> list;
+            if (nom == null || nom.trim().isEmpty()) {
+                list = service.afficher();
+            } else {
+                list = service.rechercherParNom(nom);
+            }
+
+            for (Equipement e : list) {
+                VBox card = createCard(e);
+                listContainer.getChildren().add(card);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
     public void trier(ActionEvent actionEvent) {
+        listContainer.getChildren().clear();
+
+        try {
+            List<Equipement> list = service.trierParNom();
+
+            for (Equipement e : list) {
+                VBox card = createCard(e);
+                listContainer.getChildren().add(card);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

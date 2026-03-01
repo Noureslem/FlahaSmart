@@ -113,7 +113,7 @@ public class WeatherWidgetController {
                 windLabel.setText("💨  " + weather.getWindSpeed() + " km/h");
             }
             if (feelsLikeLabel != null) {
-                feelsLikeLabel.setText("🌡️  " + weather.getFeelsLike() + "°C");
+                feelsLikeLabel.setText("🌡  " + weather.getFeelsLike() + "°C");
             }
             if (timeLabel != null) {
                 timeLabel.setText("🕐 " + weather.getLocalTime());

@@ -60,8 +60,7 @@ public class DashboardController {
         chargerCardsOperations();
         chargerOperationsByType();
         chargerEquipementUsage();
-        chargerRecentOperations();
-        chargerEquipementState();
+
         chargerStatsTypes();
     }
 
@@ -258,82 +257,8 @@ public class DashboardController {
     // ===============================
     // STATISTIQUE 3: Opérations récentes
     // ===============================
-    private void chargerRecentOperations() {
-        try {
-            recentOperationsContainer.getChildren().clear();
 
-            List<Operation> ops = opService.afficher();
-            if (ops.isEmpty()) {
-                recentOperationsContainer.getChildren().add(createEmptyMessage("Aucune opération récente"));
-                return;
-            }
 
-            // Trier par date de début décroissante et prendre les 5 dernières
-            List<Operation> recentOps = ops.stream()
-                    .filter(o -> o.getDate_debut() != null)
-                    .sorted(Comparator.comparing(Operation::getDate_debut).reversed())
-                    .limit(5)
-                    .collect(Collectors.toList());
-
-            for (Operation op : recentOps) {
-                HBox row = createRecentOperationRow(op);
-                recentOperationsContainer.getChildren().add(row);
-            }
-
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Erreur chargement opérations récentes", e);
-        }
-    }
-
-    // ===============================
-    // STATISTIQUE 4: État des équipements
-    // ===============================
-    private void chargerEquipementState() {
-        try {
-            equipementStateContainer.getChildren().clear();
-
-            List<Equipement> equipements = eqService.afficher();
-            if (equipements.isEmpty()) {
-                equipementStateContainer.getChildren().add(createEmptyMessage("Aucun équipement"));
-                return;
-            }
-
-            // Grouper par état
-            Map<String, Long> stateCount = equipements.stream()
-                    .filter(e -> e.getEtat() != null)
-                    .collect(Collectors.groupingBy(
-                            Equipement::getEtat,
-                            Collectors.counting()
-                    ));
-
-            int total = equipements.size();
-
-            // Définir les couleurs par état
-            Map<String, String> stateColors = Map.of(
-                    "libre", "#22c55e",
-                    "réservé", "#f59e0b",
-                    "reserve", "#f59e0b",
-                    "en panne", "#ef4444",
-                    "maintenance", "#3b82f6"
-            );
-
-            for (Map.Entry<String, Long> entry : stateCount.entrySet()) {
-                double percent = (entry.getValue() * 100.0) / total;
-                String color = stateColors.getOrDefault(entry.getKey().toLowerCase(), "#6b7280");
-
-                HBox row = createAdvancedStatRow(
-                        entry.getKey(),
-                        entry.getValue().intValue(),
-                        percent,
-                        color
-                );
-                equipementStateContainer.getChildren().add(row);
-            }
-
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Erreur chargement état équipements", e);
-        }
-    }
 
     // ===============================
     // HELPERS - Méthodes utilitaires

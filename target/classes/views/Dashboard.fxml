@@ -37,38 +37,21 @@
                         <Label text="📈 Opérations par type" styleClass="card-title"/>
                         <VBox fx:id="operationsByTypeContainer" spacing="10"/>
                     </VBox>
+                    <!-- bloc statistiques par type (équipements) -->
+                    <VBox spacing="15" styleClass="card">
+                        <Label text="📈  Équipements par type" styleClass="card-title"/>
+                        <VBox fx:id="statsContainer" spacing="12"/>
+                    </VBox>
 
                     <!-- Taux d'utilisation des équipements -->
                     <VBox spacing="15" styleClass="card" HBox.hgrow="ALWAYS">
-                        <Label text="🚜 Utilisation des équipements" styleClass="card-title"/>
+                        <Label text="📈 Utilisation des équipements" styleClass="card-title"/>
                         <VBox fx:id="equipementUsageContainer" spacing="10"/>
                     </VBox>
 
                 </HBox>
 
-                <!-- Statistiques avancées - Ligne 2 -->
-                <HBox spacing="20" alignment="TOP_CENTER">
-
-                    <!-- Opérations récentes -->
-                    <VBox spacing="15" styleClass="card" HBox.hgrow="ALWAYS">
-                        <Label text="🕐 Opérations récentes" styleClass="card-title"/>
-                        <VBox fx:id="recentOperationsContainer" spacing="8"/>
-                    </VBox>
-
-                    <!-- État des équipements -->
-                    <VBox spacing="15" styleClass="card" HBox.hgrow="ALWAYS">
-                        <Label text="⚙️ État des équipements" styleClass="card-title"/>
-                        <VBox fx:id="equipementStateContainer" spacing="10"/>
-                    </VBox>
-
-                </HBox>
-
-                <!-- bloc statistiques par type (équipements) -->
-                <VBox spacing="15" styleClass="card">
-                    <Label text="📦 Équipements par type" styleClass="card-title"/>
-                    <VBox fx:id="statsContainer" spacing="12"/>
-                </VBox>
-
+                
             </VBox>
 
         </HBox>

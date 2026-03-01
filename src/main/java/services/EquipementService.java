@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EquipementService implements Iservice<Equipement> {
 
@@ -108,5 +110,17 @@ public class EquipementService implements Iservice<Equipement> {
         return list;
     }
 
+
+    public List<Equipement> rechercherParNom(String nom) throws SQLException {
+        return afficher().stream()
+                .filter(e -> e.getType().toLowerCase().contains(nom.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    public List<Equipement> trierParNom() throws SQLException {
+        return afficher().stream()
+                .sorted(Comparator.comparing(Equipement::getType, String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
+    }
 
 }

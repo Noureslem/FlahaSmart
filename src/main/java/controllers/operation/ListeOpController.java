@@ -1,6 +1,6 @@
 package controllers.operation;
 
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,12 +8,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import models.Equipement;
+
+import java.util.Optional;
 import services.EquipementService;
 import services.OperationService;
 import models.Operation;
@@ -31,7 +34,7 @@ public class ListeOpController {
 
 
     OperationService service = new OperationService();
-    EquipementService equipementService = new EquipementService();
+
     @FXML
     public void initialize() {
         afficherOperations();
@@ -72,12 +75,28 @@ public class ListeOpController {
 
 
     private void supprimerOperation(Operation op) {
-        try {
-            service.supprimer(op);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        // Création de l'alerte de confirmation
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText("Supprimer l'opération");
+        alert.setContentText("Êtes-vous sûr de vouloir supprimer l'opération \"" + op.getType_operation() + "\" ?");
+
+        // Attendre la réponse de l'utilisateur
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                service.supprimer(op);
+                afficherOperations(); // refresh
+            } catch (SQLException e) {
+                // Afficher une alerte d'erreur en cas de problème
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Erreur");
+                errorAlert.setHeaderText("Erreur lors de la suppression");
+                errorAlert.setContentText("Impossible de supprimer l'opération : " + e.getMessage());
+                errorAlert.showAndWait();
+            }
         }
-        afficherOperations(); // refresh
     }
 
     private void terminerOperation(Operation op) {

@@ -3,19 +3,19 @@ package models;
 import java.sql.Date;
 
 public class Operation {
-    private int id_operation ;
+    private int IdOperation ;
     private int id_equipement;
     private String nomEquipement;
-    private String type_operation;
+    private String TypeOperation;
     private Date date_debut ;
     private Date date_fin ;
     private String statut;
 
 
     public Operation(int id_operation, int id_equipement, String type_operation, Date date_debut, Date date_fin, String statut) {
-        this.id_operation = id_operation;
+        this.IdOperation = id_operation;
         this.id_equipement = id_equipement;
-        this.type_operation = type_operation;
+        this.TypeOperation = type_operation;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
         this.statut = statut;
@@ -23,7 +23,7 @@ public class Operation {
     }
     public Operation(String type_operation, Date date_debut, Date date_fin, String statut) {
         this.id_equipement = id_equipement;
-        this.type_operation = type_operation;
+        this.TypeOperation = type_operation;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
         this.statut = statut;
@@ -35,16 +35,16 @@ public class Operation {
     }
 
     public int getId_operation() {
-        return id_operation;
+        return IdOperation;
     }
     public void setId_operation(int id_operation) {
-        this.id_operation = id_operation;
+        this.IdOperation= id_operation;
     }
     public String getType_operation() {
-        return type_operation;
+        return TypeOperation;
     }
     public void setType_operation(String type_operation) {
-        this.type_operation = type_operation;
+        this.TypeOperation = type_operation;
     }
     public Date getDate_debut() {
         return date_debut;
@@ -84,7 +84,7 @@ public class Operation {
     public String toString() {
         return "Operation : " +
                 " id_equipement = '" + id_equipement + '\'' +
-                " type_operation = '" + type_operation + '\'' +
+                " type_operation = '" + TypeOperation + '\'' +
                 " Date Debut = " + date_debut +
                 " Date Fin = " + date_fin +
                 " statut = '" + statut + "'\n"

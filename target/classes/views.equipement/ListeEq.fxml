@@ -19,7 +19,7 @@
                    promptText="Rechercher par type..."
                    HBox.hgrow="ALWAYS"/>
 
-        <Button text="Trier A-Z" onAction="#trier"/>
+        <Button text="Trier A-Z"  onAction="#trier" styleClass="form-submit-button" />
     </HBox>
 
     <HBox alignment="CENTER">

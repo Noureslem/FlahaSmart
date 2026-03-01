@@ -14,18 +14,18 @@ import java.util.List;
 
 public class AgriChatbotService {
 
-    private static final String API_KEY = "YOUR_API_KEY";
+    private static final String API_KEY = "";
     private static final String GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + API_KEY;
 
     private final HttpClient httpClient;
     private final Gson gson;
     private final List<JsonObject> conversationHistory;
 
-    // Contexte système pour guider Gemini comme assistant agricole
+    // Contexte système pour orienter les réponses.
     private static final String SYSTEM_CONTEXT = """
-        Tu es AgriBot 🌾, un assistant agricole intelligent et expert en agriculture.
+        Tu es AgriBot , un assistant agricole intelligent et expert en agriculture.
         Tu dois répondre uniquement aux questions liées à l'agriculture, l'agronomie, et les sujets connexes.
-        
+     
         Tes domaines d'expertise incluent :
         - Cultures et plantations (semis, rotation, calendrier)
         - Irrigation et gestion de l'eau
@@ -210,7 +210,7 @@ public class AgriChatbotService {
                    "⚠️ Note: La connexion au serveur IA est temporairement indisponible.";
         }
 
-        return "🔄 Je rencontre actuellement des difficultés de connexion avec le serveur IA.\n\n" +
+        return " Je rencontre actuellement des difficultés de connexion avec le serveur IA.\n\n" +
                "Veuillez réessayer dans quelques instants ou vérifier votre connexion internet.\n\n" +
                "En attendant, je reste votre assistant agricole ! 🌱";
     }

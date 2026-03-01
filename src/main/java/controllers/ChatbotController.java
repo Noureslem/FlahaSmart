@@ -23,8 +23,6 @@ public class ChatbotController {
     @FXML
     private TextField userInput;
 
-    @FXML
-    private Label statusLabel;
 
     private AgriChatbotService chatbotService;
 

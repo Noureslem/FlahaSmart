@@ -3,21 +3,25 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.ImageView?>
 
 <VBox stylesheets="@/styles/style.css" xmlns:fx="http://javafx.com/fxml"
       fx:controller="controllers.WeatherWidgetController" spacing="25" alignment="TOP_CENTER">
 
-    <padding>
-        <Insets top="30" right="40" bottom="30" left="40"/>
-    </padding>
-
-    <!-- Titre de la page -->
-    <Label text="🌤 Météo Agricole" styleClass="page-title"/>
-    <Label text="Consultez la météo pour optimiser vos opérations agricoles" styleClass="page-subtitle"/>
+    <HBox styleClass="form-header" alignment="CENTER_LEFT" spacing="15">
+        <padding>
+            <Insets top="25" right="30" bottom="25" left="30"/>
+        </padding>
+        <VBox spacing="5">
+            <Label text="🌤 Météo Agricole" styleClass="form-page-title"/>
+            <Label text="Consultez la météo pour optimiser vos opérations agricoles" styleClass="form-page-subtitle"/>
+        </VBox>
+    </HBox>
 
     <!-- Contenu principal -->
     <HBox spacing="30" alignment="TOP_CENTER">
+        <padding>
+            <Insets top="30" right="40" bottom="30" left="40"/>
+        </padding>
 
         <!-- Carte de recherche météo -->
         <VBox fx:id="weatherContainer" styleClass="weather-page-card" spacing="20" alignment="CENTER"
@@ -46,10 +50,6 @@
 
                 <!-- Localisation -->
                 <Label fx:id="locationLabel" text="--" styleClass="weather-location-large"/>
-
-                <!-- <ImageView fx:id="weatherIcon" fitWidth="100" fitHeight="100" preserveRatio="true" visible="false"/>
-                Icône météo -->
-
 
                 <!-- Température -->
                 <Label fx:id="temperatureLabel" text="--°C" styleClass="weather-temperature-large"/>

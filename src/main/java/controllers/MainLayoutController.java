@@ -36,26 +36,47 @@ public class MainLayoutController {
 
     @FXML
     public void goToAddEq(ActionEvent actionEvent) {
-        loadPage("/views.equipement/AjouterEq.fxml");
+        loadPage("/views/equipement/AjouterEq.fxml");
     }
 
     @FXML
     public void goToListEq(ActionEvent actionEvent) {
-        loadPage("/views.equipement/ListeEq.fxml");
+        loadPage("/views/equipement/ListeEq.fxml");
     }
 
     @FXML
     public void goToDashboard(ActionEvent actionEvent) {
-        loadPage("/Dashboard.fxml");
+        loadPage("/views/Dashboard.fxml");
     }
 
     @FXML
     public void goToWeather(ActionEvent actionEvent) {
-        loadPage("/views/WeatherPage.fxml");
+        loadPage("/views/WeatherView.fxml");
     }
 
     @FXML
     public void goToChatbot(ActionEvent actionEvent) {
-        loadPage("/views/ChatbotPage.fxml");
+        loadPage("/views/ChatbotView.fxml");
     }
+
+    @FXML
+    public void goToPlantDisease(ActionEvent actionEvent) {
+        loadPage("/views/PlantDiseaseView.fxml");
+    }
+
+    @FXML
+    public void goToIrrigation(ActionEvent actionEvent) {
+        loadPage("/views/IrrigationView.fxml");
+    }
+
+    @FXML
+    public void goToDiagnostic(ActionEvent actionEvent) {
+        loadPage("/views/DiagnosticView.fxml");
+    }
+
+    @FXML
+    public void goToRotation(ActionEvent actionEvent) {
+        loadPage("/views/RotationCultureView.fxml");
+    }
+
 }

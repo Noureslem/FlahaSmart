@@ -11,7 +11,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/MainLayout.fxml")
+                getClass().getResource("/views/MainLayout.fxml")
         );
 
         Scene scene = new Scene(loader.load());

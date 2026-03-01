@@ -4,24 +4,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox stylesheets="@/styles/style.css" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controllers.ChatbotController" spacing="20" alignment="TOP_CENTER"
-      prefWidth="800" prefHeight="600">
+<VBox stylesheets="@/styles/style.css"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.ChatbotController"
+      spacing="15" >
 
-    <padding>
-        <Insets top="25" right="30" bottom="25" left="30"/>
-    </padding>
+    <HBox styleClass="form-header" alignment="CENTER_LEFT" spacing="15">
+        <padding>
+            <Insets top="25" right="30" bottom="25" left="30"/>
+        </padding>
+        <VBox spacing="5">
+            <Label text="🤖 AgriBot - Assistant Agricole Intelligent" styleClass="form-page-title"/>
+            <Label text="Posez vos questions sur l'agriculture, les cultures, l'irrigation et plus encore !" styleClass="form-page-subtitle"/>
+        </VBox>
+    </HBox>
 
-    <!-- En-tête de la page -->
-    <VBox spacing="5" alignment="CENTER">
-        <Label text="🤖 AgriBot - Assistant Agricole Intelligent" styleClass="page-title"/>
-        <Label text="Posez vos questions sur l'agriculture, les cultures, l'irrigation et plus encore !"
-               styleClass="page-subtitle"/>
-    </VBox>
+
 
     <!-- Contenu principal du chatbot -->
     <HBox spacing="25" VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
-
+        <padding>
+            <Insets top="25" right="30" bottom="25" left="30"/>
+        </padding>
         <!-- Zone de chat principale -->
         <VBox styleClass="chatbot-page-container" spacing="15" HBox.hgrow="ALWAYS">
 

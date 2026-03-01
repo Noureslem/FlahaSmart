@@ -123,10 +123,12 @@
    ======================================================= */
 
 .success-button {
-    -fx-background-color: #2ecc71;
+    -fx-background-color: #6b7280;
     -fx-text-fill: white;
     -fx-background-radius: 8;
     -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-padding: 8 18 8 18;
 }
 
 .success-button:hover {
@@ -142,6 +144,8 @@
     -fx-text-fill: white;
     -fx-background-radius: 8;
     -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-padding: 8 18 8 18;
 }
 .card {
     -fx-background-color: white;
@@ -154,10 +158,12 @@
     -fx-font-size: 16px;
 }
 .edit-button {
-    -fx-background-color: #f39c12;
+    -fx-background-color: #6b7280;
     -fx-text-fill: white;
     -fx-background-radius: 8;
     -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-padding: 8 18 8 18;
 }
 .edit-button:hover,
 .danger-button:hover {
