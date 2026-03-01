@@ -59,7 +59,7 @@
                     <VBox.margin>
                         <Insets top="20"/>
                     </VBox.margin>
-                    <Label style="-fx-font-size: 11px; -fx-text-fill: #9CA3AF; -fx-font-weight: bold;" text="CURRENT COURSE"/>
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #9CA3AF; -fx-font-weight: bold;" text="Compte"/>
                 </HBox>
                 <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-background-color: #F3F4F6; -fx-background-radius: 8; -fx-padding: 8 12 8 12;">
                     <VBox.margin>
@@ -67,7 +67,7 @@
                     </VBox.margin>
                     <Circle fill="#6C63FF" radius="5"/>
                     <VBox HBox.hgrow="ALWAYS">
-                        <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Accounting"/>
+                        <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="My Account"/>
                         <Label style="-fx-font-size: 10px; -fx-text-fill: #9CA3AF;" text="Rz160015"/>
                     </VBox>
                 </HBox>
@@ -109,7 +109,7 @@
                 <padding>
                     <Insets bottom="24" left="16" right="16" top="24"/>
                 </padding>
-                <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Accounting"/>
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Threads Les Plus Important"/>
                 <Label style="-fx-font-size: 11px; -fx-text-fill: #9CA3AF;" text="Group: Rz160015">
                     <VBox.margin>
                         <Insets top="4"/>
@@ -120,7 +120,7 @@
                         <Insets top="16"/>
                     </VBox.margin>
                 </Rectangle>
-                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Dr Ronald Jackson">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #111827;" text=" Ronald Jackson">
                     <VBox.margin>
                         <Insets top="12"/>
                     </VBox.margin>

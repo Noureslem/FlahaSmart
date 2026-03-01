@@ -12,38 +12,42 @@ public class Main {
         ServiceThreads serviceThreads = new ServiceThreads();
 
         LocalDateTime now = LocalDateTime.now();
-        //ajouter
-        thread thread = new thread("awlthreads", "9amhjdid", now, now,5);
 
+        // Ajouter
+        thread thread = new thread("awlthreads", "9amhjdid", now, now, 5);
         try {
             serviceThreads.ajouter(thread);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        //modiffier
+
+        // Modifier
         thread thread1 = new thread(
                 3,
                 "Titre modifié",
                 "trere",
                 now,
                 now,
-                5
+                5,
+                "actif",   // ← ajouté
+                "neutre"   // ← ajouté
         );
-        try{
-        serviceThreads.modifier(thread1);}
-        catch (SQLException e){
+        try {
+            serviceThreads.modifier(thread1);
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-      //supprimer
+
+        // Supprimer
         thread threadToDelete = new thread();
         threadToDelete.setId_thread(7);
-
         try {
             serviceThreads.supprimer(threadToDelete);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-      //récupérer
+
+        // Récupérer
         try {
             System.out.println("Liste des threads :");
             for (thread t : serviceThreads.recuperer()) {
@@ -53,6 +57,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
+        // Test validation
         try {
             serviceThreads.ajouter(thread);
         } catch (IllegalArgumentException e) {
@@ -60,11 +65,5 @@ public class Main {
         } catch (SQLException e) {
             System.out.println("Erreur SQL : " + e.getMessage());
         }
-
-
-
-
-
     }
 }
-
