@@ -4,29 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0dd62393-fca9-412a-8652-b090a5ec4918" name="Changes" comment="Persque finale 2">
+    <list default="true" id="0dd62393-fca9-412a-8652-b090a5ec4918" name="Changes" comment="Finale 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/IrrigationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/IrrigationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MainLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MainLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RotationCultureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RotationCultureController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/WeatherWidgetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/WeatherWidgetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/RotationCultureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/RotationCultureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/WeatherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/WeatherService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/MainLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/MainLayout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/RotationCultureView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/RotationCultureView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/WeatherView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/WeatherView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/IrrigationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/IrrigationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/MainLayoutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/MainLayoutController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/RotationCultureController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/RotationCultureController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/WeatherWidgetController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/WeatherWidgetController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/WeatherWidgetController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/WeatherWidgetController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/operation/ListeOpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/operation/ListeOpController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/RotationCultureService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/services/RotationCultureService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/WeatherService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/services/WeatherService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/MainLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/views/MainLayout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/RotationCultureView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/views/RotationCultureView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/WeatherView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/views/WeatherView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -283,7 +263,7 @@
       <workItem from="1772096875959" duration="1335000" />
       <workItem from="1772104044073" duration="4821000" />
       <workItem from="1772314307275" duration="15218000" />
-      <workItem from="1772389511817" duration="11144000" />
+      <workItem from="1772389511817" duration="11713000" />
     </task>
     <task id="LOCAL-00001" summary="API 1">
       <option name="closed" value="true" />
@@ -325,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772334497979</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finale 2">
+      <option name="closed" value="true" />
+      <created>1772406306425</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1772406306425</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +324,8 @@
     <MESSAGE value="Gemini + Weather" />
     <MESSAGE value="Persque finale" />
     <MESSAGE value="Persque finale 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Persque finale 2" />
+    <MESSAGE value="Finale 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finale 2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

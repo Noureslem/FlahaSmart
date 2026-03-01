@@ -1,6 +1,21 @@
-# 🚜 CRUD Operation - Gestion d'Opérations Agricoles
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-17+-orange?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java"/>
+  <img src="https://img.shields.io/badge/JavaFX-21-blue?style=for-the-badge&logo=java&logoColor=white" alt="JavaFX"/>
+  <img src="https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL"/>
+  <img src="https://img.shields.io/badge/Maven-3.6+-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven"/>
+  <img src="https://img.shields.io/badge/License-Academic-green?style=for-the-badge" alt="License"/>
+</p>
 
-Application JavaFX moderne de gestion d'opérations et d'équipements agricoles avec intégration météo et chatbot intelligent.
+<h1 align="center">🌾 FlahaSmart</h1>
+
+<p align="center">
+  <strong>Plateforme intelligente de gestion agricole avec IA et APIs intégrées</strong>
+</p>
+
+<p align="center">
+  Application JavaFX moderne combinant gestion d'opérations agricoles, système d'irrigation intelligent, 
+  détection de maladies des plantes, rotation optimisée des cultures et chatbot IA propulsé par Google Gemini.
+</p>
 
 ---
 
@@ -8,464 +23,457 @@ Application JavaFX moderne de gestion d'opérations et d'équipements agricoles 
 
 - [Présentation](#-présentation)
 - [Fonctionnalités](#-fonctionnalités)
+- [Architecture](#-architecture)
 - [Technologies](#-technologies)
 - [Installation](#-installation)
+- [Configuration](#-configuration)
 - [Utilisation](#-utilisation)
-- [Documentation](#-documentation)
-- [Captures d'écran](#-captures-décran)
+- [APIs Intégrées](#-apis-intégrées)
+- [Structure du projet](#-structure-du-projet)
 - [Auteur](#-auteur)
 
 ---
 
 ## 🎯 Présentation
 
-**CRUD Operation** est une application de gestion complète pour les opérations agricoles. Elle permet de :
-- Gérer les équipements agricoles (CRUD complet)
-- Planifier et suivre les opérations de maintenance
-- Consulter la météo en temps réel
-- Obtenir des conseils agricoles via un chatbot intelligent
+**AgriManager Pro** est une solution complète de gestion agricole intelligente qui combine :
 
-### Points forts :
-✅ Interface moderne et intuitive  
-✅ Intégration API météo WeatherStack  
-✅ Chatbot agricole avec 12 domaines de connaissances  
-✅ Architecture MVC propre  
-✅ Base de données MySQL  
-✅ Design responsive avec CSS moderne  
+| Module | Description |
+|--------|-------------|
+| 🚜 **Gestion CRUD** | Équipements et opérations agricoles |
+| 🌡️ **Météo temps réel** | API WeatherStack avec conseils dynamiques |
+| 💧 **Irrigation intelligente** | Calcul automatique des besoins en eau |
+| 🔄 **Rotation des cultures** | Planification optimisée pluriannuelle |
+| 🔬 **Détection maladies** | Analyse d'images via API PlantNet |
+| 🤖 **AgriBot IA** | Chatbot propulsé par Google Gemini 2.5 Flash |
+
+### ✨ Points forts
+
+```
+✅ Interface moderne avec design glassmorphism et dégradés verts
+✅ 6 APIs externes intégrées (WeatherStack, Gemini, PlantNet...)
+✅ Système d'irrigation basé sur 7 critères météo et agronomiques
+✅ Conseils agricoles dynamiques générés en temps réel
+✅ Architecture MVC professionnelle avec pattern DAO
+✅ Multithreading pour opérations asynchrones fluides
+```
 
 ---
 
 ## 🌟 Fonctionnalités
 
-### 1. Gestion des Équipements 🚜
+### 1. 🚜 Gestion des Équipements
 
-- ✅ **Ajouter** un équipement (nom, type, statut)
-- ✅ **Modifier** les informations
-- ✅ **Supprimer** un équipement
-- ✅ **Afficher** la liste complète
-- ✅ **Rechercher** par nom (API Stream)
-- ✅ **Trier** alphabétiquement
-- ✅ Statuts : **Libre** / **Réservé**
+| Fonction | Description |
+|----------|-------------|
+| Ajouter | Créer un équipement (nom, type) |
+| Modifier | Mettre à jour les informations |
+| Supprimer | Suppression avec confirmation |
+| Lister | Affichage en tableau moderne |
+| Rechercher | Recherche par nom (Stream API) |
+| Trier | Tri alphabétique dynamique |
 
-### 2. Gestion des Opérations 🔧
+**Statuts** : `Libre` | `Réservé`
 
-- ✅ **Créer** une opération (type, dates, équipement)
-- ✅ **Modifier** une opération existante
-- ✅ **Supprimer** une opération
-- ✅ **Afficher** toutes les opérations
-- ✅ **Rechercher** et **Trier** (API Stream)
-- ✅ **Terminer** une opération (bouton dédié)
-- ✅ Statuts : **En cours** / **Terminé**
-- ✅ Types : LocalDate pour dates début/fin
-- ✅ Relation avec modèle Equipement
+---
 
-### 3. Dashboard Moderne 📊
+### 2. 🔧 Gestion des Opérations
 
-#### Stats Opérations (Cards) :
-- 📈 **Total des opérations**
-- 🔄 **Opérations en cours** (avec pourcentage)
-- ✅ **Opérations terminées** (avec pourcentage)
-- 🎯 **Navigation intelligente** : clic sur "En cours" → liste filtrée
+| Fonction | Description |
+|----------|-------------|
+| Créer | Nouvelle opération avec équipement associé |
+| Modifier | Mise à jour complète |
+| Terminer | Changement de statut en un clic |
+| Supprimer | Avec confirmation |
+| Filtrer | Par statut (en cours/terminé) |
 
-#### Stats Équipements :
-- 📊 **Répartition par type** avec graphiques
-- 🔢 **Nombre total, libres, réservés**
-- 🎨 **Barres de progression colorées**
+**Relation** : Utilisation du modèle `Equipement` (jointure Java correcte)
 
-### 4. Widget Météo ☀️
+---
 
-- 🌍 **Météo en temps réel** via API WeatherStack
-- 🔍 **Recherche par ville** (monde entier)
-- 📊 Affichage :
-  - 🌡️ Température actuelle et ressentie
-  - 💧 Humidité
-  - 💨 Vitesse du vent
-  - ☁️ Description météo
-  - 🖼️ Icône météo dynamique
-  - 🕐 Heure locale
-- 🎨 **Design glassmorphism** moderne
+### 3. 📊 Dashboard Intelligent
 
-### 5. AgriBot - Chatbot Agricole 🤖
+#### Cards Statistiques Opérations
+- **Total** des opérations avec compteur animé
+- **En cours** avec pourcentage et navigation directe
+- **Terminées** avec indicateur de progression
 
-#### 12 Domaines de connaissances :
-1. 🌾 **Cultures et plantations**
-2. 💧 **Irrigation et arrosage**
-3. 🌤️ **Météo et impact agricole**
-4. 🚜 **Équipements agricoles**
-5. 🌿 **Fertilisation et engrais**
-6. 🐛 **Maladies et parasites**
-7. 🌍 **Sol et compost**
-8. 🏠 **Serres et culture protégée**
-9. ♻️ **Agriculture biologique**
-10. 📱 **Technologies modernes**
-11. 🌾 **Récolte et conservation**
-12. 💦 **Économie d'eau**
+#### Cards Statistiques Équipements
+- Répartition par type avec barres de progression
+- Compteurs : Total | Libres | Réservés
 
-#### Fonctionnalités :
-- ✅ Détection intelligente par mots-clés (regex)
-- ✅ Réponses variées et pertinentes
-- ✅ Interface de chat moderne
-- ✅ Historique des conversations
-- ✅ Emojis pour convivialité
+#### Navigation intelligente
+Clic sur "Opérations en cours" → Redirection avec highlight automatique
+
+---
+
+### 4. 🌤️ Météo & Conseils Agricoles Dynamiques
+
+#### Widget Météo (API WeatherStack)
+```
+🌡️ Température actuelle et ressentie
+💧 Humidité (%)
+💨 Vitesse du vent (km/h)
+☁️ Description météo
+🕐 Heure locale
+```
+
+#### Conseils Agricoles Intelligents
+
+Analyse en temps réel des données météo pour générer des conseils professionnels :
+
+| Critère | Analyse |
+|---------|---------|
+| **Température** | Alertes canicule/gel, conditions optimales |
+| **Humidité** | Risques maladies fongiques, arrosage |
+| **Vent** | Conditions de pulvérisation, protection |
+| **Conditions** | Pluie, nuages, ensoleillement |
+| **Ressenti** | Stress thermique, refroidissement éolien |
+
+**Code couleur des conseils** :
+- 🔴 **Critique** : Actions immédiates requises
+- 🟡 **Attention** : Précautions nécessaires
+- 🟢 **Optimal** : Conditions idéales
+- 🔵 **Information** : Conseils généraux
+
+---
+
+### 5. 💧 Système Intelligent d'Irrigation
+
+Module avancé calculant automatiquement les besoins en eau selon :
+
+| Critère | Poids |
+|---------|-------|
+| 🌡️ Température actuelle | Évapotranspiration |
+| 💧 Humidité du sol | Rétention hydrique |
+| 🌧️ Précipitations prévues | Report irrigation |
+| 🌱 Type de culture | Besoins spécifiques |
+| 📅 Dernière irrigation | Fréquence optimale |
+| 💦 Quantité précédente | Ajustement progressif |
+| 🌍 Type de sol | Capacité de rétention |
+
+#### Fonctionnalités
+- Sélection du type de culture (Tomates, Blé, Maïs, Vignes...)
+- Configuration des paramètres d'irrigation
+- Calcul automatique de la priorité (Critique/Haute/Moyenne/Faible)
+- Recommandation de durée et horaire optimal
+
+---
+
+### 6. 🔄 Système de Rotation des Cultures
+
+Planification intelligente des rotations pluriannuelles :
+
+| Paramètre | Configuration |
+|-----------|---------------|
+| Parcelle | Nom, surface (ha) |
+| Type de sol | Argileux, Limoneux, Sableux... |
+| Historique | Dernières cultures |
+| Nutriments | Azote (N), Phosphore (P), Potassium (K) |
+| pH du sol | Échelle 4.0 - 9.0 |
+| Jachère | Années depuis repos |
+
+#### Résultats
+- **Plan de rotation** sur 1 à 10 ans
+- **Visualisation** chronologique avec flèches
+- **Résumé parcelle** avec indicateurs fertilité
+
+---
+
+### 7. 🔬 Détection de Maladies des Plantes
+
+Intégration de l'API PlantNet pour l'analyse d'images :
+
+| Fonction | Description |
+|----------|-------------|
+| Upload | Téléchargement d'image de plante |
+| Analyse | Identification via IA |
+| Résultats | Maladies détectées avec probabilités |
+| Conseils | Recommandations de traitement |
+
+---
+
+### 8. 🤖 AgriBot - Chatbot IA (Gemini 2.5 Flash)
+
+Chatbot intelligent propulsé par **Google Gemini** pour répondre aux questions agricoles :
+
+#### Capacités
+- Conseils de culture personnalisés
+- Diagnostic de problèmes
+- Recommandations saisonnières
+- Bonnes pratiques agricoles
+- Réponses en temps réel
+
+#### Interface
+- Design moderne de chat
+- Historique des conversations
+- Indicateur de chargement asynchrone
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      PRÉSENTATION                           │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────────────┐   │
+│  │    FXML     │ │    CSS      │ │    Controllers      │   │
+│  │   (Views)   │ │  (Styles)   │ │   (JavaFX FXML)     │   │
+│  └─────────────┘ └─────────────┘ └─────────────────────┘   │
+├─────────────────────────────────────────────────────────────┤
+│                      MÉTIER                                 │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │                    Services                          │   │
+│  │  • EquipementService    • IrrigationService         │   │
+│  │  • OperationService     • RotationCultureService    │   │
+│  │  • WeatherService       • PlantDiseaseService       │   │
+│  │  • AgriChatbotService                               │   │
+│  └─────────────────────────────────────────────────────┘   │
+├─────────────────────────────────────────────────────────────┤
+│                      DONNÉES                                │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────────────┐   │
+│  │   Models    │ │  MyDataBase │ │    APIs Externes    │   │
+│  │  (POJOs)    │ │  (Singleton)│ │  (HTTP Clients)     │   │
+│  └─────────────┘ └─────────────┘ └─────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Design Patterns utilisés
+
+| Pattern | Utilisation |
+|---------|-------------|
+| **MVC** | Séparation Views/Controllers/Models |
+| **DAO** | Accès données avec PreparedStatement |
+| **Singleton** | Connexion base de données |
+| **Service Layer** | Logique métier isolée |
+| **Observer** | Binding JavaFX properties |
 
 ---
 
 ## 💻 Technologies
 
-### Backend :
-- ☕ **Java 17**
-- 🗄️ **MySQL** (base de données)
-- 🔗 **JDBC** (MySQL Connector)
-- 📦 **Maven** (gestion dépendances)
+### Core
+| Technologie | Version | Usage |
+|-------------|---------|-------|
+| Java | 17+ | Langage principal |
+| JavaFX | 21 | Interface graphique |
+| Maven | 3.6+ | Gestion dépendances |
+| MySQL | 8.0+ | Base de données |
 
-### Frontend :
-- 🖼️ **JavaFX 21** (interface graphique)
-- 🎨 **CSS3** (styles modernes)
-- 📄 **FXML** (déclaration interfaces)
+### APIs & Libraries
+| API/Library | Usage |
+|-------------|-------|
+| WeatherStack | Météo temps réel |
+| Google Gemini 2.5 Flash | Chatbot IA |
+| PlantNet | Détection maladies plantes |
+| Gson | Parsing JSON |
+| JDBC MySQL Connector | Connexion BD |
 
-### APIs & Services :
-- 🌤️ **WeatherStack API** (météo temps réel)
-- 🔧 **Gson** (parsing JSON)
-
-### Architecture :
-- 🏗️ **MVC** (Model-View-Controller)
-- 🔄 **DAO Pattern**
-- 🧵 **Multithreading** (Task JavaFX)
-- 🌊 **Java Stream API** (recherche/tri)
+### Concepts Java avancés
+- **Stream API** : Recherche et tri dynamiques
+- **Lambda expressions** : Code fonctionnel
+- **Multithreading** : Task<T> pour appels asynchrones
+- **Regex** : Validation et pattern matching
+- **Generics** : Collections typées
 
 ---
 
 ## 📦 Installation
 
-### Prérequis :
+### Prérequis
 
-- ✅ Java 17 ou supérieur
-- ✅ Maven 3.6+
-- ✅ MySQL 8.0+
-- ✅ IDE (IntelliJ IDEA recommandé)
+```bash
+# Vérifier Java
+java -version   # Doit être 17+
 
-### Étapes :
+# Vérifier Maven
+mvn -version    # Doit être 3.6+
 
-1. **Cloner le projet**
-   ```bash
-   git clone <votre-repo>
-   cd CRUD_Operation
-   ```
+# MySQL Server doit être installé et actif
+```
 
-2. **Configurer la base de données**
-   ```sql
-   CREATE DATABASE crud_operation;
-   USE crud_operation;
-   
-   -- Les tables seront créées automatiquement
-   -- ou exécutez le script SQL fourni
-   ```
+### Installation
 
-3. **Configurer la connexion**
-   Éditer `src/main/java/utilies/MyDataBase.java` :
-   ```java
-   private static final String URL = "jdbc:mysql://localhost:3306/crud_operation";
-   private static final String USER = "votre_user";
-   private static final String PASSWORD = "votre_password";
-   ```
+```bash
+# 1. Cloner le repository
+git clone https://github.com/votre-username/AgriManager-Pro.git
+cd AgriManager-Pro
 
-4. **Installer les dépendances**
-   ```bash
-   mvn clean install
-   ```
+# 2. Installer les dépendances
+mvn clean install
 
-5. **Compiler le projet**
-   ```bash
-   mvn compile
-   ```
+# 3. Compiler
+mvn compile
 
-6. **Lancer l'application**
-   ```bash
-   mvn javafx:run
-   ```
+# 4. Lancer l'application
+mvn javafx:run
+```
+
+---
+
+## ⚙️ Configuration
+
+### Base de données
+
+1. Créer la base de données :
+```sql
+CREATE DATABASE agrimanager;
+USE agrimanager;
+```
+
+2. Éditer `src/main/java/utilies/MyDataBase.java` :
+```java
+private static final String URL = "jdbc:mysql://localhost:3306/agrimanager";
+private static final String USER = "votre_user";
+private static final String PASSWORD = "votre_password";
+```
+
+### APIs (fichiers de configuration)
+
+| API | Variable | Où configurer |
+|-----|----------|---------------|
+| WeatherStack | `API_KEY` | `WeatherService.java` |
+| Google Gemini | `API_KEY` | `AgriChatbotService.java` |
+| PlantNet | `API_KEY` | `PlantDiseaseService.java` |
 
 ---
 
 ## 🎮 Utilisation
 
-### Navigation :
-
-L'application utilise une **sidebar** avec les sections suivantes :
+### Navigation principale
 
 ```
-📊 Dashboard          → Tableau de bord principal
-🚜 Équipements        → Gestion des équipements
-   ├─ Liste          → Voir tous les équipements
-   └─ Ajouter        → Nouvel équipement
-🔧 Opérations         → Gestion des opérations
-   ├─ Liste          → Voir toutes les opérations
-   └─ Ajouter        → Nouvelle opération
+📊 Dashboard           → Tableau de bord avec statistiques
+├── 🚜 Équipements     
+│   ├── Liste          → Afficher tous les équipements
+│   └── Ajouter        → Créer un équipement
+├── 🔧 Opérations      
+│   ├── Liste          → Afficher toutes les opérations
+│   └── Ajouter        → Créer une opération
+├── 💧 Irrigation      → Système intelligent d'irrigation
+├── 🔄 Rotation        → Planification rotation cultures
+├── 🔬 Analyse Maladie → Détection maladies des plantes
+├── 🌤️ Météo          → Widget météo avec conseils
+└── 🤖 AgriBot        → Chatbot IA agricole
 ```
 
-### Workflow typique :
+### Workflow typique
 
-1. **Ajouter un équipement**
-   - Aller dans "Équipements" → "Ajouter"
-   - Remplir : nom, type
-   - Statut par défaut : "Libre"
-
-2. **Créer une opération**
-   - Aller dans "Opérations" → "Ajouter"
-   - Sélectionner un équipement (ComboBox)
-   - Choisir dates début/fin
-   - Type d'opération
-   - Statut par défaut : "En cours"
-
-3. **Suivre dans le Dashboard**
-   - Voir les statistiques en temps réel
-   - Cliquer sur card "En cours" pour voir détails
-   - Consulter la météo
-
-4. **Terminer une opération**
-   - Liste des opérations → Bouton "Terminer"
-   - Statut change automatiquement
-
-5. **Consulter AgriBot**
-   - Poser une question agricole
-   - Recevoir conseils instantanés
+1. **Configurer les équipements** → Ajouter tracteurs, outils, systèmes d'irrigation
+2. **Planifier les opérations** → Associer équipements aux tâches
+3. **Consulter le dashboard** → Vue d'ensemble des activités
+4. **Vérifier la météo** → Conseils agricoles adaptés
+5. **Planifier l'irrigation** → Calcul automatique des besoins
+6. **Optimiser les rotations** → Plan pluriannuel des cultures
+7. **Consulter AgriBot** → Questions et conseils IA
 
 ---
 
-## 📚 Documentation
+## 🔌 APIs Intégrées
 
-Documentation détaillée disponible :
-
-- 📖 [**CHATBOT_DOCUMENTATION.md**](CHATBOT_DOCUMENTATION.md) - Guide complet du chatbot
-- 🚀 [**CHATBOT_QUICKSTART.md**](CHATBOT_QUICKSTART.md) - Démarrage rapide chatbot
-- 🌤️ [**WEATHER_INTEGRATION.md**](WEATHER_INTEGRATION.md) - Documentation API météo
-- 📘 [**WEATHER_USER_GUIDE.md**](WEATHER_USER_GUIDE.md) - Guide utilisateur météo
-
----
-
-## 📸 Captures d'écran
-
-### Dashboard
+### WeatherStack API
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  Tableau de bord                                            │
-├───────────────────────────────────┬─────────────────────────┤
-│  [Card: Total]  [Card: En cours]  │   ☀️ Widget Météo       │
-│  [Card: Terminé]                   │                         │
-│                                    │   🤖 AgriBot Chatbot   │
-│  📊 Équipements par type           │                         │
-│  ████████████ 45%  Tracteur        │                         │
-│  ██████ 30%  Irrigation            │                         │
-└───────────────────────────────────┴─────────────────────────┘
+Endpoint: http://api.weatherstack.com/current
+Données: Température, humidité, vent, conditions
+Limite: 100 requêtes/mois (gratuit)
+```
+
+### Google Gemini API
+```
+Modèle: Gemini 2.5 Flash
+Usage: Chatbot agricole intelligent
+Endpoint: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash
+```
+
+### PlantNet API
+```
+Usage: Identification de plantes et maladies
+Endpoint: https://my-api.plantnet.org/v2/identify
 ```
 
 ---
 
-## 🏗️ Structure du projet
+## 📁 Structure du projet
 
 ```
-CRUD_Operation/
+AgriManager-Pro/
 ├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   ├── controllers/        # Contrôleurs JavaFX
+│   │   │   ├── controllers/
 │   │   │   │   ├── DashboardController.java
-│   │   │   │   ├── ChatbotController.java
+│   │   │   │   ├── MainLayoutController.java
 │   │   │   │   ├── WeatherWidgetController.java
-│   │   │   │   ├── equipement/     # Contrôleurs équipements
-│   │   │   │   └── operation/      # Contrôleurs opérations
-│   │   │   ├── models/             # Modèles de données
+│   │   │   │   ├── ChatbotController.java
+│   │   │   │   ├── IrrigationController.java
+│   │   │   │   ├── RotationCultureController.java
+│   │   │   │   ├── PlantDiseaseController.java
+│   │   │   │   ├── equipement/
+│   │   │   │   └── operation/
+│   │   │   ├── models/
 │   │   │   │   ├── Equipement.java
 │   │   │   │   ├── Operation.java
 │   │   │   │   ├── Weather.java
-│   │   │   │   └── ChatMessage.java
-│   │   │   ├── services/           # Logique métier
+│   │   │   │   ├── ChatMessage.java
+│   │   │   │   ├── IrrigationPlan.java
+│   │   │   │   ├── Parcelle.java
+│   │   │   │   └── RecommandationCulture.java
+│   │   │   ├── services/
 │   │   │   │   ├── EquipementService.java
 │   │   │   │   ├── OperationService.java
 │   │   │   │   ├── WeatherService.java
-│   │   │   │   └── AgriChatbotService.java
-│   │   │   ├── utilies/            # Utilitaires
+│   │   │   │   ├── AgriChatbotService.java
+│   │   │   │   ├── IrrigationService.java
+│   │   │   │   ├── RotationCultureService.java
+│   │   │   │   └── PlantDiseaseService.java
+│   │   │   ├── utilies/
 │   │   │   │   └── MyDataBase.java
 │   │   │   └── testes/
-│   │   │       └── MainApp.java    # Point d'entrée
+│   │   │       └── MainApp.java
 │   │   └── resources/
-│   │       ├── Dashboard.fxml
-│   │       ├── MainLayout.fxml
-│   │       ├── styles/
-│   │       │   └── style.css       # Styles globaux
-│   │       └── views/
-│   │           ├── equipement/     # Vues équipements
-│   │           ├── operation/      # Vues opérations
-│   │           ├── WeatherWidget.fxml
-│   │           └── Chatbot.fxml
+│   │       ├── views/
+│   │       └── styles/
 │   └── test/
-│       └── java/services/          # Tests unitaires
-├── pom.xml                         # Configuration Maven
-├── README.md                       # Ce fichier
-├── CHATBOT_DOCUMENTATION.md
-├── CHATBOT_QUICKSTART.md
-├── WEATHER_INTEGRATION.md
-└── WEATHER_USER_GUIDE.md
+├── pom.xml
+└── README.md
 ```
-
----
-
-## 🎓 Concepts utilisés
-
-### Programmation Java :
-- ✅ **POO** : Encapsulation, héritage, polymorphisme
-- ✅ **Collections** : ArrayList, HashMap
-- ✅ **Stream API** : filter, sorted, map, collect
-- ✅ **Generics** : List<T>, Task<T>
-- ✅ **Lambda expressions**
-- ✅ **Pattern Matching** : Regex pour chatbot
-- ✅ **Exception handling** : try-catch-finally
-- ✅ **JDBC** : PreparedStatement, ResultSet
-
-### JavaFX :
-- ✅ **FXML** : Déclaration interfaces
-- ✅ **Controllers** : @FXML annotations
-- ✅ **Layouts** : VBox, HBox, BorderPane
-- ✅ **Controls** : TableView, ComboBox, DatePicker
-- ✅ **CSS Styling** : Classes, pseudo-classes
-- ✅ **Task & Concurrency** : Background threads
-- ✅ **Property Binding** : ScrollPane auto-scroll
-
-### Design Patterns :
-- ✅ **MVC** : Séparation responsabilités
-- ✅ **DAO** : Data Access Object
-- ✅ **Singleton** : Database connection
-- ✅ **Service Layer** : Logique métier isolée
 
 ---
 
 ## 🔒 Sécurité & Bonnes pratiques
 
-- ✅ **PreparedStatement** : Protection contre SQL Injection
-- ✅ **Validation** : Champs obligatoires vérifiés
-- ✅ **Gestion erreurs** : Try-catch partout
-- ✅ **Logs** : Logger pour debugging
-- ✅ **Fermeture ressources** : Finally blocks
-- ✅ **Séparation concerns** : MVC strict
-
----
-
-## 🚀 Fonctionnalités avancées
-
-### 1. Recherche et Tri (Stream API)
-```java
-// Recherche par nom
-list.stream()
-    .filter(e -> e.getNom().toLowerCase().contains(search))
-    .collect(Collectors.toList());
-
-// Tri alphabétique
-list.stream()
-    .sorted(Comparator.comparing(Equipement::getNom))
-    .collect(Collectors.toList());
-```
-
-### 2. Navigation intelligente
-- Clic sur card "En cours" → Liste opérations filtrées
-- Highlight moderne des opérations en cours
-- Animation smooth au chargement
-
-### 3. Intégration modèles
-- Operation utilise `Equipement equipement` (pas id_equipement)
-- Jointure correcte en Java (best practice)
-- ComboBox affiche objets Equipement
-
-### 4. API météo asynchrone
-```java
-Task<Weather> task = new Task<>() {
-    protected Weather call() {
-        return weatherService.getWeather(city);
-    }
-};
-```
-
----
-
-## 📊 Base de données
-
-### Tables :
-
-**equipement**
-```sql
-CREATE TABLE equipement (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(100) NOT NULL,
-    type VARCHAR(50),
-    statut ENUM('Libre', 'Réservé') DEFAULT 'Libre'
-);
-```
-
-**operation**
-```sql
-CREATE TABLE operation (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    type VARCHAR(100) NOT NULL,
-    date_debut DATE NOT NULL,
-    date_fin DATE NOT NULL,
-    statut ENUM('En cours', 'Terminé') DEFAULT 'En cours',
-    id_equipement INT,
-    FOREIGN KEY (id_equipement) REFERENCES equipement(id)
-);
-```
-
----
-
-## 🐛 Résolution de problèmes
-
-### Erreur de connexion BD :
-```
-Solution : Vérifier URL, user, password dans MyDataBase.java
-```
-
-### JavaFX ne s'affiche pas :
-```
-Solution : mvn clean compile puis mvn javafx:run
-```
-
-### Styles CSS non appliqués :
-```
-Solution : Vérifier chemin dans FXML : stylesheets="@/styles/style.css"
-```
-
-### API météo ne répond pas :
-```
-Solution : 
-1. Vérifier connexion Internet
-2. Limite API gratuite atteinte (100 req/mois)
-3. Tester avec autre ville
-```
+| Pratique | Implémentation |
+|----------|----------------|
+| SQL Injection | PreparedStatement partout |
+| Validation | Contrôles de saisie côté client |
+| Async | Appels API sur threads séparés |
+| Error Handling | Try-catch avec logs |
+| Resources | Fermeture automatique (try-with-resources) |
 
 ---
 
 ## 📈 Améliorations futures
 
-### Court terme :
-- [ ] Export PDF des opérations
-- [ ] Calendrier visuel des opérations
-- [ ] Notifications système
-
-### Moyen terme :
-- [ ] Multi-utilisateurs avec login
-- [ ] Historique complet des modifications
-- [ ] Graphiques statistiques avancés
-
-### Long terme :
-- [ ] Application mobile (JavaFX Mobile)
-- [ ] Synchronisation cloud
-- [ ] IA prédictive pour planification
+- [ ] 📱 Version mobile (JavaFX Mobile / Flutter)
+- [ ] ☁️ Synchronisation cloud
+- [ ] 📊 Export PDF des rapports
+- [ ] 📅 Calendrier visuel des opérations
+- [ ] 🔔 Notifications push
+- [ ] 👥 Multi-utilisateurs avec authentification
+- [ ] 📈 Graphiques statistiques avancés (Charts)
+- [ ] 🌐 Internationalisation (i18n)
 
 ---
 
 ## 👨‍💻 Auteur
 
-**Votre Nom**  
-🎓 Étudiant en [Votre Formation]  
-📧 Email : votre.email@example.com  
-🔗 GitHub : [Votre profil]
+**[Votre Nom]**
+
+| Contact | Lien |
+|---------|------|
+| 📧 Email | votre.email@example.com |
+| 🔗 GitHub | [@votre-username](https://github.com/votre-username) |
+| 💼 LinkedIn | [Votre Profil](https://linkedin.com/in/votre-profil) |
 
 ---
 
@@ -473,28 +481,20 @@ Solution :
 
 Ce projet est réalisé dans un cadre académique.
 
----
-
-## 🙏 Remerciements
-
-- **WeatherStack** pour l'API météo
-- **OpenJFX** pour JavaFX
-- **MySQL** pour la base de données
-- **Maven** pour la gestion de projet
+```
+MIT License - Libre d'utilisation avec attribution
+```
 
 ---
-
-## 📞 Support
-
-Pour toute question :
-1. Consultez la documentation dans `/docs`
-2. Vérifiez les logs de l'application
-3. Contactez l'auteur
-
 ---
 
-*Développé avec ❤️ et ☕ - Février 2026*
+<p align="center">
+  <strong>Développé avec ❤️ et ☕</strong><br>
+  <em>Mars 2026</em>
+</p>
 
-**Version** : 1.0  
-**Status** : ✅ Stable
-
+<p align="center">
+  <img src="https://img.shields.io/badge/Version-2.0-success?style=flat-square" alt="Version"/>
+  <img src="https://img.shields.io/badge/Status-Stable-brightgreen?style=flat-square" alt="Status"/>
+  <img src="https://img.shields.io/badge/Build-Passing-success?style=flat-square" alt="Build"/>
+</p>
