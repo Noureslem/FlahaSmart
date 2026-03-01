@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -9,17 +10,18 @@
             fitToWidth="true"
             style="-fx-background-color: transparent; -fx-background: transparent;">
 
-    <VBox spacing="20" alignment="TOP_CENTER"
-          style="-fx-background-color: linear-gradient(to bottom right, #f0fdf4, #ecfdf5, #d1fae5); -fx-padding: 25;">
+    <VBox spacing="15" alignment="TOP_CENTER"
+          style="-fx-background-color: linear-gradient(to bottom right, #f0fdf4, #ecfdf5, #d1fae5); ">
 
-        <!-- Titre principal -->
-        <VBox alignment="CENTER" spacing="8">
-            <Label text="🔄 Rotation des Cultures Optimisée"
-                   style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #065f46;
-                          -fx-effect: dropshadow(gaussian, rgba(16, 185, 129, 0.2), 3, 0, 0, 1);"/>
-            <Label text="Optimisez vos rotations pour préserver la fertilité du sol et maximiser les rendements"
-                   style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
-        </VBox>
+        <HBox styleClass="form-header" alignment="CENTER_LEFT" spacing="15">
+            <padding>
+                <Insets top="25" right="30" left="30" bottom="25" />
+            </padding>
+            <VBox >
+                <Label text="🔄 Rotation des Cultures Optimisée" styleClass="form-page-title"/>
+                <Label text="Optimisez vos rotations pour préserver la fertilité du sol et maximiser les rendements" styleClass="form-page-subtitle"/>
+            </VBox>
+        </HBox>
 
         <!-- Section principale -->
         <HBox spacing="20" alignment="TOP_CENTER">
@@ -68,59 +70,67 @@
                 </HBox>
 
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Années depuis jachère:" style="-fx-font-size: 12px;"/>
+                    <Label text="Années depuis jachère:" style="-fx-font-size: 12px; -fx-text-fill: #374151;"/>
                     <Spinner fx:id="anneesJachereSpinner" prefWidth="80"/>
                 </HBox>
 
                 <Separator/>
 
                 <!-- État nutritionnel -->
-                <Label text="🧪 État Nutritionnel du Sol"
+                <Label text=" État Nutritionnel du Sol"
                        style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #059669;"/>
 
                 <!-- Azote -->
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Azote (N):" prefWidth="100" style="-fx-font-size: 12px;"/>
-                    <Slider fx:id="azoteSlider" min="1" max="10" value="5"
-                            showTickLabels="true" showTickMarks="true" majorTickUnit="1"
-                            HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="azoteValue" text="5/10" prefWidth="50"/>
-                </HBox>
+                <VBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Azote (N):" prefWidth="100" style="-fx-font-size: 12px; -fx-text-fill: #374151;"/>
+                   <HBox>
+                       <Slider fx:id="azoteSlider" min="1" max="10" value="5"
+                               showTickLabels="true" showTickMarks="true" majorTickUnit="1"
+                               HBox.hgrow="ALWAYS"/>
+                       <Label fx:id="azoteValue" text="5/10" prefWidth="50"/>
+                   </HBox>
+                </VBox>
 
                 <!-- Phosphore -->
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Phosphore (P):" prefWidth="100" style="-fx-font-size: 12px;"/>
-                    <Slider fx:id="phosphoreSlider" min="1" max="10" value="5"
-                            showTickLabels="true" showTickMarks="true" majorTickUnit="1"
-                            HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="phosphoreValue" text="5/10" prefWidth="50"/>
-                </HBox>
+                <VBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Phosphore (P):" prefWidth="100" style="-fx-font-size: 12px; -fx-text-fill: #374151"/>
+                    <HBox>
+                        <Slider fx:id="phosphoreSlider" min="1" max="10" value="5"
+                                showTickLabels="true" showTickMarks="true" majorTickUnit="1"
+                                HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="phosphoreValue" text="5/10" prefWidth="50"/>
+                    </HBox>
+                </VBox>
 
                 <!-- Potassium -->
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="Potassium (K):" prefWidth="100" style="-fx-font-size: 12px;"/>
-                    <Slider fx:id="potassiumSlider" min="1" max="10" value="5"
-                            showTickLabels="true" showTickMarks="true" majorTickUnit="1"
-                            HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="potassiumValue" text="5/10" prefWidth="50"/>
-                </HBox>
+                <VBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Potassium (K):" prefWidth="100" style="-fx-font-size: 12px; -fx-text-fill: #374151"/>
+                    <HBox>
+                        <Slider fx:id="potassiumSlider" min="1" max="10" value="5"
+                                showTickLabels="true" showTickMarks="true" majorTickUnit="1"
+                                HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="potassiumValue" text="5/10" prefWidth="50"/>
+                    </HBox>
+                </VBox>
 
                 <!-- pH -->
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="pH du sol:" prefWidth="100" style="-fx-font-size: 12px;"/>
-                    <Slider fx:id="phSlider" min="4.0" max="9.0" value="6.5"
-                            showTickLabels="true" showTickMarks="true" majorTickUnit="1"
-                            HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="phValue" text="6.5" prefWidth="50"/>
-                </HBox>
+                <VBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="pH du sol:" prefWidth="100" style="-fx-font-size: 12px; -fx-text-fill: #374151"/>
+                    <HBox>
+                        <Slider fx:id="phSlider" min="4.0" max="9.0" value="6.5"
+                                showTickLabels="true" showTickMarks="true" majorTickUnit="1"
+                                HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="phValue" text="6.5" prefWidth="50"/>
+                    </HBox>
+                </VBox>
 
                 <Separator/>
 
                 <!-- Années de rotation -->
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="📅 Plan sur:" style="-fx-font-size: 12px;"/>
+                    <Label text="📅 Plan sur:" style="-fx-font-size: 12px; -fx-text-fill: #374151"/>
                     <Spinner fx:id="anneesRotationSpinner" prefWidth="80"/>
-                    <Label text="années" style="-fx-font-size: 12px;"/>
+                    <Label text="années" style="-fx-font-size: 12px; -fx-text-fill: #374151"/>
                 </HBox>
 
                 <!-- Boutons -->
@@ -149,40 +159,6 @@
             </VBox>
         </HBox>
 
-        <!-- Section recommandations -->
-        <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: white; -fx-background-radius: 16;
-                                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 5);">
-
-            <Label text="⭐ Recommandations de Cultures"
-                   style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #065f46;"/>
-
-            <HBox spacing="20" alignment="CENTER_LEFT">
-                <HBox spacing="5" alignment="CENTER_LEFT">
-                    <Label text="⭐" style="-fx-font-size: 12px;"/>
-                    <Label text="IDÉAL (85-100%)" style="-fx-font-size: 11px; -fx-text-fill: #059669;"/>
-                </HBox>
-                <HBox spacing="5" alignment="CENTER_LEFT">
-                    <Label text="✅" style="-fx-font-size: 12px;"/>
-                    <Label text="BON (70-84%)" style="-fx-font-size: 11px; -fx-text-fill: #22c55e;"/>
-                </HBox>
-                <HBox spacing="5" alignment="CENTER_LEFT">
-                    <Label text="🟡" style="-fx-font-size: 12px;"/>
-                    <Label text="ACCEPTABLE (50-69%)" style="-fx-font-size: 11px; -fx-text-fill: #f59e0b;"/>
-                </HBox>
-                <HBox spacing="5" alignment="CENTER_LEFT">
-                    <Label text="❌" style="-fx-font-size: 12px;"/>
-                    <Label text="DÉCONSEILLÉ (&lt;50%)" style="-fx-font-size: 11px; -fx-text-fill: #dc2626;"/>
-                </HBox>
-            </HBox>
-
-            <ScrollPane fitToWidth="true" maxHeight="400"
-                       style="-fx-background-color: transparent; -fx-background: transparent;">
-                <VBox fx:id="recommandationsContainer" spacing="12">
-                    <Label text="Lancez une analyse pour voir les recommandations"
-                           style="-fx-font-size: 12px; -fx-text-fill: #9ca3af; -fx-font-style: italic;"/>
-                </VBox>
-            </ScrollPane>
-        </VBox>
 
         <!-- Footer -->
         <VBox alignment="CENTER" spacing="5">

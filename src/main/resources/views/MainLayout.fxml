@@ -25,7 +25,6 @@
                 <Button text="🤖 AgriBot" onAction="#goToChatbot" styleClass="menu-button"/>
                 <Button text="🔬 Analyse Maladie" onAction="#goToPlantDisease" styleClass="menu-button"/>
                 <Button text="💧 Irrigation" onAction="#goToIrrigation" styleClass="menu-button"/>
-                <Button text="🩺 Diagnostic" onAction="#goToDiagnostic" styleClass="menu-button"/>
                 <Button text="🔄 Rotation Cultures" onAction="#goToRotation" styleClass="menu-button"/>
             </children>
         </VBox>

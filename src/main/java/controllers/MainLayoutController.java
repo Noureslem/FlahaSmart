@@ -70,11 +70,6 @@ public class MainLayoutController {
     }
 
     @FXML
-    public void goToDiagnostic(ActionEvent actionEvent) {
-        loadPage("/views/DiagnosticView.fxml");
-    }
-
-    @FXML
     public void goToRotation(ActionEvent actionEvent) {
         loadPage("/views/RotationCultureView.fxml");
     }

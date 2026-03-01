@@ -6,7 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import models.Parcelle;
-import models.RecommandationCulture;
 import services.RotationCultureService;
 
 import java.util.List;
@@ -31,7 +30,6 @@ public class RotationCultureController {
     @FXML private Label potassiumValue;
     @FXML private Label phValue;
     @FXML private VBox resultContainer;
-    @FXML private VBox recommandationsContainer;
     @FXML private Label statusLabel;
     @FXML private Spinner<Integer> anneesRotationSpinner;
 
@@ -137,22 +135,18 @@ public class RotationCultureController {
         parcelle.setPh(Math.round(phSlider.getValue() * 10.0) / 10.0);
         parcelle.setAnneesDepuisJachere(anneesJachereSpinner.getValue());
 
-        // Générer les recommandations
-        List<RecommandationCulture> recommandations = rotationService.genererRecommandations(parcelle);
-
         // Générer le plan de rotation
         List<String> planRotation = rotationService.genererPlanRotation(parcelle, anneesRotationSpinner.getValue());
 
         // Afficher les résultats
-        afficherResultats(parcelle, recommandations, planRotation);
+        afficherResultats(parcelle, planRotation);
 
-        statusLabel.setText("✅ Analyse terminée - " + recommandations.size() + " cultures évaluées");
+        statusLabel.setText("✅ Analyse terminée");
         statusLabel.setStyle("-fx-text-fill: #059669;");
     }
 
-    private void afficherResultats(Parcelle parcelle, List<RecommandationCulture> recommandations, List<String> planRotation) {
+    private void afficherResultats(Parcelle parcelle, List<String> planRotation) {
         resultContainer.getChildren().clear();
-        recommandationsContainer.getChildren().clear();
 
         // Card résumé parcelle
         VBox resumeCard = createResumeCard(parcelle);
@@ -161,15 +155,6 @@ public class RotationCultureController {
         // Card plan de rotation pluriannuel
         VBox planCard = createPlanRotationCard(planRotation);
         resultContainer.getChildren().add(planCard);
-
-        // Afficher les recommandations
-        int count = 0;
-        for (RecommandationCulture reco : recommandations) {
-            if (count >= 10) break; // Limiter à 10
-            VBox recoCard = createRecommandationCard(reco, count + 1);
-            recommandationsContainer.getChildren().add(recoCard);
-            count++;
-        }
     }
 
     private VBox createResumeCard(Parcelle parcelle) {
@@ -282,77 +267,6 @@ public class RotationCultureController {
         return card;
     }
 
-    private VBox createRecommandationCard(RecommandationCulture reco, int rank) {
-        VBox card = new VBox(8);
-        card.setPadding(new Insets(15));
-        card.setStyle("-fx-background-color: linear-gradient(to right, #ffffff, " + reco.getNiveauColor() + "10); " +
-                     "-fx-background-radius: 12; -fx-border-color: " + reco.getNiveauColor() + "40; " +
-                     "-fx-border-radius: 12; -fx-border-width: 1;");
-
-        // En-tête
-        HBox header = new HBox(10);
-        header.setAlignment(Pos.CENTER_LEFT);
-
-        Label rankLabel = new Label("#" + rank);
-        rankLabel.setStyle("-fx-background-color: " + reco.getNiveauColor() + "; -fx-text-fill: white; " +
-                          "-fx-font-weight: bold; -fx-padding: 3 8; -fx-background-radius: 10;");
-
-        Label cultureLabel = new Label(reco.getFamilleIcon() + " " + capitalizeFirst(reco.getCulture()));
-        cultureLabel.setStyle("-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1f2937;");
-
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-
-        Label scoreLabel = new Label(String.format("%.0f%%", reco.getScoreCompatibilite()));
-        scoreLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: " + reco.getNiveauColor() + ";");
-
-        Label niveauLabel = new Label(reco.getNiveauIcon() + " " + reco.getNiveauRecommandation());
-        niveauLabel.setStyle("-fx-font-size: 11px; -fx-text-fill: " + reco.getNiveauColor() + ";");
-
-        VBox scoreBox = new VBox(2);
-        scoreBox.setAlignment(Pos.CENTER_RIGHT);
-        scoreBox.getChildren().addAll(scoreLabel, niveauLabel);
-
-        header.getChildren().addAll(rankLabel, cultureLabel, spacer, scoreBox);
-
-        // Famille et période
-        HBox infoLine = new HBox(20);
-        Label familleLabel = new Label("Famille: " + reco.getFamille());
-        familleLabel.setStyle("-fx-font-size: 11px; -fx-text-fill: #6b7280;");
-        Label periodeLabel = new Label("📅 " + reco.getPeriodeOptimale());
-        periodeLabel.setStyle("-fx-font-size: 11px; -fx-text-fill: #6b7280;");
-        infoLine.getChildren().addAll(familleLabel, periodeLabel);
-
-        // Raisons (collapsible)
-        TitledPane detailsPane = new TitledPane();
-        detailsPane.setText("Détails de l'analyse");
-        detailsPane.setExpanded(false);
-
-        VBox detailsContent = new VBox(8);
-        detailsContent.setPadding(new Insets(10));
-
-        Label raisonsLabel = new Label(reco.getRaisonRecommandation());
-        raisonsLabel.setWrapText(true);
-        raisonsLabel.setStyle("-fx-font-size: 11px;");
-
-        if (reco.getBeneficesSol() != null && !reco.getBeneficesSol().isEmpty()
-            && !reco.getBeneficesSol().contains("Aucun")) {
-            Label beneficesTitle = new Label("🌱 Bénéfices pour le sol:");
-            beneficesTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #059669;");
-            Label beneficesLabel = new Label(reco.getBeneficesSol());
-            beneficesLabel.setWrapText(true);
-            beneficesLabel.setStyle("-fx-font-size: 11px; -fx-text-fill: #065f46;");
-            detailsContent.getChildren().addAll(raisonsLabel, beneficesTitle, beneficesLabel);
-        } else {
-            detailsContent.getChildren().add(raisonsLabel);
-        }
-
-        detailsPane.setContent(detailsContent);
-
-        card.getChildren().addAll(header, infoLine, detailsPane);
-        return card;
-    }
-
     private String capitalizeFirst(String str) {
         if (str == null || str.isEmpty()) return str;
         return str.substring(0, 1).toUpperCase() + str.substring(1);
@@ -373,7 +287,6 @@ public class RotationCultureController {
         anneesRotationSpinner.getValueFactory().setValue(4);
 
         resultContainer.getChildren().clear();
-        recommandationsContainer.getChildren().clear();
         statusLabel.setText("");
     }
 

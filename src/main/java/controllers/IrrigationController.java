@@ -228,28 +228,7 @@ public class IrrigationController {
             : "N/A";
         addMeteoStat(historiqueBox, "💦", quantiteText, "Qté précédente");
 
-        // Justification
-        TitledPane justificationPane = new TitledPane();
-        justificationPane.setText("📊 Analyse détaillée");
-        justificationPane.setExpanded(true);
-
-        Label justifLabel = new Label(plan.getJustification());
-        justifLabel.setWrapText(true);
-        justifLabel.setStyle("-fx-font-size: 13px; -fx-text-fill: #374151; -fx-padding: 10;");
-        justificationPane.setContent(justifLabel);
-
-        // Bouton ajouter comme opération
-        Button addOpButton = new Button("➕ Créer opération d'irrigation");
-        addOpButton.setStyle("-fx-background-color: linear-gradient(to right, #059669, #10b981); " +
-                            "-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; " +
-                            "-fx-background-radius: 10; -fx-padding: 12 25; -fx-cursor: hand;");
-        addOpButton.setOnAction(e -> creerOperationIrrigation(plan));
-
-        HBox buttonBox = new HBox(addOpButton);
-        buttonBox.setAlignment(Pos.CENTER);
-        buttonBox.setPadding(new Insets(10, 0, 0, 0));
-
-        mainCard.getChildren().addAll(header, infoGrid, meteoBox, historiqueBox, justificationPane, buttonBox);
+        mainCard.getChildren().addAll(header, infoGrid, meteoBox, historiqueBox);
         resultContainer.getChildren().add(mainCard);
     }
 
@@ -284,15 +263,7 @@ public class IrrigationController {
     /**
      * Crée une opération d'irrigation à partir du plan
      */
-    private void creerOperationIrrigation(IrrigationPlan plan) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Créer opération");
-        alert.setHeaderText("Opération d'irrigation");
-        alert.setContentText("Cette fonctionnalité créerait une opération de type 'Irrigation " +
-                            plan.getTypeCulture() + "' pour le " + plan.getDateIrrigation() +
-                            "\n\nAllez dans 'Ajouter une opération' pour créer cette opération.");
-        alert.showAndWait();
-    }
+
 
     private void showError(String message) {
         statusLabel.setText("❌ " + message);

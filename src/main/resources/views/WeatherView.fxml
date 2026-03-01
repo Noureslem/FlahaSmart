@@ -12,7 +12,7 @@
             <Insets top="25" right="30" bottom="25" left="30"/>
         </padding>
         <VBox spacing="5">
-            <Label text="🌤 Météo Agricole" styleClass="form-page-title"/>
+            <Label text="🌤 Météo" styleClass="form-page-title"/>
             <Label text="Consultez la météo pour optimiser vos opérations agricoles" styleClass="form-page-subtitle"/>
         </VBox>
     </HBox>
@@ -80,41 +80,31 @@
 
         </VBox>
 
-        <!-- Conseils agricoles basés sur la météo -->
-        <VBox styleClass="weather-tips-card" spacing="15" prefWidth="350">
+        <!-- Conseils agricoles dynamiques basés sur la météo -->
+        <VBox styleClass="weather-tips-card" spacing="15" prefWidth="400" minWidth="380">
             <padding>
                 <Insets top="25" right="25" bottom="25" left="25"/>
             </padding>
 
-            <Label text="🌾 Conseils Agricoles" styleClass="tips-title"/>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="🌾" style="-fx-font-size: 22px;"/>
+                <VBox spacing="2">
+                    <Label text="Conseils Agricoles" styleClass="tips-title"/>
+                    <Label text="Analyse en temps réel basée sur les données météo"
+                           style="-fx-font-size: 11px; -fx-text-fill: #6b7280;"/>
+                </VBox>
+            </HBox>
 
-            <VBox spacing="12" styleClass="tips-content">
-                <HBox spacing="10" styleClass="tip-item">
-                    <Label text="☀️" styleClass="tip-icon"/>
-                    <Label text="Par temps ensoleillé, arrosez tôt le matin ou en fin de journée"
-                           styleClass="tip-text" wrapText="true"/>
-                </HBox>
-                <HBox spacing="10" styleClass="tip-item">
-                    <Label text="🌧️" styleClass="tip-icon"/>
-                    <Label text="En cas de pluie prévue, reportez l'irrigation et les traitements"
-                           styleClass="tip-text" wrapText="true"/>
-                </HBox>
-                <HBox spacing="10" styleClass="tip-item">
-                    <Label text="💨" styleClass="tip-icon"/>
-                    <Label text="Évitez les pulvérisations par vent fort (>20 km/h)"
-                           styleClass="tip-text" wrapText="true"/>
-                </HBox>
-                <HBox spacing="10" styleClass="tip-item">
-                    <Label text="❄️" styleClass="tip-icon"/>
-                    <Label text="Protégez les cultures sensibles si gel annoncé"
-                           styleClass="tip-text" wrapText="true"/>
-                </HBox>
-                <HBox spacing="10" styleClass="tip-item">
-                    <Label text="🌡️" styleClass="tip-icon"/>
-                    <Label text="Températures >30°C : augmentez la fréquence d'irrigation"
-                           styleClass="tip-text" wrapText="true"/>
-                </HBox>
-            </VBox>
+            <ScrollPane fitToWidth="true" maxHeight="420"
+                        style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;">
+                <VBox fx:id="tipsContainer" spacing="10" styleClass="tips-content">
+                    <!-- Les conseils dynamiques seront générés ici -->
+                    <HBox spacing="10" alignment="CENTER" style="-fx-padding: 30;">
+                        <Label text="🔄 Chargement des conseils..."
+                               style="-fx-font-size: 12px; -fx-text-fill: #9ca3af; -fx-font-style: italic;"/>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
 
         </VBox>
 

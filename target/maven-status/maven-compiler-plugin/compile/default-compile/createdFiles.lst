@@ -25,3 +25,4 @@ controllers\operation\ModifierOpController.class
 controllers\PlantDiseaseController.class
 controllers\IrrigationController.class
 services\IrrigationService$1.class
+controllers\WeatherWidgetController$AgriculturalTip.class

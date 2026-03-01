@@ -339,27 +339,73 @@ public class RotationCultureService {
      * Génère un plan de rotation sur plusieurs années
      */
     public List<String> genererPlanRotation(Parcelle parcelle, int nombreAnnees) {
-        List<String> plan = new ArrayList<>();
-        Parcelle parcelleSimulee = copierParcelle(parcelle);
 
-        for (int i = 0; i < nombreAnnees; i++) {
-            List<RecommandationCulture> recos = genererRecommandations(parcelleSimulee);
+        List<String> meilleuresRotation = new ArrayList<>();
+        double meilleurScoreGlobal = Double.NEGATIVE_INFINITY;
 
-            // Prendre la meilleure recommandation
-            if (!recos.isEmpty()) {
-                RecommandationCulture meilleure = recos.get(0);
-                plan.add(meilleure.getCulture());
+        List<String> culturesDisponibles = getCulturesDisponibles();
+        Random random = new Random();
 
-                // Mettre à jour la parcelle simulée
+        int nombreSimulations = 200; // Ajustable
+
+        for (int s = 0; s < nombreSimulations; s++) {
+
+            Parcelle parcelleSimulee = copierParcelle(parcelle);
+            List<String> planTemporaire = new ArrayList<>();
+            double scoreGlobal = 0;
+
+            for (int annee = 0; annee < nombreAnnees; annee++) {
+
+                // On prend le top 5 des meilleures cultures
+                List<RecommandationCulture> recos = genererRecommandations(parcelleSimulee);
+                int limite = Math.min(5, recos.size());
+
+                if (limite == 0) break;
+
+                // Choix aléatoire parmi le top 5 (évite cycles fixes)
+                RecommandationCulture choisie = recos.get(random.nextInt(limite));
+
+                planTemporaire.add(choisie.getCulture());
+                scoreGlobal += choisie.getScoreCompatibilite();
+
+                // Mise à jour historique
                 parcelleSimulee.setAvantDerniereCulture(parcelleSimulee.getDerniereCulture());
-                parcelleSimulee.setDerniereCulture(meilleure.getCulture());
+                parcelleSimulee.setDerniereCulture(choisie.getCulture());
 
-                // Simuler l'impact sur les nutriments
-                simulerImpactNutriments(parcelleSimulee, meilleure.getCulture());
+                // Simulation impact nutriments
+                simulerImpactNutriments(parcelleSimulee, choisie.getCulture());
+            }
+
+            // 🔹 Bonus diversité (nombre de familles différentes)
+            Set<String> familles = new HashSet<>();
+            for (String culture : planTemporaire) {
+                familles.add(FAMILLES_CULTURES.get(culture));
+            }
+            double bonusDiversite = familles.size() * 5;
+            scoreGlobal += bonusDiversite;
+
+            // 🔹 Pénalité répétition
+            for (int i = 1; i < planTemporaire.size(); i++) {
+                if (planTemporaire.get(i).equals(planTemporaire.get(i - 1))) {
+                    scoreGlobal -= 15;
+                }
+            }
+
+            // 🔹 Pénalité si alternance fixe détectée (ex: A B A B)
+            if (planTemporaire.size() >= 4) {
+                if (planTemporaire.get(0).equals(planTemporaire.get(2)) &&
+                        planTemporaire.get(1).equals(planTemporaire.get(3))) {
+                    scoreGlobal -= 20;
+                }
+            }
+
+            if (scoreGlobal > meilleurScoreGlobal) {
+                meilleurScoreGlobal = scoreGlobal;
+                meilleuresRotation = new ArrayList<>(planTemporaire);
             }
         }
 
-        return plan;
+        return meilleuresRotation;
     }
 
     private Parcelle copierParcelle(Parcelle original) {
