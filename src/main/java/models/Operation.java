@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Operation {
     private int IdOperation ;
     private int id_equipement;
+    private int id_user;
     private String nomEquipement;
     private String TypeOperation;
     private Date date_debut ;
@@ -12,9 +13,10 @@ public class Operation {
     private String statut;
 
 
-    public Operation(int id_operation, int id_equipement, String type_operation, Date date_debut, Date date_fin, String statut) {
+    public Operation(int id_operation, int id_equipement, int id_user, String type_operation, Date date_debut, Date date_fin, String statut) {
         this.IdOperation = id_operation;
         this.id_equipement = id_equipement;
+        this.id_user = id_user;
         this.TypeOperation = type_operation;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
@@ -28,6 +30,14 @@ public class Operation {
         this.date_fin = date_fin;
         this.statut = statut;
 
+    }
+
+    public Operation(int id_user, String type_operation, Date date_debut, Date date_fin, String statut) {
+        this.id_user = id_user;
+        this.TypeOperation = type_operation;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.statut = statut;
     }
 
     public Operation() {
@@ -80,10 +90,19 @@ public class Operation {
         this.nomEquipement = nomEquipement;
     }
 
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
     @Override
     public String toString() {
         return "Operation : " +
                 " id_equipement = '" + id_equipement + '\'' +
+                " id_user = '" + id_user + '\'' +
                 " type_operation = '" + TypeOperation + '\'' +
                 " Date Debut = " + date_debut +
                 " Date Fin = " + date_fin +

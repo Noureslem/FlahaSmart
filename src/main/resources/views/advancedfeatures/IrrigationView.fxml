@@ -6,7 +6,7 @@
 
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.IrrigationController"
+            fx:controller="controllers.advancedfeatures.IrrigationController"
             fitToWidth="true"
             style="-fx-background-color: transparent; -fx-background: transparent;">
 

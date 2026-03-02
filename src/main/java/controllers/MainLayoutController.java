@@ -46,32 +46,32 @@ public class MainLayoutController {
 
     @FXML
     public void goToDashboard(ActionEvent actionEvent) {
-        loadPage("/views/Dashboard.fxml");
+        loadPage("/views/advancedfeatures/Dashboard.fxml");
     }
 
     @FXML
     public void goToWeather(ActionEvent actionEvent) {
-        loadPage("/views/WeatherView.fxml");
+        loadPage("/views/advancedfeatures/WeatherView.fxml");
     }
 
     @FXML
     public void goToChatbot(ActionEvent actionEvent) {
-        loadPage("/views/ChatbotView.fxml");
+        loadPage("/views/advancedfeatures/ChatbotView.fxml");
     }
 
     @FXML
     public void goToPlantDisease(ActionEvent actionEvent) {
-        loadPage("/views/PlantDiseaseView.fxml");
+        loadPage("/views/advancedfeatures/PlantDiseaseView.fxml");
     }
 
     @FXML
     public void goToIrrigation(ActionEvent actionEvent) {
-        loadPage("/views/IrrigationView.fxml");
+        loadPage("/views/advancedfeatures/IrrigationView.fxml");
     }
 
     @FXML
     public void goToRotation(ActionEvent actionEvent) {
-        loadPage("/views/RotationCultureView.fxml");
+        loadPage("/views/advancedfeatures/RotationCultureView.fxml");
     }
 
 }

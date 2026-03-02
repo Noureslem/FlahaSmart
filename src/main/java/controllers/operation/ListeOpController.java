@@ -123,13 +123,13 @@ public class ListeOpController {
             controller.setListeController(this);
 
             Stage stage = new Stage();
-            Scene scene = new Scene(root, 500, 400);
+            Scene scene = new Scene(root, 600, 500);
             scene.getStylesheets().add(
                     getClass().getResource("/styles/style.css").toExternalForm()
             );
 
             stage.setScene(scene);
-            stage.setTitle("Modifier");
+            stage.setTitle("Modifier l'opération");
             stage.show();
 
 

@@ -119,7 +119,7 @@ public class Ajout_Op_Controller  {
                 errors.append("• Type doit contenir au moins 3 caractères\n");
             }
 
-            if (!type.matches("[a-zA-Z ]+")) {
+            if(!type.matches("[\\p{L}\\d ]+")) {
                 errors.append("• Type ne doit pas contenir de caractères spéciaux\n");
             }
         }
