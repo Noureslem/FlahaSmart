@@ -25,9 +25,9 @@ public class NotificationService {
 
     public void checkAndSendNotifications() {
         System.out.println("=== Exécution de checkAndSendNotifications à " + LocalDateTime.now() + " ===");
-        LocalDate targetDate = LocalDate.now().plusDays(4);
+        LocalDate targetDate = LocalDate.now().plusDays(2);
         Date sqlTargetDate = Date.valueOf(targetDate);
-        System.out.println("Date cible (J+4) : " + sqlTargetDate);
+        System.out.println("Date cible (J+2) : " + sqlTargetDate);
 
         try {
             List<ConsommationProduit> consommations = consommationService.getByDateUtilisation(sqlTargetDate);

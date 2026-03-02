@@ -152,10 +152,6 @@ public class ConsommationPopupController {
             showDateError("L'utilisation doit être après la récolte");
             return false;
         }
-        if (utilisation.isAfter(LocalDate.now())) {
-            showDateError("La date d'utilisation ne peut pas être future");
-            return false;
-        }
         clearDateError();
         return true;
     }

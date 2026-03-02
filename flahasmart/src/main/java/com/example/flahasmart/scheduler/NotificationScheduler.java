@@ -11,7 +11,7 @@ public class NotificationScheduler {
     public static void startDailyNotification() {
         Timer timer = new Timer("NotificationScheduler", true);
         Calendar target = Calendar.getInstance();
-        target.set(Calendar.HOUR_OF_DAY, 22);
+        target.set(Calendar.HOUR_OF_DAY, 21);
         target.set(Calendar.MINUTE, 40);
         target.set(Calendar.SECOND, 0);
         target.set(Calendar.MILLISECOND, 0);
