@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3feeef1-f9ba-4eab-847f-e7cb284509d1" name="Changes" comment="" />
+    <list default="true" id="d3feeef1-f9ba-4eab-847f-e7cb284509d1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +22,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/mouhammed-Fakher" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="eya132 &lt;dhaouadi.eya@esprit.tn&gt;" />
@@ -33,6 +48,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Eya132"
+  }
+}]]></component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="3e07dd40-b4b7-4826-9d05-f20ecd75c18e" />
   </component>
@@ -70,7 +91,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Merging gestionuser",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/dhaou/IdeaProjects/demo1/src/main/resources",
     "list.type.of.created.stylesheet": "CSS",
@@ -129,7 +151,7 @@
       <workItem from="1772045211932" duration="6137000" />
       <workItem from="1772096946923" duration="609000" />
       <workItem from="1772392047516" duration="8577000" />
-      <workItem from="1772476550349" duration="1918000" />
+      <workItem from="1772476550349" duration="2570000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
