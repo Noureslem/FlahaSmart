@@ -36,6 +36,12 @@
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="3e07dd40-b4b7-4826-9d05-f20ecd75c18e" />
   </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Noureslem/FlahaSmart.git",
+    "accountId": "3e07dd40-b4b7-4826-9d05-f20ecd75c18e"
+  }
+}]]></component>
   <component name="KubernetesApiProvider">{}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -123,7 +129,7 @@
       <workItem from="1772045211932" duration="6137000" />
       <workItem from="1772096946923" duration="609000" />
       <workItem from="1772392047516" duration="8577000" />
-      <workItem from="1772476550349" duration="1612000" />
+      <workItem from="1772476550349" duration="1918000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
