@@ -4,17 +4,11 @@ import entities.User;
 import entities.Role;
 import services.UserService;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -24,70 +18,56 @@ import java.util.ResourceBundle;
 public class DashboardHomeController implements Initializable {
 
     @FXML
-    private Text welcomeText;
-
+    private Label welcomeText;
     @FXML
-    private Text dateText;
-
+    private Label dateText;
     @FXML
-    private Text totalUsersText;
-
+    private Label totalUsersText;
     @FXML
-    private Text totalAdminsText;
-
+    private Label totalAdminsText;
     @FXML
-    private Text totalAgriculteursText;
-
+    private Label totalAgriculteursText;
     @FXML
-    private Text totalClientsText;
-
+    private Label totalClientsText;
     @FXML
     private PieChart rolePieChart;
-
     @FXML
-    private LineChart<String, Number> inscriptionChart;
-
+    private BarChart<String, Number> activityChart;
     @FXML
     private TableView<User> recentUsersTable;
-
     @FXML
     private TableColumn<User, Integer> colId;
-
     @FXML
     private TableColumn<User, String> colNom;
-
     @FXML
     private TableColumn<User, String> colPrenom;
-
     @FXML
     private TableColumn<User, String> colEmail;
-
     @FXML
     private TableColumn<User, Role> colRole;
-
-    @FXML
-    private TableColumn<User, String> colDate;
 
     private UserService userService = new UserService();
     private User loggedInAdmin;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("📊 Initialisation du Dashboard Home...");
-
-        // Formater la date du jour
+        // Date du jour
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-        dateText.setText("Aujourd'hui, nous sommes le " + today.format(formatter));
+        dateText.setText("Nous sommes le " + today.format(formatter));
 
-        // Initialiser le tableau des derniers utilisateurs
-        setupTableColumns();
+        // Configuration du tableau
+        colId.setCellValueFactory(new PropertyValueFactory<>("id_user"));
+        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
 
         // Charger les données
         loadStatistics();
         loadPieChart();
-        loadLineChart();
         loadRecentUsers();
+        loadBarChart();
     }
 
     public void setLoggedInUser(User user) {
@@ -97,160 +77,71 @@ public class DashboardHomeController implements Initializable {
         }
     }
 
-    private void setupTableColumns() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("id_user"));
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
-
-        // Formatage de la date
-        colDate.setCellValueFactory(cellData -> {
-            if (cellData.getValue().getDate_creation() != null) {
-                String dateStr = cellData.getValue().getDate_creation().toString().substring(0, 10);
-                return new javafx.beans.property.SimpleStringProperty(dateStr);
-            }
-            return new javafx.beans.property.SimpleStringProperty("");
-        });
-    }
-
     private void loadStatistics() {
-        try {
-            List<User> allUsers = userService.getEntities();
+        List<User> users = userService.getEntities();
 
-            if (allUsers == null || allUsers.isEmpty()) {
-                System.out.println("⚠️ Aucun utilisateur trouvé");
-                return;
-            }
+        long total = users.size();
+        long admins = users.stream().filter(u -> u.getRole() == Role.ADMINISTRATEUR).count();
+        long agriculteurs = users.stream().filter(u -> u.getRole() == Role.AGRICULTEUR).count();
+        long clients = users.stream().filter(u -> u.getRole() == Role.CLIENT).count();
 
-            long totalUsers = allUsers.size();
-            long totalAdmins = allUsers.stream().filter(u -> u.getRole() == Role.ADMINISTRATEUR).count();
-            long totalAgriculteurs = allUsers.stream().filter(u -> u.getRole() == Role.AGRICULTEUR).count();
-            long totalClients = allUsers.stream().filter(u -> u.getRole() == Role.CLIENT).count();
-
-            totalUsersText.setText(String.valueOf(totalUsers));
-            totalAdminsText.setText(String.valueOf(totalAdmins));
-            totalAgriculteursText.setText(String.valueOf(totalAgriculteurs));
-            totalClientsText.setText(String.valueOf(totalClients));
-
-        } catch (Exception e) {
-            System.err.println("❌ Erreur chargement statistiques: " + e.getMessage());
-        }
+        totalUsersText.setText(String.valueOf(total));
+        totalAdminsText.setText(String.valueOf(admins));
+        totalAgriculteursText.setText(String.valueOf(agriculteurs));
+        totalClientsText.setText(String.valueOf(clients));
     }
 
     private void loadPieChart() {
-        try {
-            List<User> allUsers = userService.getEntities();
+        List<User> users = userService.getEntities();
 
-            if (allUsers == null || allUsers.isEmpty()) {
-                return;
-            }
+        long admins = users.stream().filter(u -> u.getRole() == Role.ADMINISTRATEUR).count();
+        long agriculteurs = users.stream().filter(u -> u.getRole() == Role.AGRICULTEUR).count();
+        long clients = users.stream().filter(u -> u.getRole() == Role.CLIENT).count();
 
-            long totalAdmins = allUsers.stream().filter(u -> u.getRole() == Role.ADMINISTRATEUR).count();
-            long totalAgriculteurs = allUsers.stream().filter(u -> u.getRole() == Role.AGRICULTEUR).count();
-            long totalClients = allUsers.stream().filter(u -> u.getRole() == Role.CLIENT).count();
-
-            rolePieChart.getData().clear();
-
-            PieChart.Data slice1 = new PieChart.Data("Administrateurs (" + totalAdmins + ")",
-                    totalAdmins > 0 ? totalAdmins : 0.1);
-            PieChart.Data slice2 = new PieChart.Data("Agriculteurs (" + totalAgriculteurs + ")",
-                    totalAgriculteurs > 0 ? totalAgriculteurs : 0.1);
-            PieChart.Data slice3 = new PieChart.Data("Clients (" + totalClients + ")",
-                    totalClients > 0 ? totalClients : 0.1);
-
-            rolePieChart.getData().addAll(slice1, slice2, slice3);
-
-        } catch (Exception e) {
-            System.err.println("❌ Erreur chargement graphique: " + e.getMessage());
-        }
+        rolePieChart.getData().clear();
+        if (admins > 0) rolePieChart.getData().add(new PieChart.Data("Administrateurs", admins));
+        if (agriculteurs > 0) rolePieChart.getData().add(new PieChart.Data("Agriculteurs", agriculteurs));
+        if (clients > 0) rolePieChart.getData().add(new PieChart.Data("Clients", clients));
     }
 
-    private void loadLineChart() {
-        try {
-            // Créer une série pour les inscriptions
-            XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.setName("Inscriptions");
+    private void loadBarChart() {
+        List<User> users = userService.getEntities();
 
-            // Données fictives pour l'exemple
-            series.getData().add(new XYChart.Data<>("Jan", 5));
-            series.getData().add(new XYChart.Data<>("Fév", 8));
-            series.getData().add(new XYChart.Data<>("Mar", 12));
-            series.getData().add(new XYChart.Data<>("Avr", 10));
-            series.getData().add(new XYChart.Data<>("Mai", 15));
-            series.getData().add(new XYChart.Data<>("Juin", 20));
+        long actifs = users.stream().filter(u -> u.getActif() != null && u.getActif()).count();
+        long inactifs = users.size() - actifs;
 
-            inscriptionChart.getData().clear();
-            inscriptionChart.getData().add(series);
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Utilisateurs");
+        series.getData().add(new XYChart.Data<>("Actifs", actifs));
+        series.getData().add(new XYChart.Data<>("Inactifs", inactifs));
 
-        } catch (Exception e) {
-            System.err.println("❌ Erreur chargement line chart: " + e.getMessage());
-        }
+        activityChart.getData().clear();
+        activityChart.getData().add(series);
     }
 
     private void loadRecentUsers() {
-        try {
-            List<User> recentUsers = userService.getRecentUsers(10);
-            if (recentUsers != null && !recentUsers.isEmpty()) {
-                recentUsersTable.getItems().setAll(recentUsers);
-            }
-        } catch (Exception e) {
-            System.err.println("❌ Erreur chargement utilisateurs récents: " + e.getMessage());
-        }
+        List<User> recentUsers = userService.getRecentUsers(5);
+        recentUsersTable.getItems().setAll(recentUsers);
     }
 
     @FXML
     private void handleViewAllUsers() {
-        navigateToListUser();
+        // Cette méthode sera appelée depuis le contrôleur parent
+        // Elle est gérée par DashboardAdmController
     }
 
     @FXML
     private void handleViewAdmins() {
-        navigateToListUserWithFilter("ADMINISTRATEUR");
+        // À implémenter si nécessaire
     }
 
     @FXML
     private void handleViewAgriculteurs() {
-        navigateToListUserWithFilter("AGRICULTEUR");
+        // À implémenter si nécessaire
     }
 
     @FXML
     private void handleViewClients() {
-        navigateToListUserWithFilter("CLIENT");
-    }
-
-    private void navigateToListUser() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListUser.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) recentUsersTable.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("FlahaSmart - Liste des utilisateurs");
-            stage.setMaximized(true);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void navigateToListUserWithFilter(String role) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListUser.fxml"));
-            Parent root = loader.load();
-
-            // Ici vous pouvez passer le filtre au contrôleur ListUser si nécessaire
-            // controller.setFilter(role);
-
-            Stage stage = (Stage) recentUsersTable.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("FlahaSmart - Liste des " + role.toLowerCase() + "s");
-            stage.setMaximized(true);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // À implémenter si nécessaire
     }
 }
