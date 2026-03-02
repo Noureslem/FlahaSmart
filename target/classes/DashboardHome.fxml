@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controllers.Dashbord.DashboardHomeController"
+      spacing="20" style="-fx-background-color: #f8fafc; -fx-padding: 20;">
+
+    <!-- En-tête de bienvenue -->
+    <HBox alignment="CENTER_LEFT" spacing="15"
+          style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 0);">
+
+        <StackPane style="-fx-background-color: #27ae60; -fx-background-radius: 10; -fx-padding: 12;">
+            <FontAwesomeIconView glyphName="HOME" size="24" fill="white"/>
+        </StackPane>
+
+        <VBox spacing="5">
+            <Label fx:id="welcomeText" text="Tableau de bord"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+            <Label fx:id="dateText" text="Chargement de la date..."
+                   style="-fx-font-size: 13px; -fx-text-fill: #64748b;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Cartes de statistiques -->
+    <HBox spacing="15" HBox.hgrow="ALWAYS">
+
+        <!-- Carte Total Utilisateurs -->
+        <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0); -fx-cursor: hand; -fx-min-width: 150;"
+              HBox.hgrow="ALWAYS" onMouseClicked="#handleViewAllUsers">
+            <Label text="👥" style="-fx-font-size: 28px;"/>
+            <Label fx:id="totalUsersText" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+            <Label text="Total" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
+        </VBox>
+
+        <!-- Carte Administrateurs -->
+        <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0); -fx-cursor: hand; -fx-min-width: 150;"
+              HBox.hgrow="ALWAYS" onMouseClicked="#handleViewAdmins">
+            <Label text="👑" style="-fx-font-size: 28px;"/>
+            <Label fx:id="totalAdminsText" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #ef4444;"/>
+            <Label text="Admins" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
+        </VBox>
+
+        <!-- Carte Agriculteurs -->
+        <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0); -fx-cursor: hand; -fx-min-width: 150;"
+              HBox.hgrow="ALWAYS" onMouseClicked="#handleViewAgriculteurs">
+            <Label text="🌾" style="-fx-font-size: 28px;"/>
+            <Label fx:id="totalAgriculteursText" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #f59e0b;"/>
+            <Label text="Agriculteurs" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
+        </VBox>
+
+        <!-- Carte Clients -->
+        <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0); -fx-cursor: hand; -fx-min-width: 150;"
+              HBox.hgrow="ALWAYS" onMouseClicked="#handleViewClients">
+            <Label text="👤" style="-fx-font-size: 28px;"/>
+            <Label fx:id="totalClientsText" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+            <Label text="Clients" style="-fx-font-size: 12px; -fx-text-fill: #64748b;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Graphiques -->
+    <HBox spacing="15" VBox.vgrow="ALWAYS">
+
+        <!-- Graphique des rôles -->
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);" HBox.hgrow="ALWAYS">
+            <Label text="Répartition par rôle" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+            <PieChart fx:id="rolePieChart" prefHeight="200" legendVisible="true"/>
+        </VBox>
+
+        <!-- Graphique des inscriptions (simplifié) -->
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);" HBox.hgrow="ALWAYS">
+            <Label text="Activité récente" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+            <BarChart fx:id="activityChart" prefHeight="200">
+                <xAxis>
+                    <CategoryAxis side="BOTTOM"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis side="LEFT"/>
+                </yAxis>
+            </BarChart>
+        </VBox>
+    </HBox>
+
+    <!-- Derniers utilisateurs inscrits -->
+    <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);">
+        <Label text="Derniers inscrits" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+
+        <TableView fx:id="recentUsersTable" prefHeight="150">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="40"/>
+                <TableColumn fx:id="colNom" text="Nom" prefWidth="80"/>
+                <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="80"/>
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="150"/>
+                <TableColumn fx:id="colRole" text="Rôle" prefWidth="80"/>
+            </columns>
+        </TableView>
+
+        <Button text="Voir tous les utilisateurs" onAction="#handleViewAllUsers" maxWidth="Infinity"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-padding: 8; -fx-background-radius: 5; -fx-font-size: 13px; -fx-cursor: hand;"/>
+    </VBox>
+
+</VBox>
