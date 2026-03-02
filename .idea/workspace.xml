@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3feeef1-f9ba-4eab-847f-e7cb284509d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-    </list>
+    <list default="true" id="d3feeef1-f9ba-4eab-847f-e7cb284509d1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +90,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging gestionuser",
+    "git-widget-placeholder": "gestionuser",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/dhaou/IdeaProjects/demo1/src/main/resources",
     "list.type.of.created.stylesheet": "CSS",
@@ -151,7 +149,7 @@
       <workItem from="1772045211932" duration="6137000" />
       <workItem from="1772096946923" duration="609000" />
       <workItem from="1772392047516" duration="8577000" />
-      <workItem from="1772476550349" duration="2570000" />
+      <workItem from="1772476550349" duration="2881000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
