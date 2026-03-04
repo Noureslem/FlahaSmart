@@ -16,7 +16,7 @@ public class EmailService {
         this.host = "smtp.gmail.com";
         this.port = "587";
         this.username = "mohamedbacharmhamed@gmail.com";
-        this.password = "hvuc fezh gggc qdmg"; // Mot de passe d'application
+        this.password = "jpdm rxil ehzp ntob"; // Mot de passe d'application
     }
 
     public void sendHtmlEmail(String to, String subject, String htmlContent) throws MessagingException {
