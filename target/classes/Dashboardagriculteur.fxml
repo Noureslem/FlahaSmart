@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.Dashbord.DashboardAgriculteurController"
+            style="-fx-background-color: #f8f9fa;">
+
+    <!-- Barre de navigation supérieure -->
+    <top>
+        <VBox spacing="0">
+            <HBox alignment="CENTER_LEFT" spacing="30"
+                  style="-fx-background-color: white; -fx-padding: 15 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 0);">
+
+                <!-- Logo -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Rectangle width="32" height="32" style="-fx-fill: #27ae60; -fx-arc-width: 8; -fx-arc-height: 8;"/>
+                    <Text text="FlahaSmart Agriculteur" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #1e293b;"/>
+                </HBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Menu de navigation -->
+                <HBox spacing="20" alignment="CENTER">
+                    <Button text="Tableau de bord" style="-fx-background-color: transparent; -fx-text-fill: #1e293b; -fx-font-size: 14px; -fx-cursor: hand; -fx-border-width: 0 0 2 0; -fx-border-color: #27ae60;" onAction="#handleDashboard"/>
+                    <Button text="Cultures" style="-fx-background-color: transparent; -fx-text-fill: #1e293b; -fx-font-size: 14px; -fx-cursor: hand;" onAction="#handleCultures"/>
+                    <Button text="Planification" style="-fx-background-color: transparent; -fx-text-fill: #1e293b; -fx-font-size: 14px; -fx-cursor: hand;" onAction="#handlePlanification"/>
+                    <Button text="Récoltes" style="-fx-background-color: transparent; -fx-text-fill: #1e293b; -fx-font-size: 14px; -fx-cursor: hand;" onAction="#handleRecoltes"/>
+                    <Button text="Rapports" style="-fx-background-color: transparent; -fx-text-fill: #1e293b; -fx-font-size: 14px; -fx-cursor: hand;" onAction="#handleRapports"/>
+                </HBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Profil agriculteur -->
+                <HBox spacing="15" alignment="CENTER">
+                    <Circle radius="18" fill="#27ae60"/>
+                    <Text text="👤" style="-fx-font-size: 18px;" translateX="-20"/>
+                    <VBox spacing="2">
+                        <Label fx:id="agriculteurNameLabel" text="Agriculteur" style="-fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+                        <Label text="Producteur bio" style="-fx-font-size: 11px; -fx-text-fill: #64748b;"/>
+                    </VBox>
+                </HBox>
+            </HBox>
+
+            <!-- Barre de statut -->
+            <HBox style="-fx-background-color: #f1f5f9; -fx-padding: 8 30;" alignment="CENTER_LEFT">
+                <HBox spacing="20" alignment="CENTER">
+                    <HBox spacing="5" alignment="CENTER">
+                        <Circle radius="5" fill="#27ae60"/>
+                        <Text text="Saison: Printemps 2024" style="-fx-fill: #475569; -fx-font-size: 13px;"/>
+                    </HBox>
+                    <HBox spacing="5" alignment="CENTER">
+                        <Text text="🌤️" style="-fx-font-size: 14px;"/>
+                        <Text text="Météo: 22°C" style="-fx-fill: #475569; -fx-font-size: 13px;"/>
+                    </HBox>
+                    <Text text="|" style="-fx-fill: #cbd5e1;"/>
+                    <Text fx:id="dateText" text="" style="-fx-fill: #64748b; -fx-font-size: 13px;"/>
+                </HBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Déconnexion" onAction="#handleLogout"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 5 15; -fx-background-radius: 20; -fx-font-size: 12px; -fx-cursor: hand;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Contenu principal avec scroll -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+            <VBox spacing="30" style="-fx-padding: 30;">
+
+                <!-- Message de bienvenue -->
+                <VBox spacing="5">
+                    <Text fx:id="welcomeText" text="Bienvenue dans votre espace agriculteur"
+                          style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-fill: #1e293b;"/>
+                    <Text text="Gérez vos cultures et planifiez vos actions agricoles"
+                          style="-fx-font-size: 16px; -fx-fill: #64748b;"/>
+                </VBox>
+
+                <!-- Cartes de résumé -->
+                <HBox spacing="20" alignment="CENTER">
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-alignment: CENTER; -fx-spacing: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 0);" prefWidth="180">
+                        <Text text="🌱" style="-fx-font-size: 32px;"/>
+                        <Text text="Cultures actives" style="-fx-font-size: 14px; -fx-fill: #64748b;"/>
+                        <Text text="12" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-fill: #27ae60;"/>
+                    </VBox>
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-alignment: CENTER; -fx-spacing: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 0);" prefWidth="180">
+                        <Text text="📅" style="-fx-font-size: 32px;"/>
+                        <Text text="Tâches planifiées" style="-fx-font-size: 14px; -fx-fill: #64748b;"/>
+                        <Text text="8" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-fill: #3498db;"/>
+                    </VBox>
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-alignment: CENTER; -fx-spacing: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 0);" prefWidth="180">
+                        <Text text="🌾" style="-fx-font-size: 32px;"/>
+                        <Text text="Récoltes à venir" style="-fx-font-size: 14px; -fx-fill: #64748b;"/>
+                        <Text text="5" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-fill: #e67e22;"/>
+                    </VBox>
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-alignment: CENTER; -fx-spacing: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 0);" prefWidth="180">
+                        <Text text="📊" style="-fx-font-size: 32px;"/>
+                        <Text text="Rendement estimé" style="-fx-font-size: 14px; -fx-fill: #64748b;"/>
+                        <Text text="2.4t" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-fill: #9b59b6;"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Section Suivi des cultures -->
+                <VBox spacing="15">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Text text="🌱" style="-fx-font-size: 24px;"/>
+                        <Text text="Suivi des cultures" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-fill: #1e293b;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="+ Nouvelle culture" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-padding: 8 15; -fx-background-radius: 20; -fx-font-size: 13px; -fx-cursor: hand;"/>
+                    </HBox>
+
+                    <HBox spacing="20" alignment="CENTER">
+
+                        <!-- Culture 1 -->
+                        <VBox style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 15; -fx-spacing: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);" prefWidth="250">
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <Text text="🍅" style="-fx-font-size: 32px;"/>
+                                <VBox>
+                                    <Text text="Tomates" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                                    <Text text="Variété: Cœur de bœuf" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Text text="Parcelle A3" style="-fx-background-color: #e8f5e9; -fx-padding: 5 10; -fx-background-radius: 15; -fx-fill: #27ae60; -fx-font-size: 12px;"/>
+                            </HBox>
+                            <ProgressBar progress="0.6" prefWidth="Infinity" style="-fx-accent: #27ae60;"/>
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <HBox spacing="3">
+                                    <Text text="🌱" style="-fx-font-size: 12px;"/>
+                                    <Text text="Semis: 15/03/24" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                </HBox>
+                                <HBox spacing="3">
+                                    <Text text="🌾" style="-fx-font-size: 12px;"/>
+                                    <Text text="Récolte: 15/06/24" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                </HBox>
+                            </HBox>
+                            <HBox spacing="5">
+                                <Button text="Suivi" style="-fx-background-color: #e2e8f0; -fx-text-fill: #1e293b; -fx-padding: 5 10; -fx-background-radius: 15; -fx-font-size: 11px; -fx-cursor: hand;"/>
+                                <Button text="Arroser" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-padding: 5 10; -fx-background-radius: 15; -fx-font-size: 11px; -fx-cursor: hand;"/>
+                                <Button text="Traiter" style="-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-padding: 5 10; -fx-background-radius: 15; -fx-font-size: 11px; -fx-cursor: hand;"/>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Culture 2 -->
+                        <VBox style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 15; -fx-spacing: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);" prefWidth="250">
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <Text text="🥕" style="-fx-font-size: 32px;"/>
+                                <VBox>
+                                    <Text text="Carottes" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                                    <Text text="Variété: Nantaise" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Text text="Parcelle B2" style="-fx-background-color: #e8f5e9; -fx-padding: 5 10; -fx-background-radius: 15; -fx-fill: #27ae60; -fx-font-size: 12px;"/>
+                            </HBox>
+                            <ProgressBar progress="0.4" prefWidth="Infinity" style="-fx-accent: #27ae60;"/>
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <HBox spacing="3">
+                                    <Text text="🌱" style="-fx-font-size: 12px;"/>
+                                    <Text text="Semis: 01/04/24" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                </HBox>
+                                <HBox spacing="3">
+                                    <Text text="🌾" style="-fx-font-size: 12px;"/>
+                                    <Text text="Récolte: 01/07/24" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                </HBox>
+                            </HBox>
+                            <HBox spacing="5">
+                                <Button text="Suivi" style="-fx-background-color: #e2e8f0; -fx-text-fill: #1e293b; -fx-padding: 5 10; -fx-background-radius: 15; -fx-font-size: 11px; -fx-cursor: hand;"/>
+                                <Button text="Arroser" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-padding: 5 10; -fx-background-radius: 15; -fx-font-size: 11px; -fx-cursor: hand;"/>
+                                <Button text="Traiter" style="-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-padding: 5 10; -fx-background-radius: 15; -fx-font-size: 11px; -fx-cursor: hand;"/>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Culture 3 -->
+                        <VBox style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 15; -fx-spacing: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);" prefWidth="250">
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <Text text="🍓" style="-fx-font-size: 32px;"/>
+                                <VBox>
+                                    <Text text="Fraises" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                                    <Text text="Variété: Mara des bois" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Text text="Parcelle C1" style="-fx-background-color: #e8f5e9; -fx-padding: 5 10; -fx-background-radius: 15; -fx-fill: #27ae60; -fx-font-size: 12px;"/>
+                            </HBox>
+                            <ProgressBar progress="0.8" prefWidth="Infinity" style="-fx-accent: #27ae60;"/>
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <HBox spacing="3">
+                                    <Text text="🌱" style="-fx-font-size: 12px;"/>
+                                    <Text text="Semis: 10/02/24" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                </HBox>
+                                <HBox spacing="3">
+                                    <Text text="🌾" style="-fx-font-size: 12px;"/>
+                                    <Text text="Récolte: 20/05/24" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                </HBox>
+                            </HBox>
+                            <HBox spacing="5">
+                                <Button text="Suivi" style="-fx-background-color: #e2e8f0; -fx-text-fill: #1e293b; -fx-padding: 5 10; -fx-background-radius: 15; -fx-font-size: 11px; -fx-cursor: hand;"/>
+                                <Button text="Arroser" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-padding: 5 10; -fx-background-radius: 15; -fx-font-size: 11px; -fx-cursor: hand;"/>
+                                <Button text="Traiter" style="-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-padding: 5 10; -fx-background-radius: 15; -fx-font-size: 11px; -fx-cursor: hand;"/>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <!-- Section Planification des actions agricoles -->
+                <VBox spacing="15">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Text text="📅" style="-fx-font-size: 24px;"/>
+                        <Text text="Planification des actions" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-fill: #1e293b;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="+ Nouvelle tâche" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-padding: 8 15; -fx-background-radius: 20; -fx-font-size: 13px; -fx-cursor: hand;"/>
+                    </HBox>
+
+                    <VBox spacing="10">
+
+                        <!-- Tâche 1 -->
+                        <HBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 12; -fx-spacing: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 5, 0, 0, 0);" alignment="CENTER_LEFT">
+                            <CheckBox/>
+                            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                                <Text text="Arrosage des tomates" style="-fx-font-weight: bold; -fx-font-size: 15px;"/>
+                                <HBox spacing="15">
+                                    <HBox spacing="5">
+                                        <Text text="📍" style="-fx-font-size: 12px;"/>
+                                        <Text text="Parcelle A3" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                    </HBox>
+                                    <HBox spacing="5">
+                                        <Text text="⏰" style="-fx-font-size: 12px;"/>
+                                        <Text text="Aujourd'hui, 18:00" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                    </HBox>
+                                </HBox>
+                            </VBox>
+                            <Text text="Haute priorité" style="-fx-background-color: #fee2e2; -fx-padding: 3 8; -fx-background-radius: 12; -fx-fill: #ef4444; -fx-font-size: 11px;"/>
+                        </HBox>
+
+                        <!-- Tâche 2 -->
+                        <HBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 12; -fx-spacing: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 5, 0, 0, 0);" alignment="CENTER_LEFT">
+                            <CheckBox/>
+                            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                                <Text text="Traitement bio des carottes" style="-fx-font-weight: bold; -fx-font-size: 15px;"/>
+                                <HBox spacing="15">
+                                    <HBox spacing="5">
+                                        <Text text="📍" style="-fx-font-size: 12px;"/>
+                                        <Text text="Parcelle B2" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                    </HBox>
+                                    <HBox spacing="5">
+                                        <Text text="⏰" style="-fx-font-size: 12px;"/>
+                                        <Text text="Demain, 08:00" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                    </HBox>
+                                </HBox>
+                            </VBox>
+                            <Text text="Moyenne priorité" style="-fx-background-color: #fef9e7; -fx-padding: 3 8; -fx-background-radius: 12; -fx-fill: #f59e0b; -fx-font-size: 11px;"/>
+                        </HBox>
+
+                        <!-- Tâche 3 -->
+                        <HBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 12; -fx-spacing: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 5, 0, 0, 0);" alignment="CENTER_LEFT">
+                            <CheckBox/>
+                            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                                <Text text="Récolte des fraises" style="-fx-font-weight: bold; -fx-font-size: 15px;"/>
+                                <HBox spacing="15">
+                                    <HBox spacing="5">
+                                        <Text text="📍" style="-fx-font-size: 12px;"/>
+                                        <Text text="Parcelle C1" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                    </HBox>
+                                    <HBox spacing="5">
+                                        <Text text="⏰" style="-fx-font-size: 12px;"/>
+                                        <Text text="20/05/24, 09:00" style="-fx-fill: #64748b; -fx-font-size: 12px;"/>
+                                    </HBox>
+                                </HBox>
+                            </VBox>
+                            <Text text="Basse priorité" style="-fx-background-color: #e8f5e9; -fx-padding: 3 8; -fx-background-radius: 12; -fx-fill: #27ae60; -fx-font-size: 11px;"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+
+                <!-- Section Récoltes récentes (version simple sans TableView) -->
+                <VBox spacing="15">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Text text="🌾" style="-fx-font-size: 24px;"/>
+                        <Text text="Récoltes récentes" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-fill: #1e293b;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Voir tout" style="-fx-background-color: transparent; -fx-text-fill: #27ae60; -fx-underline: true; -fx-cursor: hand;" onAction="#handleRecoltes"/>
+                    </HBox>
+
+                    <VBox spacing="5" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15;">
+                        <!-- En-tête -->
+                        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-border-color: #e2e8f0; -fx-border-width: 0 0 1 0; -fx-padding: 5 0;">
+                            <Text text="Culture" style="-fx-font-weight: bold; -fx-min-width: 100;"/>
+                            <Text text="Parcelle" style="-fx-font-weight: bold; -fx-min-width: 70;"/>
+                            <Text text="Date" style="-fx-font-weight: bold; -fx-min-width: 80;"/>
+                            <Text text="Quantité" style="-fx-font-weight: bold; -fx-min-width: 70;"/>
+                            <Text text="Qualité" style="-fx-font-weight: bold; -fx-min-width: 70;"/>
+                        </HBox>
+                        <!-- Ligne 1 -->
+                        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5 0;">
+                            <Text text="Salades" style="-fx-min-width: 100;"/>
+                            <Text text="A2" style="-fx-min-width: 70;"/>
+                            <Text text="12/05/24" style="-fx-min-width: 80;"/>
+                            <Text text="80 kg" style="-fx-min-width: 70;"/>
+                            <Text text="⭐⭐⭐⭐" style="-fx-min-width: 70;"/>
+                        </HBox>
+                        <!-- Ligne 2 -->
+                        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5 0;">
+                            <Text text="Tomates" style="-fx-min-width: 100;"/>
+                            <Text text="A3" style="-fx-min-width: 70;"/>
+                            <Text text="10/05/24" style="-fx-min-width: 80;"/>
+                            <Text text="120 kg" style="-fx-min-width: 70;"/>
+                            <Text text="⭐⭐⭐⭐⭐" style="-fx-min-width: 70;"/>
+                        </HBox>
+                        <!-- Ligne 3 -->
+                        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5 0;">
+                            <Text text="Carottes" style="-fx-min-width: 100;"/>
+                            <Text text="B2" style="-fx-min-width: 70;"/>
+                            <Text text="08/05/24" style="-fx-min-width: 80;"/>
+                            <Text text="95 kg" style="-fx-min-width: 70;"/>
+                            <Text text="⭐⭐⭐⭐" style="-fx-min-width: 70;"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
